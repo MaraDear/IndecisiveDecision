@@ -127,6 +127,8 @@ var otherResultFunc = function () {
 //results display
 var resultsPage =  function(){
 //change header and btns
+headerArea.classList = "header justify-content-center"
+headerArea.textContent = "Your Plans Are ..."
 //get bookResult info
 //get movieResult info
 //get otherResult info
