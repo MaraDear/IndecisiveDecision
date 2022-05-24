@@ -1,0 +1,184 @@
+/* Code Quiz - Javascript*/
+/*Modified by Charissa Hollister 05/04/2022*/
+/***************************** */
+
+
+/* Overall */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/*variables*/
+
+:root {
+    --primary-color: #e56fea;
+    --secondary-color: ivory;
+    --bg-color:  #2a607c;
+    --bg-color2: #0076c6;
+    --padding: 20px;
+    --blur: 10px;
+}
+
+/*general selectors*/
+.left-align{
+    justify-content: left;
+}
+
+
+
+/*--headline with quicklinks*/
+header {
+    display: flex;
+    width: 100vw;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--secondary-color);
+    z-index: 9999
+}
+
+header h2{
+    font-size: 48px;
+    padding-left: 25px;
+}
+
+nav {
+    justify-content: space-around;
+    align-items: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+    display: flex;
+}
+
+nav div{
+    padding: 0 25px;
+}
+
+nav a {
+    color: var(--primary-color);
+}
+
+nav a:hover{
+    color: var(--secondary-color);
+}
+
+/*hero background image and subtitle*/
+
+.heropg {
+    height: 300px;
+    width: 100vw;
+    margin-bottom: 25px;
+    background-image: url(./assets/images/heropgimage.jpg);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border: black 1px solid;
+}
+
+.heropg div{
+
+}
+
+.heropg p{
+
+}
+
+
+/*all of main sections*/
+main{
+
+}
+
+article{
+
+}
+
+/*within each subsections*/
+
+article div{
+
+}
+
+h3{
+
+}
+
+article section{
+
+}
+
+/*subsection unique attributes*/
+.section1{
+
+}
+
+.section2{
+
+}
+
+.section3{
+
+}
+
+.other{
+
+}
+
+
+
+
+
+/*footer*/
+footer {
+    padding: 20px;
+    padding-left: 40px;
+    width: 100vw;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--secondary-color);
+    display: inline-block;
+}
+
+footer h2{
+    display: inline-block;
+    font-size: 45px;
+}
+
+footer span{
+    font-size: 25px;
+}
+
+footer p {
+    padding: 10px;
+    padding-bottom: 20px;
+    padding-right: 50px;
+    float: right;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+    color: var(--primary-color);
+}
+
+
+
+
+
+
+
+
+
+  /* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
+  @media screen and (max-width: 980px) {
+
+  }
+
+
+
+
+      /* MEDIA QUERY FOR MOBILE PHONES AND SMALLER */
+@media screen and (max-width: 550px) {
+
+}
