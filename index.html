@@ -8,18 +8,80 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Testing Page</title>
-
-    <!-- <link rel="stylesheet" href="./assets/css/style.css" /> -->
+    <title>Indecisive Decisions</title>
+    <!-- add favicon  -->
+    <!-- CSS links  -->
+    <!-- link bootstrap bulma etc for css  -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
+
   <body>
+    <!-- HEADER  -->
+    <header>
+      Indecisive Decisions
+      <span></span>
+    </header>
+
+    <!-- opening page  -->
     <article class="section1" id="section1">
       <div>
         <h3></h3>
       </div>
-      <button>TESTING PAGE</button>
+      <button id="startBtn">START</button>
+      <button id="clearBtn">I didn't mean what I said before</button>
     </article>
 
+    <!-- Questions  -->
+    <article class="/" id="/">
+      <div>
+        <h3>question 1</h3>
+      </div>
+      <div class="Answers">
+        <p>answer 1</p>
+        <p></p>
+        <p></p>
+        <p></p>
+      </div>
+      <button id="backBtn">BACK</button>
+      <button id="nextBtn">NEXT</button>
+    </article>
+
+    <!-- Results  -->
+    <article class="/" id="/">
+      <div>
+        <h3>Your Plans Are ...</h3>
+      </div>
+      <div class="results">
+        <section class="movieResult">
+          <img>    <!-- movie reel or board -->
+          <div>Movie Title <span> move subtitle</span></div>
+          <div>Starring:</div>
+          <p>Movie Info</p>
+        </section>
+          <img>    <!-- book -->
+          <div>Book Title <span> Book subtitle</span></div>
+          <div>By:</div>
+          <p>Book Info</p>
+        </section>
+          <img id="adviceSlip">    <!-- advice slip -->
+        </section>
+
+      </div>
+      <button id="tryAgainBtn">Try Again</button>
+    </article>
+
+    <!-- FOOTER  -->
+    <footer>
+      created by:
+      <span>Caleb, Charissa, Danielle, & Philip</span>
+      <div class="creditLogos">
+        <p>IMDB</p>
+        <p>GoogleBooks</p>
+        <p>advice slip or other if we use</p>
+      </div>
+    </footer>
+
+    <!-- link scripts for js  -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/js/script.js"></script>
