@@ -1,7 +1,8 @@
-/* Code Quiz - Javascript*/
-/*Modified by Charissa Hollister 05/04/2022*/
+/*Indecisive Decisions*/
 /***************************** */
 
+
+/* Everything in here right now is just a few things copied from previous projects -CRH 05/24/22 */
 
 /* Overall */
 *,
@@ -46,7 +47,7 @@ header h2{
     padding-left: 25px;
 }
 
-nav {
+header span {
     justify-content: space-around;
     align-items: center;
     font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
@@ -54,17 +55,6 @@ nav {
     display: flex;
 }
 
-nav div{
-    padding: 0 25px;
-}
-
-nav a {
-    color: var(--primary-color);
-}
-
-nav a:hover{
-    color: var(--secondary-color);
-}
 
 /*hero background image and subtitle*/
 
@@ -167,7 +157,7 @@ footer p {
 
 
 
-
+/* do we need to do this the other way around to be 'mobile first'??? */
 
 
   /* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
