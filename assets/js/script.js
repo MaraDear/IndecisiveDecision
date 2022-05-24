@@ -21,6 +21,7 @@ var headerArea = document.querySelector(".header");
 
 //--------Item and Object variables-----------//
 var i = 0;
+var categoryPick;
 
 var bookResult = {
   title:"",
@@ -51,7 +52,7 @@ if (LSanswers) {
   answers = [];
 }
 
-// get previous results Array to avoid repeat from local storage
+// get previous results Array to avoid repeat from local storage //NTH if time
 var prevResults;
 var LSprevResults = JSON.parse(localStorage.getItem("prevResults"));
 if (LSprevResults) {
@@ -84,10 +85,13 @@ const questions = [
 
 ////--------------functions-----------------////
 
-// get input from questions 
-var getInput = function(){
 
-  //add to answers array to push to local storage for future use
+// load first question on start button 
+var startBtnFunc = function(){
+  // hide show areas 
+  headerArea.textContent = questions[0].question;
+  answersArea.textContent = questions[0].a;
+
 }
 
 //Next question button function if doing 1 per page, otherwise a submit answers btn
@@ -102,11 +106,31 @@ var nextBtnFunc = function(){
   }
 }
 
+// get input from questions 
+var getInput = function(){
 
+  //add to answers array to push to local storage for future use
+}
 
+// determine results types from questions 
+var resultTypeFunc = function(){
+  //i.e. based on results they need a sad result
+categoryPick = "InTheBlues"  
+//replace later with code for results input equals type X to send to get results functions
+}
 
+//get apis linked
+var bookAPI = function(){
 
+}
 
+var movieAPI = function () {
+
+};
+
+var otherAPI = function () {
+
+};
 
 
 //get Book result
@@ -126,21 +150,31 @@ var otherResultFunc = function () {
 
 //results display
 var resultsPage =  function(){
-//change header and btns
-headerArea.classList = "header justify-content-center"
-headerArea.textContent = "Your Plans Are ..."
-//get bookResult info
-//get movieResult info
-//get otherResult info
+  // hide show areas
+  //change header and btns
+  headerArea.classList = "header justify-content-center";
+  headerArea.textContent = "Your Plans Are ...";
+  //get bookResult info
+  //get movieResult info
+  //get otherResult info
 }
 
 
 // clear all answers button -- clear local storage
 function clearAnswers() {
+  // hide show areas?
   localStorage.clear();
+  location.reload();
+}
+
+// Try Again button -- send to beginning //NTH if time shuffles a new suggestion
+function tryAgainFunc() {
+  // hide show areas?
   location.reload();
 }
 
 ////----------event listeners----------////
 nextBtnGet.addEventListener("click", nextBtnFunc);
 clearBtnGet.addEventListener("click", clearAnswers);
+tryAgainBtnGet.addEventListener("click", tryAgainFunc);
+startBtnGet.addEventListener("click", startBtnFunc);

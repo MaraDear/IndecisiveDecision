@@ -20,12 +20,15 @@
     <header class="header" id="header">
       <h2>
         Indecisive Decisions
-        <span></span>
+        <span>something clever</span>
       </h2>
     </header>
 
     <!-- opening page  -->
     <article class="section1" id="section1">
+      <div>
+        SOME COOL STUFF HERE
+      </div>
       <!-- images info etc  -->
       <button id="startBtn">START</button>
       <button id="clearBtn">I didn't mean what I said before</button>
@@ -37,32 +40,30 @@
       <div class="answers">
         <!-- input form or drop down or modals or combination???  -->
         <p>answer 1</p>
-        <p></p>
-        <p></p>
-        <p></p>
+
       </div>
       <button id="nextBtn">NEXT</button>
     </article>
 
     <!-- Results  -->
     <article class="resultsSection" id="resultsSection">
-<!-- replace header with 'our Plans Are ...'  -->
+      <!-- replace header with 'our Plans Are ...'  -->
       <div class="results">
         <section class="movieResult">
-          <img />
+          <img id="movieImage"/>
           <!-- movie reel or board -->
-          <div>Movie Title <span> move subtitle</span></div>
-          <div>Starring:</div>
-          <p>Movie Info</p>
+          <div id="movieTitle">Movie Title <span id="movieSubtitle"> movie subtitle</span></div>
+          <div id="movieStarring">Starring:</div>
+          <p id="movieInfo">Movie Info</p>
         </section>
         <section class="bookResult">
-          <img />
+          <img id="bookImage" />
           <!-- book -->
-          <div>Book Title <span> Book subtitle</span></div>
-          <div>By:</div>
-          <p>Book Info</p>
+          <div id="bookTitle">Book Title <span id="bookSubtitle"> Book subtitle</span></div>
+          <div id="bookAuthor">By:</div>
+          <p id="bookInfo">Book Info</p>
         </section>
-        <section>
+        <section class="OtherArea">
           <img id="adviceSlip" />
           <!-- advice slip -->
         </section>
@@ -72,13 +73,15 @@
 
     <!-- FOOTER  -->
     <footer>
-      <section>
+      <section class="footer d-flex">
+        <div>
         created by:
         <span>Caleb, Charissa, Danielle, & Philip</span>
+        </div>
         <div class="creditLogos">
           <p>IMDB</p>
           <p>GoogleBooks</p>
-          <p>advice slip or other if we use</p>
+          <p>advice slip/other</p>
         </div>
       </section>
     </footer>
