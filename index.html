@@ -17,27 +17,24 @@
 
   <body>
     <!-- HEADER  -->
-    <header>
-      <h2>Indecisive Decisions
-      <span></span>
+    <header class="header" id="header">
+      <h2>
+        Indecisive Decisions
+        <span></span>
       </h2>
     </header>
 
     <!-- opening page  -->
     <article class="section1" id="section1">
-      <div>
-        <h3></h3>
-      </div>
+      <!-- images info etc  -->
       <button id="startBtn">START</button>
       <button id="clearBtn">I didn't mean what I said before</button>
     </article>
 
     <!-- Questions  -->
-    <article class="questions" id="questions">
-      <div>
-        <h3>question 1</h3>
-      </div>
-      <div class="Answers">
+    <article>
+      <!-- Replace header with questions if doing 1 per page, otherwise a questions header -->
+      <div class="answers">
         <!-- input form or drop down or modals or combination???  -->
         <p>answer 1</p>
         <p></p>
@@ -49,25 +46,27 @@
     </article>
 
     <!-- Results  -->
-    <article class="/" id="/">
-      <div>
-        <h3>Your Plans Are ...</h3>
-      </div>
+    <article class="resultsSection" id="resultsSection">
+<!-- replace header with 'our Plans Are ...'  -->
       <div class="results">
         <section class="movieResult">
-          <img>    <!-- movie reel or board -->
+          <img />
+          <!-- movie reel or board -->
           <div>Movie Title <span> move subtitle</span></div>
           <div>Starring:</div>
           <p>Movie Info</p>
         </section>
-          <img>    <!-- book -->
+        <section class="bookResult">
+          <img />
+          <!-- book -->
           <div>Book Title <span> Book subtitle</span></div>
           <div>By:</div>
           <p>Book Info</p>
         </section>
-          <img id="adviceSlip">    <!-- advice slip -->
+        <section>
+          <img id="adviceSlip" />
+          <!-- advice slip -->
         </section>
-
       </div>
       <button id="tryAgainBtn">Try Again</button>
     </article>
@@ -75,13 +74,13 @@
     <!-- FOOTER  -->
     <footer>
       <section>
-      created by:
-      <span>Caleb, Charissa, Danielle, & Philip</span>
-      <div class="creditLogos">
-        <p>IMDB</p>
-        <p>GoogleBooks</p>
-        <p>advice slip or other if we use</p>
-      </div>
+        created by:
+        <span>Caleb, Charissa, Danielle, & Philip</span>
+        <div class="creditLogos">
+          <p>IMDB</p>
+          <p>GoogleBooks</p>
+          <p>advice slip or other if we use</p>
+        </div>
       </section>
     </footer>
 

@@ -1,6 +1,6 @@
-# Job Search Webpage - Project 1
+# Indecisive Decision Webpage - Project 1
 
-Authored by X on xx/xx/xxxx
+Authored by Caleb, Charissa, Danielle, & Philip on 05/23/2022
 
 ## Description
 
@@ -20,7 +20,9 @@ List notes and features here<br />
 
 ## Future improvement opportunities
 
-List them here<br />
+Add gaming recommendations<br />
+Include where the suggestions are available to watch<br />
+
 
 ### Minimum customer criteria
 
