@@ -1,16 +1,14 @@
 // --- Indecisive Decisions--- //
 // **************************** //
 
-
 ////---------Global variables-----------////
 
 //--------Button variables-----------//
 var startBtnGet = document.getElementById("startBtn");
 var clearBtnGet = document.getElementById("clearBtn");
-// might need for answers if they are buttons 
+// might need for answers if they are buttons
 var nextBtnGet = document.getElementById("nextBtn");
 var tryAgainBtnGet = document.getElementById("tryAgainBtn");
-
 
 //--------Section variables-----------//
 var section1Area = document.querySelector(".section1");
@@ -24,12 +22,12 @@ var i = 0;
 var categoryPick;
 
 var bookResult = {
-  title:"",
-subtitle:"",
-author:"",
-info:"",
-link:"",
-image:"",
+  title: "",
+  subtitle: "",
+  author: "",
+  info: "",
+  link: "",
+  image: "",
 };
 var movieResult = {
   title: "",
@@ -61,7 +59,7 @@ if (LSprevResults) {
   prevResults = [];
 }
 
-//questions array 
+//questions array
 //will need updating just placeholders for now
 const questions = [
   {
@@ -80,76 +78,102 @@ const questions = [
   },
 ];
 
-
-
-
 ////--------------functions-----------------////
 
+// load first question on start button
+var startBtnFunc = function () {
+  // hide show areas
+// show input form page from html and populate with answers from local storage if there are any 
+};
 
-// load first question on start button 
-var startBtnFunc = function(){
-  // hide show areas 
-  headerArea.textContent = questions[0].question;
-  answersArea.textContent = questions[0].a;
-
-}
+var setLocalStorage = function () {
+  // move answers from form to replace local storage 
+};
 
 //Next question button function if doing 1 per page, otherwise a submit answers btn
-var nextBtnFunc = function(){
-  i++
+var nextBtnFunc = function () {
+  
+  
   if (i < questions.length) {
     headerArea.textContent = questions[i].question;
     answersArea.textContent = questions[i].a;
+    i++;
     //edit to how we want to do answers part. will depend on one at a time or multiple form
   } else {
     resultsPage();
   }
-}
+};
 
-// get input from questions 
-var getInput = function(){
-
+// get input from questions
+var getInput = function () {
   //add to answers array to push to local storage for future use
-}
+};
 
-// determine results types from questions 
-var resultTypeFunc = function(){
+// determine results types from questions
+var resultTypeFunc = function () {
   //i.e. based on results they need a sad result
-categoryPick = "InTheBlues"  
-//replace later with code for results input equals type X to send to get results functions
-}
+  categoryPick = "InTheBlues";
+  //replace later with code for results input equals type X to send to get results functions
+};
 
 //get apis linked
-var bookAPI = function(){
+var bookAPI = function (categoryPick) {
+  //decide where to put this button
 
-}
-
-var movieAPI = function () {
-
+  //API to collect a set of book details based on cateogory pick provided
+  var apiLocUrl =
+    "https://www.googleapis.com/books/v1/volumes?q=" +
+    categoryPick +
+    "&maxResults=2&projection=lite&orderBy=newest&key=AIzaSyDu-39j_DJyfyXYR2lSvUZmIG_hIJ7DFHA";
+  fetch(apiLocUrl)
+    .then(function (response) {
+      // if request was successful
+      if (response.ok) {
+        response.json().then(function (data1) {
+          console.log(data1);
+          // var nameLoc = data1[0].name;
+          // lat = data1[0].lat;
+          // lon = data1[0].lon;
+          // var saveforlater = { nameLoc, lat, lon };
+          // futureCities.push(saveforlater);
+          // localStorage.setItem("futureCities", JSON.stringify(futureCities));
+          // document.getElementById("city-name").textContent = nameLoc;
+          // getWeatherLocation(lat, lon);
+        });
+      } else {
+        alert("Error: city Not Found");
+      }
+    })
+    .catch(function (error) {
+      alert("city Not Found or Unable to connect to weather api");
+    });
 };
 
-var otherAPI = function () {
+//GBS_insertPreviewButtonLink(identifiers, opt_options)
+var GBS_PreviewBtn = document.querySelector("#bookInfo");
+GBS_PreviewBtn.addEventListener("click", bookAPI("flowers")); //constant for testing purposes, will be determined by responses to questions
 
-};
+var movieAPI = function () {};
 
+var otherAPI = function () {};
 
 //get Book result
-var bookResultFunc =  function(){
-// populate bookResult object 
+var bookResultFunc = function () {
+  // populate bookResult object
 };
 
 //get movie result
 var movieResultFunc = function () {
-// populate movieResult object 
+  // populate movieResult object
 };
 
-//get advice or other 
+//get advice or other
 var otherResultFunc = function () {
-//populate otherResult variable
+  //populate otherResult variable
 };
 
 //results display
-var resultsPage =  function(){
+var resultsPage = function () {
   // hide show areas
   //change header and btns
   headerArea.classList = "header justify-content-center";
@@ -157,8 +181,7 @@ var resultsPage =  function(){
   //get bookResult info
   //get movieResult info
   //get otherResult info
-}
-
+};
 
 // clear all answers button -- clear local storage
 function clearAnswers() {
