@@ -26,21 +26,31 @@
 
     <!-- opening page  -->
     <article class="section1" id="section1">
-      <div>
-        SOME COOL STUFF HERE
-      </div>
+      <div>SOME COOL STUFF HERE</div>
       <!-- images info etc  -->
       <button id="startBtn">START</button>
-      <button id="clearBtn">I didn't mean what I said before</button>
     </article>
 
-    <!-- Questions  -->
+    <!-- Preference Questions  -->
+    <!-- first page will have a form fixed preferences that'll repopulate from local storage -->
+    <article>
+      <!-- Replace header with "Preferences" type title -->
+      <div class="formResults">
+        <!-- input form  -->
+        <p>Input 1</p>
+        <p>answer 1</p>
+      </div>
+      <button id="clearBtn">I didn't mean what I said before</button>
+      <button id="nextBtn">NEXT</button>
+    </article>
+
+    <!-- Mood Questions  -->
+    <!-- Other pages will be mood related questions to add to the answers  -->
     <article>
       <!-- Replace header with questions if doing 1 per page, otherwise a questions header -->
       <div class="answers">
         <!-- input form or drop down or modals or combination???  -->
         <p>answer 1</p>
-
       </div>
       <button id="nextBtn">NEXT</button>
     </article>
@@ -50,18 +60,22 @@
       <!-- replace header with 'our Plans Are ...'  -->
       <div class="results">
         <section class="movieResult">
-          <img id="movieImage"/>
+          <img id="movieImage" />
           <!-- movie reel or board -->
-          <div id="movieTitle">Movie Title <span id="movieSubtitle"> movie subtitle</span></div>
+          <div id="movieTitle">
+            Movie Title <span id="movieSubtitle"> movie subtitle</span>
+          </div>
           <div id="movieStarring">Starring:</div>
           <p id="movieInfo">Movie Info</p>
         </section>
         <section class="bookResult">
           <img id="bookImage" />
           <!-- book -->
-          <div id="bookTitle">Book Title <span id="bookSubtitle"> Book subtitle</span></div>
+          <div id="bookTitle">
+            Book Title <span id="bookSubtitle"> Book subtitle</span>
+          </div>
           <div id="bookAuthor">By:</div>
-          <p id="bookInfo">Book Info</p>
+          <button id="bookInfo">Book Info</button>
         </section>
         <section class="OtherArea">
           <img id="adviceSlip" />
@@ -75,8 +89,8 @@
     <footer>
       <section class="footer d-flex">
         <div>
-        created by:
-        <span>Caleb, Charissa, Danielle, & Philip</span>
+          created by:
+          <span>Caleb, Charissa, Danielle, & Philip</span>
         </div>
         <div class="creditLogos">
           <p>IMDB</p>
@@ -89,6 +103,8 @@
     <!-- link scripts for js  -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!-- <script type="text/javascript" src="//books.google.com/books/previewlib.js"></script> -->
+    <script src="https://apis.google.com/js/api.js"></script>
     <script src="./assets/js/script.js"></script>
   </body>
 </html>
