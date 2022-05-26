@@ -7,7 +7,8 @@
 var startBtnGet = document.getElementById("startBtn");
 var clearBtnGet = document.getElementById("clearBtn");
 // might need for answers if they are buttons
-var nextBtnGet = document.getElementById("nextBtn");
+var nextBtn1Get = document.getElementById("nextBtn1");
+var nextBtn2Get = document.getElementById("nextBtn2");
 var tryAgainBtnGet = document.getElementById("tryAgainBtn");
 var surpriseMeBtnGet = document.getElementById("surpriseMeBtn");
 
@@ -21,6 +22,8 @@ var headerArea = document.querySelector(".header");
 //--------Item and Object variables-----------//
 var i = 0;
 var categoryPick;
+
+var c = 0; //constant for testing 
 
 var bookResult = {
   title: "",
@@ -90,10 +93,17 @@ const questions = [
 
 ////--------------functions-----------------////
 
-// load first question on start button
+//get a random number to pick one of the books in the array between 0 and 30
+var get_c = function(){
+  //random number coding
+}
+
+// loads fixed preference form on start button
 var startBtnFunc = function () {
-  // hide show areas
-  // show input form page from html and populate with answers from local storage if there are any
+  // hide show areas;show input form page from html
+
+  // populate with answers from local storage if there are any
+  
 };
 
 var setLocalStorage = function () {
@@ -101,11 +111,18 @@ var setLocalStorage = function () {
 };
 
 //Next question button function if doing 1 per page, otherwise a submit answers btn
-var nextBtnFunc = function () {
-//run get answers func
+var nextBtnFunc1 = function () {
+  //run get answers func
+  getfixedAnswers();
+//hide and show for mood questions page 1
 
-//run figure out results type function
-  resultTypeFunc()
+};
+
+//Next question button function if doing 1 per page, otherwise a submit answers btn
+var nextBtnFunc2 = function () {
+  //run figure out results type function
+  resultTypeFunc();
+
   if (i < questions.length) {
     headerArea.textContent = questions[i].question;
     answersArea.textContent = questions[i].a;
@@ -116,8 +133,13 @@ var nextBtnFunc = function () {
   }
 };
 
-// get input from questions
-var getInput = function () {
+// get input from fixed questions
+var getfixedAnswers = function () {
+  //add to answers array to push to local storage for future use
+};
+
+// get input from mood questions
+var getAnswers = function () {
   //add to answers array to push to local storage for future use
 };
 
@@ -147,9 +169,6 @@ var bookAPI = function (categoryPick) {
         response.json().then(function (bookData) {
           // console.log(data);
 
-          //get a random number to pick one of the books in the array between 0 and 30
-
-          var c = 0; //constant for testing
           console.log(bookData.items[0]);
 
           //information we need from selected google books object
@@ -171,7 +190,8 @@ var bookAPI = function (categoryPick) {
           var bookInfo = bookData.items[c].volumeInfo.description;
           document.getElementById("bookInfo").textContent = bookInfo;
           //book thumbnail URL
-          var bookThumbnail = bookData.items[c].volumeInfoimagelinks.smallThumbnail;
+          var bookThumbnail =
+            bookData.items[c].volumeInfoimagelinks.smallThumbnail;
           bookThumbnailGet = document.getElementById("bookImage");
           bookThumbnailGet.setattribute(Href, bookThumbnail);
           console.log(bookThumbnailGet.setattribute(Href, bookThumbnail));
@@ -195,24 +215,24 @@ var bookAPI = function (categoryPick) {
 
 var movieAPI = function (categoryPick) {};
 
-var otherAPI = function (categoryPick) {};
+var otherAPI = function () {};
 
-//get Book result
-var bookResultFunc = function () {
-  // populate bookResult object
-};
+// I don't think we'll need anymore- combined //get Book result
+// var bookResultFunc = function () {
+//   // populate bookResult object
+// };
 
-//get movie result
-var movieResultFunc = function () {
-  // populate movieResult object
-};
+// // I don't think we'll need anymore- combined //get movie result
+// var movieResultFunc = function () {
+//   // populate movieResult object
+// };
 
 //get advice or other
 var otherResultFunc = function () {
   //populate otherResult variable
 };
 
-//results display
+//results display.
 var resultsPage = function (categoryPick) {
   // hide show areas
   //change header and btns
@@ -221,7 +241,9 @@ var resultsPage = function (categoryPick) {
   //get bookResult info
   bookAPI(categoryPick);
   //get movieResult info
+  movieAPI(categoryPick);
   //get otherResult info
+  otherResultFunc();
 };
 
 var surpriseMeBtnFunc = function () {
@@ -237,12 +259,18 @@ function clearAnswers() {
 
 // Try Again button -- send to beginning //NTH if time shuffles a new suggestion
 function tryAgainFunc() {
-  // hide show areas?
+  
+  //create new random c number
+  get_c();
+  categoryPick = "best seller"  //update to whatever
+  resultsPage(categoryPick);
+
   location.reload();
 }
 
 ////----------event listeners----------////
-nextBtnGet.addEventListener("click", nextBtnFunc(categoryPick));
+nextBtn1Get.addEventListener("click", nextBtnFunc1);
+nextBtn2Get.addEventListener("click", nextBtnFunc2);
 clearBtnGet.addEventListener("click", clearAnswers);
 tryAgainBtnGet.addEventListener("click", tryAgainFunc);
 startBtnGet.addEventListener("click", startBtnFunc);
