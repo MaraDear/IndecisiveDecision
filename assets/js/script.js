@@ -9,6 +9,7 @@ var clearBtnGet = document.getElementById("clearBtn");
 // might need for answers if they are buttons
 var nextBtnGet = document.getElementById("nextBtn");
 var tryAgainBtnGet = document.getElementById("tryAgainBtn");
+var surpriseMeBtnGet = document.getElementById("surpriseMeBtn");
 
 //--------Section variables-----------//
 var section1Area = document.querySelector(".section1");
@@ -42,7 +43,16 @@ var otherResult = "";
 //--------Array variables-----------//
 
 // get answers Array from local storage
-var answers;
+var fixedAnswers = [];
+var LSfixedAnswers = JSON.parse(localStorage.getItem("fixedAnswers"));
+if (LSfixedAnswers) {
+  fixedAnswers = LSfixedAnswers;
+} else {
+  fixedAnswers = [];
+}
+
+// get answers Array from local storage
+var answers = [];
 var LSanswers = JSON.parse(localStorage.getItem("answers"));
 if (LSanswers) {
   answers = LSanswers;
@@ -111,7 +121,8 @@ var getInput = function () {
 
 // determine results types from questions
 var resultTypeFunc = function () {
-  //i.e. based on results they need a sad result
+  //i.e. based on results they need a sad result 
+  //look into if want to include genre or multiple keywords
   categoryPick = "InTheBlues";
   //replace later with code for results input equals type X to send to get results functions
 };
@@ -124,28 +135,45 @@ var bookAPI = function (categoryPick) {
   var apiLocUrl =
     "https://www.googleapis.com/books/v1/volumes?q=" +
     categoryPick +
-    "&maxResults=2&projection=lite&orderBy=newest&key=AIzaSyDu-39j_DJyfyXYR2lSvUZmIG_hIJ7DFHA";
+    "&maxResults=30&projection=lite&orderBy=newest&key=AIzaSyDu-39j_DJyfyXYR2lSvUZmIG_hIJ7DFHA";
   fetch(apiLocUrl)
     .then(function (response) {
       // if request was successful
+      console.log(response)
       if (response.ok) {
-        response.json().then(function (data1) {
-          console.log(data1);
-          // var nameLoc = data1[0].name;
-          // lat = data1[0].lat;
-          // lon = data1[0].lon;
-          // var saveforlater = { nameLoc, lat, lon };
-          // futureCities.push(saveforlater);
-          // localStorage.setItem("futureCities", JSON.stringify(futureCities));
-          // document.getElementById("city-name").textContent = nameLoc;
+        response.json().then(function (bookData) {
+          // console.log(data);
+
+          //get a random number to pick one of the books in the array between 0 and 30
+
+          var c = 0; //constant for testing
+          console.log(bookData.items[0]);
+          //figure out what information we need from selected google books object
+          //book preview link ---if we want to have an in page pop up
+          var bookLink = bookData.items[c].previewlink;
+          //book google books link ---- if we want to redirect
+          var bookGoogleLink = bookData.items[c].volumeInfo.canonicalVolumeLink;
+          //title
+          var bookTitle = bookData.items[c].volumeInfo.title;
+          console.log(bookTitle);
+          document.getElementById("bookTitle").textContent = bookTitle;
+          //author
+          var bookAuthor = bookData.items[c].volumeInfo.authors;
+          //book thumbnail
+          // var bookThumbnail = bookData.items[c].imagelinks.smallThumbnail;
+          // document.getElementById("bookImage").textContent = bookThumbnail;
+          //display info in appropriate locations
+
+          // document.getElementById("bookImage").textContent = info1;
+
           // getWeatherLocation(lat, lon);
         });
       } else {
-        alert("Error: city Not Found");
+        alert("Error: books api Not Found");
       }
     })
     .catch(function (error) {
-      alert("city Not Found or Unable to connect to weather api");
+      alert("Unable to connect to books api");
     });
 };
 
