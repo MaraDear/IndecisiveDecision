@@ -23,7 +23,7 @@ var headerArea = document.querySelector(".header");
 var i = 0;
 var categoryPick;
 
-var c = 0; //constant for testing 
+var c = 0; //constant for testing
 
 //might not need the objects if we place info into the appropriate spots inside the functions
 // var bookResult = {
@@ -58,7 +58,6 @@ if (LSfixedAnswers) {
 // Mood answers array
 var answers = [];
 
-
 //questions array
 //will need updating just placeholders for now
 const questions = [
@@ -82,39 +81,38 @@ const questions = [
 
 //get a random number to pick one of the books/movies in the array between 0 and 30
 //update if need a different range for movies than books
-var get_c = function(){
+var get_c = function () {
   //random number coding
-}
+  c = Math.floor(Math.random() * 30);
+};
+get_c();
 
 // loads fixed preference form on start button
 var startBtnFunc = function () {
   // hide show areas;show input form page from html
   // populate with answers from local storage if there are any
-
 };
-
 
 //Next question button function if doing 1 per page, otherwise a submit answers btn
 var nextBtnFunc1 = function () {
   //run get answers func
   getfixedAnswers();
 
-//hide and show for mood questions page 1
-
+  //hide and show for mood questions page 1
 };
 
 //Next question button function if doing 1 per page, otherwise a submit answers btn
 var nextBtnFunc2 = function () {
-  //run figure out results type function
-  resultTypeFunc();
-
+  //populate questions //redo to form or modal if 1 page only
+  //if 1 page then getAnswers function, otherwise add to answers array as we go through here if then
   if (i < questions.length) {
     headerArea.textContent = questions[i].question;
     answersArea.textContent = questions[i].a;
     i++;
-    //edit to how we want to do answers part. will depend on one at a time or multiple form
+    //warn if missing any answers
   } else {
-    resultsPage(categoryPick);
+    //run figure out results type function
+    resultTypeFunc(categoryPick);
   }
 };
 
@@ -122,11 +120,13 @@ var nextBtnFunc2 = function () {
 var getfixedAnswers = function () {
   //add to answers array to push to local storage for future use
   // move answers from form to replace local storage
+  //warn if missing any answers
 };
 
 // get input from mood questions
 var getAnswers = function () {
   //add to answers array to determine category pick
+  //warn if missing any answers
 };
 
 // determine results types from questions
@@ -135,6 +135,7 @@ var resultTypeFunc = function () {
   //look into if want to include genre or multiple keywords
   categoryPick = "InTheBlues";
   //replace later with code for results input equals type X to send to get results functions
+  resultsPage(categoryPick);
 };
 
 //get apis linked
@@ -243,11 +244,11 @@ function clearAnswers() {
   location.reload();
 }
 
-// Try Again button -- send to beginning //NTH if time shuffles a new suggestion
+// Try Again button -- shuffles a new suggestion from already existing arrays
 function tryAgainFunc() {
   //create new random c number
   get_c();
-  categoryPick = "trending"  //update to whatever
+  categoryPick = "trending"; //update to whatever
   resultsPage(categoryPick);
   //location.reload();
 }
