@@ -156,38 +156,8 @@ var bookAPI = function (categoryPick) {
       if (response.ok) {
         response.json().then(function (bookData) {
           // console.log(data);
-
-          console.log(bookData.items[0]);
-
-          //information we need from selected google books object
-          //display info in appropriate locations
-
-          //book google books link ---- if we want to redirect or can change to pop up box
-          // var bookGoogleLink = bookData.items[c].volumeInfo.canonicalVolumeLink;
-          document
-            .getElementById("bookResultLink")
-            .setAttribute(
-              "href",
-              bookData.items[c].volumeInfo.canonicalVolumeLink
-            );
-          //title
-          var bookTitle = bookData.items[c].volumeInfo.title;
-          console.log(bookTitle);
-          document.getElementById("bookTitle").textContent = bookTitle;
-          //author
-          var bookAuthor = bookData.items[c].volumeInfo.authors[0];
-          document.getElementById("bookAuthor").textContent = bookAuthor;
-          //summary
-          var bookInfo = bookData.items[c].volumeInfo.description;
-          document.getElementById("bookInfo").textContent = bookInfo;
-          //book thumbnail URL
-          var bookThumbnailGet = document.getElementById("bookImage");
-          var bookThumbnail =
-            bookData.items[c].volumeInfo.imageLinks.smallThumbnail;
-          //var bookThumbnailEl = document.createElement("img");
-          bookThumbnailGet.setAttribute("src", bookThumbnail);
-          bookThumbnailGet.setAttribute("height", "50px");
-          bookThumbnailGet.setAttribute("alt", bookTitle);
+          //console.log(bookData.items[0]);
+          bookResultFunc(bookData);
         });
       } else {
         alert("Error: books api Not Found");
@@ -198,11 +168,14 @@ var bookAPI = function (categoryPick) {
     });
 };
 
-var movieAPI = function (categoryPick) {};
+var movieAPI = function (categoryPick) {
+  ////phil is working on
+  
+  ////movieResultFunc(movieData);
+};
 
 var otherAPI = function () {
   //API to collect an advice slip
-  //try to add country=US
   var apiLocUrl = "https://api.adviceslip.com/advice";
   fetch(apiLocUrl)
     .then(function (response) {
@@ -210,13 +183,8 @@ var otherAPI = function () {
       console.log(response);
       if (response.ok) {
         response.json().then(function (otherData) {
-          console.log(otherData);
-
-          // console.log(otherData.items[0]);
-
-          //random advice slip, might need a card displayed or switch to image if can get that ---- if we want to redirect
-          // var otherAreaArea = bookData.items[c].volumeInfo.canonicalVolumeLink;
-          // console.log(otherAreaArea);
+          //console.log(otherData);
+          otherResultFunc(otherData);
         });
       } else {
         alert("Error: Advice api Not Found");
@@ -227,20 +195,45 @@ var otherAPI = function () {
     });
 };
 
-// I don't think we'll need anymore- combined //get Book result
-// var bookResultFunc = function () {
-//   // populate bookResult object
-// };
+//get Book result
+var bookResultFunc = function (bookData) {
+  //   populate bookResult  //display info in appropriate locations
+  /////book google books link ---- if we want to redirect or can change to pop up box
+  // var bookGoogleLink = bookData.items[c].volumeInfo.canonicalVolumeLink;
+  document
+    .getElementById("bookResultLink")
+    .setAttribute("href", bookData.items[c].volumeInfo.canonicalVolumeLink);
+  //title
+  var bookTitle = bookData.items[c].volumeInfo.title;
+  console.log(bookTitle);
+  document.getElementById("bookTitle").textContent = bookTitle;
+  //author
+  var bookAuthor = bookData.items[c].volumeInfo.authors[0];
+  document.getElementById("bookAuthor").textContent = bookAuthor;
+  //summary
+  var bookInfo = bookData.items[c].volumeInfo.description;
+  document.getElementById("bookInfo").textContent = bookInfo;
+  //book thumbnail URL
+  var bookThumbnailGet = document.getElementById("bookImage");
+  var bookThumbnail = bookData.items[c].volumeInfo.imageLinks.smallThumbnail;
+  //var bookThumbnailEl = document.createElement("img");
+  bookThumbnailGet.setAttribute("src", bookThumbnail);
+  bookThumbnailGet.setAttribute("height", "50px");
+  bookThumbnailGet.setAttribute("alt", bookTitle);
+};
 
-// // I don't think we'll need anymore- combined //get movie result
-// var movieResultFunc = function () {
-//   // populate movieResult object
-// };
+//get movie result
+var movieResultFunc = function (movieData) {
+  // populate movieResult object
+};
 
-// // I don't think we'll need anymore-//get advice or other
-// var otherResultFunc = function () {
-//populate otherResult variable
-// };
+//get advice or other
+var otherResultFunc = function (otherData) {
+  //populate otherResult variable
+  //random advice slip, might need a card displayed or switch to image if can get that ---- if we want to redirect
+  document.getElementById("adviceSlipArea").textContent = otherData.slip.advice;
+  // var otherAreaArea = otherData.slip.advice;
+};
 
 //results display.
 var resultsPage = function (categoryPick) {
@@ -258,6 +251,10 @@ var resultsPage = function (categoryPick) {
 
 var surpriseMeBtnFunc = function () {
   //add in to create a randomized results page and skip the questions
+  //create new random c number
+  get_c();
+  categoryPick = "best seller"; //update to whatever
+  resultsPage(categoryPick);
 };
 
 // clear all answers button -- clear local storage
@@ -271,9 +268,8 @@ function clearAnswers() {
 function tryAgainFunc() {
   //create new random c number
   get_c();
-  categoryPick = "trending"; //update to whatever
+  //give new suggestions without resetting category pick
   resultsPage(categoryPick);
-  //location.reload();
 }
 
 ////----------event listeners----------////
