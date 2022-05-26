@@ -16,6 +16,7 @@ var surpriseMeBtnGet = document.getElementById("surpriseMeBtn");
 var section1Area = document.querySelector(".section1");
 var movieResultArea = document.querySelector(".movieResult");
 var bookResultArea = document.querySelector(".bookResult");
+var otherAreaArea = document.querySelector(".otherArea");
 var answersArea = document.querySelector(".answers");
 var headerArea = document.querySelector(".header");
 
@@ -138,9 +139,9 @@ var resultTypeFunc = function () {
   resultsPage(categoryPick);
 };
 
-//get apis linked
+//---------get apis linked--------------------//
 var bookAPI = function (categoryPick) {
-  //decide where to put this button
+  //decide where to insert this link
 
   //API to collect a set of book details based on cateogory pick provided
   //try to add country=US
@@ -160,12 +161,15 @@ var bookAPI = function (categoryPick) {
 
           //information we need from selected google books object
           //display info in appropriate locations
-          //book preview link ---if we want to have an in page pop up
-          // var bookLink = bookData.items[c].volumeInfo.previewlink;
-          // console.log(bookLink);
-          //book google books link ---- if we want to redirect
-          var bookGoogleLink = bookData.items[c].volumeInfo.canonicalVolumeLink;
-          console.log(bookGoogleLink);
+
+          //book google books link ---- if we want to redirect or can change to pop up box
+          // var bookGoogleLink = bookData.items[c].volumeInfo.canonicalVolumeLink;
+          document
+            .getElementById("bookResultLink")
+            .setAttribute(
+              "href",
+              bookData.items[c].volumeInfo.canonicalVolumeLink
+            );
           //title
           var bookTitle = bookData.items[c].volumeInfo.title;
           console.log(bookTitle);
@@ -177,15 +181,13 @@ var bookAPI = function (categoryPick) {
           var bookInfo = bookData.items[c].volumeInfo.description;
           document.getElementById("bookInfo").textContent = bookInfo;
           //book thumbnail URL
+          var bookThumbnailGet = document.getElementById("bookImage");
           var bookThumbnail =
-            bookData.items[c].volumeInfoimagelinks.smallThumbnail;
-          bookThumbnailGet = document.getElementById("bookImage");
-          bookThumbnailGet.setattribute(Href, bookThumbnail);
-          console.log(bookThumbnailGet.setattribute(Href, bookThumbnail));
-
-          // document.getElementById("bookImage").textContent = info1;
-
-          // getWeatherLocation(lat, lon);
+            bookData.items[c].volumeInfo.imageLinks.smallThumbnail;
+          //var bookThumbnailEl = document.createElement("img");
+          bookThumbnailGet.setAttribute("src", bookThumbnail);
+          bookThumbnailGet.setAttribute("height", "50px");
+          bookThumbnailGet.setAttribute("alt", bookTitle);
         });
       } else {
         alert("Error: books api Not Found");
@@ -196,13 +198,34 @@ var bookAPI = function (categoryPick) {
     });
 };
 
-//GBS_insertPreviewButtonLink(identifiers, opt_options)
-// var GBS_PreviewBtn = document.querySelector("#bookInfo");
-// GBS_PreviewBtn.addEventListener("click", bookAPI("flowers")); //constant for testing purposes, will be determined by responses to questions
-
 var movieAPI = function (categoryPick) {};
 
-var otherAPI = function () {};
+var otherAPI = function () {
+  //API to collect an advice slip
+  //try to add country=US
+  var apiLocUrl = "https://api.adviceslip.com/advice";
+  fetch(apiLocUrl)
+    .then(function (response) {
+      // if request was successful
+      console.log(response);
+      if (response.ok) {
+        response.json().then(function (otherData) {
+          console.log(otherData);
+
+          // console.log(otherData.items[0]);
+
+          //random advice slip, might need a card displayed or switch to image if can get that ---- if we want to redirect
+          // var otherAreaArea = bookData.items[c].volumeInfo.canonicalVolumeLink;
+          // console.log(otherAreaArea);
+        });
+      } else {
+        alert("Error: Advice api Not Found");
+      }
+    })
+    .catch(function (error) {
+      alert("Unable to connect to Advice api");
+    });
+};
 
 // I don't think we'll need anymore- combined //get Book result
 // var bookResultFunc = function () {
@@ -214,10 +237,10 @@ var otherAPI = function () {};
 //   // populate movieResult object
 // };
 
-//get advice or other
-var otherResultFunc = function () {
-  //populate otherResult variable
-};
+// // I don't think we'll need anymore-//get advice or other
+// var otherResultFunc = function () {
+//populate otherResult variable
+// };
 
 //results display.
 var resultsPage = function (categoryPick) {
@@ -230,7 +253,7 @@ var resultsPage = function (categoryPick) {
   //get movieResult info
   movieAPI(categoryPick);
   //get otherResult info
-  otherResultFunc();
+  otherAPI();
 };
 
 var surpriseMeBtnFunc = function () {

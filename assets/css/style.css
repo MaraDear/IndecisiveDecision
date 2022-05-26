@@ -154,6 +154,70 @@ footer p {
 
 
 
+/* playing around with advice slip styling  */
+.slipdispenser {
+    display: block;
+    top: 180px;
+    width: 100%;
+    min-height: 600px;
+    text-align: center;
+    padding-bottom: 240px;
+}
+
+
+element.style {
+}
+.paper p {
+    font-family: "FakeReceipt-Regular",monospace;
+    font-size: 1.5em;
+    padding: 0.625em 0 0.625em 0;
+    color: #121212;
+}
+.advice {
+    overflow: hidden;
+    line-height: 130%;
+}
+.advice:after, .advice:before {
+    content: "=====================================";
+    letter-spacing: 0.17em;
+    font-family: "FakeReceipt-Regular",monospace;
+    font-size: 1em;
+    text-align: center;
+    text-justify: distribute !important;
+    display: inline-block;
+    padding: 2em 0 0 0;
+    color: #121212;
+}
+.advice:before {
+    padding: 0 0 2em 0;
+}
+.advice:after {
+    padding: 2em 0 0 0;
+}
+.paper {
+    font-size: 1em;
+    position: relative;
+    display: block;
+    background: url(../img/bg-paper.png?1358893893) center top repeat #fff;
+    width: 540px;
+    left: 20px;
+    height: auto;
+    margin-bottom: 34px;
+    -webkit-box-shadow: rgb(0 0 0 / 80%) 0px 2px 3px 1px, rgb(0 0 0 / 40%) 0px 10px 20px 6px;
+    -moz-box-shadow: rgba(0,0,0,0.8) 0px 2px 3px 1px,rgba(0,0,0,0.4) 0px 10px 20px 6px;
+    box-shadow: rgb(0 0 0 / 80%) 0px 2px 3px 1px, rgb(0 0 0 / 40%) 0px 10px 20px 6px;
+}
+.paper p {
+    font-family: "FakeReceipt-Regular",monospace;
+    font-size: 1.5em;
+    padding: 0.625em 0 0.625em 0;
+    color: #121212;
+}
+
+.advice {
+    overflow: hidden;
+    line-height: 130%;
+}
 
 
 
