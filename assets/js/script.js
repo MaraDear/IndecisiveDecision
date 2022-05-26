@@ -25,23 +25,24 @@ var categoryPick;
 
 var c = 0; //constant for testing 
 
-var bookResult = {
-  title: "",
-  subtitle: "",
-  author: "",
-  info: "",
-  link: "",
-  image: "",
-};
-var movieResult = {
-  title: "",
-  subtitle: "",
-  starring: "",
-  info: "",
-  link: "",
-  image: "",
-};
-var otherResult = "";
+//might not need the objects if we place info into the appropriate spots inside the functions
+// var bookResult = {
+//   title: "",
+//   subtitle: "",
+//   author: "",
+//   info: "",
+//   link: "",
+//   image: "",
+// };
+// var movieResult = {
+//   title: "",
+//   subtitle: "",
+//   starring: "",
+//   info: "",
+//   link: "",
+//   image: "",
+// };
+// var otherResult = "";
 
 //--------Array variables-----------//
 
@@ -54,23 +55,9 @@ if (LSfixedAnswers) {
   fixedAnswers = [];
 }
 
-// get answers Array from local storage
+// Mood answers array
 var answers = [];
-var LSanswers = JSON.parse(localStorage.getItem("answers"));
-if (LSanswers) {
-  answers = LSanswers;
-} else {
-  answers = [];
-}
 
-// get previous results Array to avoid repeat from local storage //NTH if time
-var prevResults;
-var LSprevResults = JSON.parse(localStorage.getItem("prevResults"));
-if (LSprevResults) {
-  prevResults = LSprevResults;
-} else {
-  prevResults = [];
-}
 
 //questions array
 //will need updating just placeholders for now
@@ -93,7 +80,8 @@ const questions = [
 
 ////--------------functions-----------------////
 
-//get a random number to pick one of the books in the array between 0 and 30
+//get a random number to pick one of the books/movies in the array between 0 and 30
+//update if need a different range for movies than books
 var get_c = function(){
   //random number coding
 }
@@ -101,19 +89,16 @@ var get_c = function(){
 // loads fixed preference form on start button
 var startBtnFunc = function () {
   // hide show areas;show input form page from html
-
   // populate with answers from local storage if there are any
-  
+
 };
 
-var setLocalStorage = function () {
-  // move answers from form to replace local storage
-};
 
 //Next question button function if doing 1 per page, otherwise a submit answers btn
 var nextBtnFunc1 = function () {
   //run get answers func
   getfixedAnswers();
+
 //hide and show for mood questions page 1
 
 };
@@ -136,11 +121,12 @@ var nextBtnFunc2 = function () {
 // get input from fixed questions
 var getfixedAnswers = function () {
   //add to answers array to push to local storage for future use
+  // move answers from form to replace local storage
 };
 
 // get input from mood questions
 var getAnswers = function () {
-  //add to answers array to push to local storage for future use
+  //add to answers array to determine category pick
 };
 
 // determine results types from questions
@@ -259,13 +245,11 @@ function clearAnswers() {
 
 // Try Again button -- send to beginning //NTH if time shuffles a new suggestion
 function tryAgainFunc() {
-  
   //create new random c number
   get_c();
-  categoryPick = "best seller"  //update to whatever
+  categoryPick = "trending"  //update to whatever
   resultsPage(categoryPick);
-
-  location.reload();
+  //location.reload();
 }
 
 ////----------event listeners----------////
