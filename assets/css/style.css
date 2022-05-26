@@ -155,17 +155,13 @@ footer p {
 
 
 /* playing around with advice slip styling  */
-.slipdispenser {
+/* .slipdispenser {
     display: block;
     top: 180px;
     width: 100%;
     min-height: 600px;
     text-align: center;
     padding-bottom: 240px;
-}
-
-
-element.style {
 }
 .paper p {
     font-family: "FakeReceipt-Regular",monospace;
@@ -213,11 +209,10 @@ element.style {
     padding: 0.625em 0 0.625em 0;
     color: #121212;
 }
-
 .advice {
     overflow: hidden;
     line-height: 130%;
-}
+} */
 
 
 
