@@ -93,24 +93,26 @@ const questions = [
 // load first question on start button
 var startBtnFunc = function () {
   // hide show areas
-// show input form page from html and populate with answers from local storage if there are any 
+  // show input form page from html and populate with answers from local storage if there are any
 };
 
 var setLocalStorage = function () {
-  // move answers from form to replace local storage 
+  // move answers from form to replace local storage
 };
 
 //Next question button function if doing 1 per page, otherwise a submit answers btn
 var nextBtnFunc = function () {
-  
-  
+//run get answers func
+
+//run figure out results type function
+  resultTypeFunc()
   if (i < questions.length) {
     headerArea.textContent = questions[i].question;
     answersArea.textContent = questions[i].a;
     i++;
     //edit to how we want to do answers part. will depend on one at a time or multiple form
   } else {
-    resultsPage();
+    resultsPage(categoryPick);
   }
 };
 
@@ -121,7 +123,7 @@ var getInput = function () {
 
 // determine results types from questions
 var resultTypeFunc = function () {
-  //i.e. based on results they need a sad result 
+  //i.e. based on results they need a sad result
   //look into if want to include genre or multiple keywords
   categoryPick = "InTheBlues";
   //replace later with code for results input equals type X to send to get results functions
@@ -132,6 +134,7 @@ var bookAPI = function (categoryPick) {
   //decide where to put this button
 
   //API to collect a set of book details based on cateogory pick provided
+  //try to add country=US
   var apiLocUrl =
     "https://www.googleapis.com/books/v1/volumes?q=" +
     categoryPick +
@@ -139,7 +142,7 @@ var bookAPI = function (categoryPick) {
   fetch(apiLocUrl)
     .then(function (response) {
       // if request was successful
-      console.log(response)
+      console.log(response);
       if (response.ok) {
         response.json().then(function (bookData) {
           // console.log(data);
@@ -148,21 +151,30 @@ var bookAPI = function (categoryPick) {
 
           var c = 0; //constant for testing
           console.log(bookData.items[0]);
-          //figure out what information we need from selected google books object
+
+          //information we need from selected google books object
+          //display info in appropriate locations
           //book preview link ---if we want to have an in page pop up
-          var bookLink = bookData.items[c].previewlink;
+          // var bookLink = bookData.items[c].volumeInfo.previewlink;
+          // console.log(bookLink);
           //book google books link ---- if we want to redirect
           var bookGoogleLink = bookData.items[c].volumeInfo.canonicalVolumeLink;
+          console.log(bookGoogleLink);
           //title
           var bookTitle = bookData.items[c].volumeInfo.title;
           console.log(bookTitle);
           document.getElementById("bookTitle").textContent = bookTitle;
           //author
-          var bookAuthor = bookData.items[c].volumeInfo.authors;
-          //book thumbnail
-          // var bookThumbnail = bookData.items[c].imagelinks.smallThumbnail;
-          // document.getElementById("bookImage").textContent = bookThumbnail;
-          //display info in appropriate locations
+          var bookAuthor = bookData.items[c].volumeInfo.authors[0];
+          document.getElementById("bookAuthor").textContent = bookAuthor;
+          //summary
+          var bookInfo = bookData.items[c].volumeInfo.description;
+          document.getElementById("bookInfo").textContent = bookInfo;
+          //book thumbnail URL
+          var bookThumbnail = bookData.items[c].volumeInfoimagelinks.smallThumbnail;
+          bookThumbnailGet = document.getElementById("bookImage");
+          bookThumbnailGet.setattribute(Href, bookThumbnail);
+          console.log(bookThumbnailGet.setattribute(Href, bookThumbnail));
 
           // document.getElementById("bookImage").textContent = info1;
 
@@ -178,12 +190,12 @@ var bookAPI = function (categoryPick) {
 };
 
 //GBS_insertPreviewButtonLink(identifiers, opt_options)
-var GBS_PreviewBtn = document.querySelector("#bookInfo");
-GBS_PreviewBtn.addEventListener("click", bookAPI("flowers")); //constant for testing purposes, will be determined by responses to questions
+// var GBS_PreviewBtn = document.querySelector("#bookInfo");
+// GBS_PreviewBtn.addEventListener("click", bookAPI("flowers")); //constant for testing purposes, will be determined by responses to questions
 
-var movieAPI = function () {};
+var movieAPI = function (categoryPick) {};
 
-var otherAPI = function () {};
+var otherAPI = function (categoryPick) {};
 
 //get Book result
 var bookResultFunc = function () {
@@ -201,14 +213,19 @@ var otherResultFunc = function () {
 };
 
 //results display
-var resultsPage = function () {
+var resultsPage = function (categoryPick) {
   // hide show areas
   //change header and btns
   headerArea.classList = "header justify-content-center";
   headerArea.textContent = "Your Plans Are ...";
   //get bookResult info
+  bookAPI(categoryPick);
   //get movieResult info
   //get otherResult info
+};
+
+var surpriseMeBtnFunc = function () {
+  //add in to create a randomized results page and skip the questions
 };
 
 // clear all answers button -- clear local storage
@@ -225,7 +242,8 @@ function tryAgainFunc() {
 }
 
 ////----------event listeners----------////
-nextBtnGet.addEventListener("click", nextBtnFunc);
+nextBtnGet.addEventListener("click", nextBtnFunc(categoryPick));
 clearBtnGet.addEventListener("click", clearAnswers);
 tryAgainBtnGet.addEventListener("click", tryAgainFunc);
 startBtnGet.addEventListener("click", startBtnFunc);
+surpriseMeBtnGet.addEventListener("click", surpriseMeBtnFunc);
