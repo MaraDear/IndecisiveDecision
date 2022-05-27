@@ -10,15 +10,21 @@ var clearBtnGet = document.getElementById("clearBtn");
 var nextBtn1Get = document.getElementById("nextBtn1");
 var nextBtn2Get = document.getElementById("nextBtn2");
 var tryAgainBtnGet = document.getElementById("tryAgainBtn");
+var startOverBtnGet = document.getElementById("startOverBtn");
 var surpriseMeBtnGet = document.getElementById("surpriseMeBtn");
 
 //--------Section variables-----------//
 var section1Area = document.querySelector(".section1");
-var movieResultArea = document.querySelector(".movieResult");
-var bookResultArea = document.querySelector(".bookResult");
-var otherAreaArea = document.querySelector(".otherArea");
-var answersArea = document.querySelector(".answers");
+var answerAreaArea = document.querySelector(".answerArea");
+var formInputArea = document.querySelector(".formResultsArea");
+var resultsSectionArea = document.querySelector(".resultsSection");
 var headerArea = document.querySelector(".header");
+//initial onload hide show of sections
+//section1Area.style.display = "none";
+formInputArea.style.display = "none";
+resultsSectionArea.style.display = "none";
+answerAreaArea.style.display = "none";
+
 
 //--------Item and Object variables-----------//
 var i = 0;
@@ -91,6 +97,8 @@ get_c();
 // loads fixed preference form on start button
 var startBtnFunc = function () {
   // hide show areas;show input form page from html
+  section1Area.style.display = "none";
+  formInputArea.style.display = "block";
   // populate with answers from local storage if there are any
 };
 
@@ -98,17 +106,23 @@ var startBtnFunc = function () {
 var nextBtnFunc1 = function () {
   //run get answers func
   getfixedAnswers();
-
   //hide and show for mood questions page 1
+    formInputArea.style.display = "none";
+    answerAreaArea.style.display = "block";
+    i = 0
+    headerArea.textContent = questions[i].question;
+    document.querySelector(".answers").textContent = questions[i].a;
+    i++
 };
 
 //Next question button function if doing 1 per page, otherwise a submit answers btn
 var nextBtnFunc2 = function () {
   //populate questions //redo to form or modal if 1 page only
   //if 1 page then getAnswers function, otherwise add to answers array as we go through here if then
+  var answerArea = document.querySelector(".answers");
   if (i < questions.length) {
     headerArea.textContent = questions[i].question;
-    answersArea.textContent = questions[i].a;
+    answerArea.textContent = questions[i].a;
     i++;
     //warn if missing any answers
   } else {
@@ -170,7 +184,6 @@ var bookAPI = function (categoryPick) {
 
 var movieAPI = function (categoryPick) {
   ////phil is working on
-  
   ////movieResultFunc(movieData);
 };
 
@@ -238,6 +251,8 @@ var otherResultFunc = function (otherData) {
 //results display.
 var resultsPage = function (categoryPick) {
   // hide show areas
+    resultsSectionArea.style.display = "block";
+    answerAreaArea.style.display = "none";
   //change header and btns
   headerArea.classList = "header justify-content-center";
   headerArea.textContent = "Your Plans Are ...";
@@ -272,10 +287,15 @@ function tryAgainFunc() {
   resultsPage(categoryPick);
 }
 
+function startOver(){
+   location.reload();
+}
+
 ////----------event listeners----------////
 nextBtn1Get.addEventListener("click", nextBtnFunc1);
 nextBtn2Get.addEventListener("click", nextBtnFunc2);
 clearBtnGet.addEventListener("click", clearAnswers);
 tryAgainBtnGet.addEventListener("click", tryAgainFunc);
+startOverBtnGet.addEventListener("click",startOver);
 startBtnGet.addEventListener("click", startBtnFunc);
 surpriseMeBtnGet.addEventListener("click", surpriseMeBtnFunc);
