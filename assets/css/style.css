@@ -120,11 +120,9 @@ article section{
 
 /*Advice Slip right column results page*/
 #adviceSlipArea{
-    margin-top: 12%;
-    margin-left: 33%;
-    margin-right:10%;
-    margin-bottom: 82%;
-    align-self: center; 
+    margin: 48px 80px 210px 105px ;
+
+    /* border: solid black 1px; */
 }
 
 
