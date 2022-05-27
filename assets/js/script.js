@@ -97,6 +97,8 @@ get_c();
 // loads fixed preference form on start button
 var startBtnFunc = function () {
   // hide show areas;show input form page from html
+resultsSectionArea.style.display = "none";
+answerAreaArea.style.display = "none";
   section1Area.style.display = "none";
   formInputArea.style.display = "block";
   // populate with answers from local storage if there are any
@@ -107,12 +109,14 @@ var nextBtnFunc1 = function () {
   //run get answers func
   getfixedAnswers();
   //hide and show for mood questions page 1
-    formInputArea.style.display = "none";
-    answerAreaArea.style.display = "block";
-    i = 0
-    headerArea.textContent = questions[i].question;
-    document.querySelector(".answers").textContent = questions[i].a;
-    i++
+  section1Area.style.display = "none";
+  resultsSectionArea.style.display = "none";
+  formInputArea.style.display = "none";
+  answerAreaArea.style.display = "block";
+  i = 0;
+  headerArea.textContent = questions[i].question;
+  document.querySelector(".answers").textContent = questions[i].a;
+  i++;
 };
 
 //Next question button function if doing 1 per page, otherwise a submit answers btn
@@ -170,7 +174,7 @@ var bookAPI = function (categoryPick) {
       if (response.ok) {
         response.json().then(function (bookData) {
           // console.log(data);
-          //console.log(bookData.items[0]);
+          console.log(bookData);
           bookResultFunc(bookData);
         });
       } else {
@@ -224,6 +228,7 @@ var bookResultFunc = function (bookData) {
   var bookAuthor = bookData.items[c].volumeInfo.authors[0];
   document.getElementById("bookAuthor").textContent = bookAuthor;
   //summary
+  ////figure out how to cut off summary if more than # lines
   var bookInfo = bookData.items[c].volumeInfo.description;
   document.getElementById("bookInfo").textContent = bookInfo;
   //book thumbnail URL
@@ -251,8 +256,10 @@ var otherResultFunc = function (otherData) {
 //results display.
 var resultsPage = function (categoryPick) {
   // hide show areas
-    resultsSectionArea.style.display = "block";
-    answerAreaArea.style.display = "none";
+  section1Area.style.display = "none";
+  resultsSectionArea.style.display = "block";
+  answerAreaArea.style.display = "none";
+  formInputArea.style.display = "none";
   //change header and btns
   headerArea.classList = "header justify-content-center";
   headerArea.textContent = "Your Plans Are ...";
