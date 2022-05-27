@@ -1,8 +1,7 @@
 /*Indecisive Decisions*/
 /***************************** */
 
-
-/* Everything in here right now is just a few things copied from previous projects -CRH 05/24/22 */
+/* Some is copied from previous projects -CRH 05/24/22 */
 
 /* Overall */
 *,
@@ -14,225 +13,121 @@
 /*variables*/
 
 :root {
-    --primary-color: #e56fea;
-    --secondary-color: ivory;
-    --bg-color:  #2a607c;
-    --bg-color2: #0076c6;
-    --padding: 20px;
-    --blur: 10px;
+  --primary-color: #5a0d12;
+  --secondary-color: ivory;
+  --third-color: #913b41;
+  --bg-color: #366276;
+  --bg-color2: #81aecc;
+  --padding: 20px;
+  --blur: 10px;
 }
 
 /*general selectors*/
-.left-align{
-    justify-content: left;
-}
-
-
 
 /*--headline with quicklinks*/
 header {
-    display: flex;
-    width: 100vw;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 0;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--secondary-color);
-    z-index: 9999
+  display: inline-block;
+  width: 100vw;
+  justify-content: space-around;
+  align-items: center;
+  padding: 15px 0;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--secondary-color);
+  z-index: 9999;
 }
 
-header h2{
-    font-size: 48px;
-    padding-left: 25px;
+header h2 {
+  font-size: 48px;
+  padding-left: 25px;
 }
 
 header span {
-    justify-content: space-around;
-    align-items: center;
-    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
-    font-size: 30px;
-    display: flex;
+  font-family: "Gill Sans", "Gill Sans MT", "Calibri", "Trebuchet MS",
+    sans-serif;
+  font-size: 30px;
 }
 
+/*footer*/
+footer {
+  padding: 20px;
+  padding-left: 40px;
+  width: 100vw;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--secondary-color);
+  display: inline-block;
+}
+
+footer h2 {
+  display: inline-block;
+  font-size: 35px;
+}
+
+footer span {
+  font-size: 25px;
+}
+
+.creditLogos {
+  padding-right: 40px;
+}
+
+footer a {
+  padding: 7px;
+}
+
+/* Button designs  */
+.btnStyle {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: solid 3pt var(--third-color);
+  padding: 5px 10px;
+}
 
 /*hero background image and subtitle*/
-
+/* do we want for start page?  */
 .heropg {
-    height: 300px;
-    width: 100vw;
-    margin-bottom: 25px;
-    background-image: url(./assets/images/heropgimage.jpg);
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    border: black 1px solid;
+  height: 300px;
+  width: 100vw;
+  margin-bottom: 25px;
+  background-image: url(./assets/images/heropgimage.jpg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  border: black 1px solid;
 }
-
-.heropg div{
-
-}
-
-.heropg p{
-
-}
-
 
 /*all of main sections*/
-main{
-
+body{
+    background-color: var(--bg-color2);
 }
 
-article{
-
+article {
 }
 
 /*within each subsections*/
 
-article div{
-
-}
-
-h3{
-
-}
-
-article section{
-
+article div {
 }
 
 /*subsection unique attributes*/
-.section1{
-
+.section1 {
 }
 
-.section2{
-
+/*Results page*/
+#adviceSlipArea {
+  margin: 48px 80px 210px 105px;
+  /* border: solid black 1px; */
 }
 
-.section3{
+/* //////remove or switch to min-width version, because bulma is mobile-first css??? ////// */
 
+/* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
+@media screen and (max-width: 980px) {
 }
 
-.other{
-
-}
-
-/*Advice Slip right column results page*/
-#adviceSlipArea{
-    margin: 48px 80px 210px 105px ;
-
-    /* border: solid black 1px; */
-}
-
-
-
-/*footer*/
-footer {
-    padding: 20px;
-    padding-left: 40px;
-    width: 100vw;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--secondary-color);
-    display: inline-block;
-}
-
-footer h2{
-    display: inline-block;
-    font-size: 45px;
-}
-
-footer span{
-    font-size: 25px;
-}
-
-footer p {
-    padding: 10px;
-    padding-bottom: 20px;
-    padding-right: 50px;
-    float: right;
-    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
-    font-size: 30px;
-    color: var(--primary-color);
-}
-
-
-
-/* playing around with advice slip styling  */
-/* .slipdispenser {
-    display: block;
-    top: 180px;
-    width: 100%;
-    min-height: 600px;
-    text-align: center;
-    padding-bottom: 240px;
-}
-.paper p {
-    font-family: "FakeReceipt-Regular",monospace;
-    font-size: 1.5em;
-    padding: 0.625em 0 0.625em 0;
-    color: #121212;
-}
-.advice {
-    overflow: hidden;
-    line-height: 130%;
-}
-.advice:after, .advice:before {
-    content: "=====================================";
-    letter-spacing: 0.17em;
-    font-family: "FakeReceipt-Regular",monospace;
-    font-size: 1em;
-    text-align: center;
-    text-justify: distribute !important;
-    display: inline-block;
-    padding: 2em 0 0 0;
-    color: #121212;
-}
-.advice:before {
-    padding: 0 0 2em 0;
-}
-.advice:after {
-    padding: 2em 0 0 0;
-}
-.paper {
-    font-size: 1em;
-    position: relative;
-    display: block;
-    background: url(../img/bg-paper.png?1358893893) center top repeat #fff;
-    width: 540px;
-    left: 20px;
-    height: auto;
-    margin-bottom: 34px;
-    -webkit-box-shadow: rgb(0 0 0 / 80%) 0px 2px 3px 1px, rgb(0 0 0 / 40%) 0px 10px 20px 6px;
-    -moz-box-shadow: rgba(0,0,0,0.8) 0px 2px 3px 1px,rgba(0,0,0,0.4) 0px 10px 20px 6px;
-    box-shadow: rgb(0 0 0 / 80%) 0px 2px 3px 1px, rgb(0 0 0 / 40%) 0px 10px 20px 6px;
-}
-.paper p {
-    font-family: "FakeReceipt-Regular",monospace;
-    font-size: 1.5em;
-    padding: 0.625em 0 0.625em 0;
-    color: #121212;
-}
-.advice {
-    overflow: hidden;
-    line-height: 130%;
-} */
-
-
-
-/* do we need to do this the other way around to be 'mobile first'??? */
-
-
-  /* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
-  @media screen and (max-width: 980px) {
-
-  }
-
-
-
-
-      /* MEDIA QUERY FOR MOBILE PHONES AND SMALLER */
+/* MEDIA QUERY FOR MOBILE PHONES AND SMALLER */
 @media screen and (max-width: 550px) {
-
 }

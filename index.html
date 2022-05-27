@@ -27,34 +27,34 @@
 
   <body>
     <!-- HEADER  -->
-    <header class="header" id="header">
-      <h2>
-        Indecisive Decisions
-        <span>something clever</span>
-      </h2>
+    <header class="header columns" id="header">
+      <h2>Indecisive Decisions</h2>
+      <span>something clever</span>
     </header>
 
     <!-- opening page  -->
     <article class="section1" id="section1">
-      <button id="surpriseMeBtn">Surprise Me</button>
+      <button class="btnStyle btn1" id="surpriseMeBtn">Surprise Me</button>
       <div>SOME COOL STUFF HERE</div>
       <!-- images info etc  -->
       <img src="./assets/images/one-does-not-khv0pk.jpg" />
       <!-- image is a placeholder until someone designs something cooler.  -->
-      <button id="startBtn">START</button>
+      <button class="btnStyle btn2" id="startBtn">START</button>
     </article>
 
     <!-- Preference Questions  -->
     <!-- first page will have a form fixed preferences that'll repopulate from local storage -->
     <article class="formResultsArea">
       <!-- Replace header with "Preferences" type title -->
+      <button class="btnStyle btn3" id="clearBtn">
+        I didn't mean what I said before
+      </button>
       <div class="formResults">
         <!-- input form  -->
         <p>Input 1</p>
         <p>answer 1</p>
       </div>
-      <button id="clearBtn">I didn't mean what I said before</button>
-      <button id="nextBtn1">NEXT1</button>
+      <button class="btnStyle btn4" id="nextBtn1">NEXT1</button>
     </article>
 
     <!-- Mood Questions  -->
@@ -64,7 +64,7 @@
       <div class="answers">
         <!-- input form or drop down or modals or combination???  -->
       </div>
-      <button id="nextBtn2">NEXT2</button>
+      <button class="btnStyle btn5" id="nextBtn2">NEXT2</button>
     </article>
 
     <!-- Results  -->
@@ -106,16 +106,20 @@
             style="
               background-image: url('./assets/images/typewriter.jpg');
               background-size: cover;
-              height: 480px; width: 380px; 
+              height: 480px;
+              width: 380px;
             "
           >
-            <div id="adviceSlipArea" style="font-family: 'IBM Plex Mono', monospace;">
+            <div
+              id="adviceSlipArea"
+              style="font-family: 'IBM Plex Mono', monospace"
+            >
               <!-- put advice on top of paper in typewriter  -->
             </div>
           </section>
 
-          <button id="tryAgainBtn">Try Again</button>
-          <button id="startOverBtn">Start Over</button>
+          <button class="btnStyle btn6" id="tryAgainBtn">Try Again</button>
+          <button class="btnStyle btn7" id="startOverBtn">Start Over</button>
         </div>
       </div>
     </article>
@@ -124,8 +128,7 @@
     <footer>
       <section class="foot is-flex flex-wrap is-justify-content-space-between">
         <div>
-          created by:
-          <span>Caleb, Charissa, Danielle, & Philip</span>
+          <h2>Created by: <span>Caleb, Charissa, Danielle, & Philip</span></h2>
         </div>
         <div class="creditLogos">
           <!-- movies credit logo  -->
