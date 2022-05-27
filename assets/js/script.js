@@ -101,7 +101,7 @@ resultsSectionArea.style.display = "none";
 answerAreaArea.style.display = "none";
   section1Area.style.display = "none";
   formInputArea.style.display = "block";
-  // populate with answers from local storage if there are any
+  //// populate with answers from local storage if there are any
 };
 
 //Next question button function if doing 1 per page, otherwise a submit answers btn
@@ -281,9 +281,9 @@ var surpriseMeBtnFunc = function () {
 
 // clear all answers button -- clear local storage
 function clearAnswers() {
-  // hide show areas?
+//clear then reload form input page
   localStorage.clear();
-  location.reload();
+  startBtnFunc;
 }
 
 // Try Again button -- shuffles a new suggestion from already existing arrays
