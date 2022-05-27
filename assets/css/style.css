@@ -118,7 +118,14 @@ article section{
 
 }
 
-
+/*Advice Slip right column results page*/
+#adviceSlipArea{
+    margin-top: 12%;
+    margin-left: 33%;
+    margin-right:10%;
+    margin-bottom: 82%;
+    align-self: center; 
+}
 
 
 
