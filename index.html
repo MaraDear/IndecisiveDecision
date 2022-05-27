@@ -11,7 +11,11 @@
     <title>Indecisive Decisions</title>
     <!-- add favicon  -->
     <!-- CSS links  -->
-    <!-- link bootstrap bulma etc for css  -->
+    <!-- link bulma etc for css  -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
 
@@ -60,39 +64,43 @@
     <!-- Results  -->
     <article class="resultsSection" id="resultsSection">
       <!-- replace header with 'our Plans Are ...'  -->
-      <div class="results">
+      <div class="columns results">
         <!-- movie reel or board -->
-        <section class="movieResult">
-          <a id="movieResultLink" target="_blank">
-            <div id="movieImageArea">
-              <img id="movieImage" />
+        <div class="column is-two-thirds-tablet">
+          <section class="movieResult">
+            <a id="movieResultLink" target="_blank">
+              <div id="movieImageArea">
+                <img id="movieImage" />
+              </div>
+              <div id="movieTitle">
+                Movie Title <span id="movieSubtitle"> movie subtitle</span>
+              </div>
+              <div id="movieStarring">Starring:</div>
+              <p id="movieInfo">Movie Info</p>
+            </a>
+          </section>
+          <!-- book -->
+          <section class="bookResult">
+            <a id="bookResultLink" target="_blank">
+              <div id="bookImageArea">
+                <img id="bookImage" />
+              </div>
+              <div id="bookTitle">
+                Book Title <span id="bookSubtitle"> Book subtitle</span>
+              </div>
+              <div id="bookAuthor">By:</div>
+              <p id="bookInfo">Book Info</p>
+            </a>
+          </section>
+        </div>
+        <div class="column">
+          <!-- advice slip -->
+          <section class="otherArea">
+            <div id="adviceSlipArea">
+              <img id="adviceSlip" />
             </div>
-            <div id="movieTitle">
-              Movie Title <span id="movieSubtitle"> movie subtitle</span>
-            </div>
-            <div id="movieStarring">Starring:</div>
-            <p id="movieInfo">Movie Info</p>
-          </a>
-        </section>
-        <!-- book -->
-        <section class="bookResult">
-          <a id="bookResultLink" target="_blank">
-            <div id="bookImageArea">
-              <img id="bookImage" />
-            </div>
-            <div id="bookTitle">
-              Book Title <span id="bookSubtitle"> Book subtitle</span>
-            </div>
-            <div id="bookAuthor">By:</div>
-            <p id="bookInfo">Book Info</p>
-          </a>
-        </section>
-        <!-- advice slip -->
-        <section class="otherArea">
-          <div id="adviceSlipArea">
-            <img id="adviceSlip" />
-          </div>
-        </section>
+          </section>
+        </div>
       </div>
       <button id="tryAgainBtn">Try Again</button>
       <button id="startOverBtn">Start Over</button>
@@ -100,7 +108,7 @@
 
     <!-- FOOTER  -->
     <footer>
-      <section class="footer d-flex">
+      <section class="foot is-flex flex-wrap is-justify-content-space-between">
         <div>
           created by:
           <span>Caleb, Charissa, Danielle, & Philip</span>
