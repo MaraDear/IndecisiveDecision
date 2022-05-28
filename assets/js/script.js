@@ -18,7 +18,7 @@ var section1Area = document.querySelector(".section1");
 var answerAreaArea = document.querySelector(".answerArea");
 var formInputArea = document.querySelector(".formResultsArea");
 var resultsSectionArea = document.querySelector(".resultsSection");
-var headerArea = document.querySelector(".header");
+var headerArea = document.querySelector(".headerCon");
 var answerArea = document.querySelector(".answers");
 //initial onload hide show of sections
 //section1Area.style.display = "none";
