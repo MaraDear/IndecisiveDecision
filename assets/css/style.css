@@ -26,16 +26,9 @@
 
 /*--headline with quicklinks*/
 header {
-  display: inline-block;
-  width: 100vw;
-  justify-content: space-around;
-  align-items: center;
-  padding: 15px 0;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--secondary-color);
-  z-index: 9999;
+	margin: 0 auto;
+	position: relative;
+	text-align: center;
 }
 
 header h2 {
