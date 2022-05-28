@@ -66,16 +66,19 @@ if (LSfixedAnswers) {
 // Mood answers array
 var answers = [];
 
-//questions array
-//will need updating just placeholders for now
+// mood questions array
 const questions = [
   {
-    question: "Pick a Color",
-    answers: ["Blue", "Red", "Yellow", "Green"],
+    question: "Tell us how you are feeling",
+    answers: ["Elated", "Sad", "Confused", "Tired"],
   },
   {
-    question: "Pick a Princess",
-    answers: ["Nala", "Jasmine", "Cinderella", "Tiana"],
+    question: "How mature are you feeling today?",
+    answers: ["Just a babe", "I'm a pretty cool cat", "Don't let any kids in here"],
+  },
+  {
+    question: "Which best represents your current mentality",
+    answers: ["Classic", "Nastalgic ", "In The Now"],
   },
 ];
 
@@ -99,6 +102,7 @@ var startBtnFunc = function () {
   formInputArea.style.display = "block";
   errorMsgArea.textContent = "";
   //// populate with answers from local storage if there are any
+
 };
 
 // get input from fixed questions
@@ -154,6 +158,8 @@ var getAnswers = function (i) {
   if (answerNow == null) {
     errorMsgArea.textContent = "must select one answer";
   } else {
+    //populate answers array
+    answers[i] = answerNow
     // reset radio buttons
     for (var a = 0; a < questions[i].answers.length; a++) {
       var answerA = document.getElementById("id", "q" + i + "a" + a + "radio");
@@ -191,6 +197,14 @@ var nextBtnFunc2 = function () {
 
 // determine results types from questions
 var resultTypeFunc = function () {
+  // fixedAnswers[0] pick 
+  // fixedAnswers[1] pick 
+  // fixedAnswers[2] pick
+
+  // answers[0] pick genre
+  // answers[1] pick rating/maturity
+  // answers[2] pick release date
+
   //i.e. based on results they need a sad result
   //look into if want to include genre or multiple keywords
   categoryPick = "InTheBlues";
