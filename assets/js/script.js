@@ -33,25 +33,6 @@ var categoryPick = [];
 
 var c = 0; //constant for testing
 
-//might not need the objects if we place info into the appropriate spots inside the functions
-// var bookResult = {
-//   title: "",
-//   subtitle: "",
-//   author: "",
-//   info: "",
-//   link: "",
-//   image: "",
-// };
-// var movieResult = {
-//   title: "",
-//   subtitle: "",
-//   starring: "",
-//   info: "",
-//   link: "",
-//   image: "",
-// };
-// var otherResult = "";
-
 //--------Array variables-----------//
 
 // get answers Array from local storage
