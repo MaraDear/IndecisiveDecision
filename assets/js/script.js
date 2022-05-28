@@ -110,6 +110,28 @@ var startBtnFunc = function () {
 
 // get input from fixed questions
 var getfixedAnswers = function () {
+  //add to answers array to determine category pick
+  for (i = 0; i < 3; i++) {
+    var ii = i + 1;
+    var answerOptions = document.querySelectorAll(
+      'input[name="Preference' + ii + '"]'
+    );
+    console.log(answerOptions);
+    for (var a = 0; a < 4; a++) {
+      var answerA = answerOptions[a].checked;
+      if (answerA == true) {
+        var answerNow = a;
+      }
+    }
+    //error if no answer
+    if (answerNow == null) {
+      errorMsgArea.textContent = "must select one answer";
+    } else {
+      //populate answers array
+      fixedAnswers[i] = answerNow;
+    }
+  }
+  console.log(fixedAnswers);
   //add to answers array to push to local storage for future use
   // move answers from form to replace local storage
   //warn if missing any answers
@@ -126,72 +148,65 @@ var nextBtnFunc1 = function () {
   resultsSectionArea.style.display = "none";
   formInputArea.style.display = "none";
   answerAreaArea.style.display = "block";
-  i = 0;
-  //populate mood questions page 1
-  headerArea.textContent = questions[i].question;
-  for (var a = 0; a < questions[i].answers.length; a++) {
-    inputConEl = document.createElement("div");
-    inputConEl.classList = "eachAnswerContainer";
-    inputConEl.innerHTML = questions[i].answers[a];
-    answerArea.append(inputConEl);
-    inputEl = document.createElement("input");
-    inputEl.setAttribute("type", "radio");
-    inputEl.setAttribute("name", "answerRadio");
-    inputEl.setAttribute("id", "q" + i + "a" + a + "radio");
-    inputEl.classList = "radios answerBlock";
-    inputConEl.append(inputEl);
-  }
-};
-
-// get input from mood question
-var getAnswers = function (i) {
-  //add to answers array to determine category pick
-  var answerOptions = document.querySelectorAll('input[name="answerRadio"]');
-  for (var a = 0; a < questions[i].answers.length; a++) {
-    var answerA = answerOptions[a].checked;
-    if (answerA == true) {
-      var answerNow = a;
-    }
-  }
-  //error if no answer
-  if (answerNow == null) {
-    errorMsgArea.textContent = "must select one answer";
-  } else {
-    //populate answers array
-    answers[i] = answerNow;
-    // reset radio buttons
-    for (var a = 0; a < questions[i].answers.length; a++) {
-      answerOptions[a].checked = false;
-    }
-  }
-};
-
-//Next mood question button function, end of questions go to resultTypeFunc
-var nextBtnFunc2 = function () {
-  //get answer from previous mood question
-  getAnswers(i);
-  i++;
+  // reset radio buttons
+  // for (var a = 0; a < questions[i].answers.length; a++) {
+  //   answerOptions[a].checked = false;
+  // }
   //populate question
-  answerArea.innerHTML = "";
-  if (i < questions.length) {
-    headerArea.textContent = questions[i].question;
+  // answerArea.innerHTML = "";
+  for (i = 0; i < questions.length; i++) {
+    var ii = i + 1;
+    headerArea.textContent = "continued"; //something better here. lol
+    var questCon = document.createElement("h3");
+    questCon.innerHTML = questions[i].question;
+    answerArea.append(questCon);
     for (var a = 0; a < questions[i].answers.length; a++) {
-      inputConEl = document.createElement("div");
+      var inputConEl = document.createElement("div");
       inputConEl.classList = "eachAnswerContainer";
       inputConEl.innerHTML = questions[i].answers[a];
       answerArea.append(inputConEl);
-      inputEl = document.createElement("input");
+      var inputEl = document.createElement("input");
       inputEl.setAttribute("type", "radio");
-      inputEl.setAttribute("name", "answerRadio");
+      inputEl.setAttribute("name", "mood" + ii);
       inputEl.setAttribute("id", "q" + i + "a" + a + "radio");
       inputEl.classList = "radios answerBlock";
       inputConEl.append(inputEl);
     }
     //warn if missing any answers
-  } else {
-    //run figure out results type function
-    resultTypeFunc();
+    ////need to add
   }
+};
+
+// get input from mood question
+var getAnswers = function () {
+  //add to answers array to determine category pick
+  for (i = 0; i < questions.length; i++) {
+    var ii = i + 1;
+    var answerOptions = document.querySelectorAll(
+      'input[name="mood' + ii + '"]'
+    );
+    for (var a = 0; a < questions[i].answers.length; a++) {
+      var answerA = answerOptions[a].checked;
+      if (answerA == true) {
+        var answerNow = a;
+      }
+    }
+    //error if no answer
+    if (answerNow == null) {
+      errorMsgArea.textContent = "must select one answer";
+    } else {
+      //populate answers array
+      answers[i] = answerNow;
+    }
+  }
+  //run figure out results type function
+  resultTypeFunc();
+};
+
+//Next mood question button function, end of questions go to resultTypeFunc
+var nextBtnFunc2 = function () {
+  //get answer from previous mood question
+  getAnswers();
 };
 
 // determine results types from questions
@@ -202,14 +217,56 @@ var resultTypeFunc = function () {
   var ratingMovie;
   var ratingBook; // MATURE, not-mature
   var dateMood; //not certain on words to carry over
-  var keywords = "new_release"; //fill in from fixed answers
+  var keywords;
   ///////add this results means this answer for category pick array section
   // fixedAnswers[0] //use these 3 to make keywords
+  switch (answers[0]) {
+    case 0:
+      keywords = "comedy";
+      break;
+    case 1:
+      keywords = "tragedy";
+      break;
+    case 2:
+      keywords = "mystery";
+      break;
+    case 3:
+      keywords = "nature";
+      break;
+  }
   // fixedAnswers[1]
+  switch (answers[1]) {
+    case 0:
+      genre = "comedy";
+      break;
+    case 1:
+      genre = "tragedy";
+      break;
+    case 2:
+      genre = "mystery";
+      break;
+    case 3:
+      genre = "nature";
+      break;
+  }
   // fixedAnswers[2]
+  switch (answers[2]) {
+    case 0:
+      genre = "comedy";
+      break;
+    case 1:
+      genre = "tragedy";
+      break;
+    case 2:
+      genre = "mystery";
+      break;
+    case 3:
+      genre = "nature";
+      break;
+  }
 
   // answers[0] pick genre
-  switch (answers[0]) {
+  switch (answers[3]) {
     case 0:
       genre = "comedy";
       break;
@@ -224,7 +281,7 @@ var resultTypeFunc = function () {
       break;
   }
   // answers[1] pick rating/maturity
-  switch (answers[1]) {
+  switch (answers[4]) {
     case 0:
       ratingBook = "not-mature";
       ratingMovie = "PG";
@@ -239,7 +296,7 @@ var resultTypeFunc = function () {
       break;
   }
   // answers[2] pick release date
-  switch (answers[2]) {
+  switch (answers[5]) {
     case 0:
       dateMood = "classic";
       break;
@@ -251,7 +308,7 @@ var resultTypeFunc = function () {
       break;
   }
   // pass genre, rating, dateMood, keywords
-
+  ////add code to combine keywords into one string for searching
   categoryPick = [keywords, genre, ratingMovie, ratingBook, dateMood];
   //results functions
   resultsPage(categoryPick);
@@ -265,7 +322,7 @@ var resultsPage = function (categoryPick) {
   answerAreaArea.style.display = "none";
   formInputArea.style.display = "none";
   //change header
-  headerArea.classList = "header justify-content-center";
+
   headerArea.textContent = "Your Plans Are ...";
   //get bookResult info
   bookAPI(categoryPick);
