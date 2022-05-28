@@ -197,23 +197,61 @@ var nextBtnFunc2 = function () {
 // determine results types from questions
 var resultTypeFunc = function () {
   categoryPick = [];
-  // fixedAnswers[0] pick Keyword1
-  // fixedAnswers[1] pick Keyword2
-  // fixedAnswers[2] pick Keyword3
+  /////(Replace with real answers) just constants for testing
+  var genre;
+  var ratingMovie;
+  var ratingBook; // MATURE, not-mature
+  var dateMood; //not certain on words to carry over
+  var keywords = "new_release"; //fill in from fixed answers
+  ///////add this results means this answer for category pick array section
+  // fixedAnswers[0] //use these 3 to make keywords
+  // fixedAnswers[1]
+  // fixedAnswers[2]
 
   // answers[0] pick genre
+  switch (answers[0]) {
+    case 0:
+      genre = "comedy";
+      break;
+    case 1:
+      genre = "tragedy";
+      break;
+    case 2:
+      genre = "mystery";
+      break;
+    case 3:
+      genre = "nature";
+      break;
+  }
   // answers[1] pick rating/maturity
+  switch (answers[1]) {
+    case 0:
+      ratingBook = "not-mature";
+      ratingMovie = "PG";
+      break;
+    case 1:
+      ratingBook = "not-mature";
+      ratingMovie = "PG-13";
+      break;
+    case 2:
+      ratingBook = "MATURE";
+      ratingMovie = "R";
+      break;
+  }
   // answers[2] pick release date
+  switch (answers[2]) {
+    case 0:
+      dateMood = "classic";
+      break;
+    case 1:
+      dateMood = "1970-2020";
+      break;
+    case 2:
+      dateMood = "new_release";
+      break;
+  }
+  // pass genre, rating, dateMood, keywords
 
-  //replace later with code for results input equals answer X to get y
-
-  // pass genre, rating, dateRange, keywords
-  /////(Replace with real answers) just constants for testing
-  var genre = "comedy";
-  var ratingMovie = "PG-13";
-  var ratingBook = "MATURE"; // MATURE, not-mature
-  var dateMood = "Modern";
-  var keywords = "flowers_garden";
   categoryPick = [keywords, genre, ratingMovie, ratingBook, dateMood];
   //results functions
   resultsPage(categoryPick);
@@ -245,7 +283,7 @@ var bookAPI = function (categoryPick) {
   var apiLocUrl =
     "https://www.googleapis.com/books/v1/volumes?q=" +
     categoryPick[0] +
-    "&maxResults=30&maturityRating=projection=lite&orderBy=relevance&maxAllowedMaturityRating=" +
+    "&maxResults=30&maturityRating=projection=lite&orderBy=newest&maxAllowedMaturityRating=" +
     categoryPick[3] +
     "&key=AIzaSyDu-39j_DJyfyXYR2lSvUZmIG_hIJ7DFHA";
 
