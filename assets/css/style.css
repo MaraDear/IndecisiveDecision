@@ -40,16 +40,13 @@ header h1 {
   padding-left: 25px;
   line-height: 1;
   margin-top: 0;
-  color: #fff;
+  color: rgb(255, 255, 255);
   display: inline-block;
   position: relative;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: bold;
 }
 
-header span {
-  font-family: "Gill Sans", "Gill Sans MT", "Calibri", "Trebuchet MS",
-    sans-serif;
-  font-size: 30px;
-}
 
 /*footer*/
 footer {
