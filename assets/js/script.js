@@ -213,18 +213,8 @@ var resultTypeFunc = function () {
   var ratingMovie = "PG-13";
   var ratingBook = "MATURE"; // MATURE, not-mature
   var dateMood = "Modern";
-  var keyword1 = "flowers";
-  var keyword2 = "western";
-  var keyword3 = "blue";
-  categoryPick = [
-    keyword1,
-    keyword2,
-    keyword3,
-    genre,
-    ratingMovie,
-    ratingBook,
-    dateMood,
-  ];
+  var keywords = "flowers_garden";
+  categoryPick = [keywords, genre, ratingMovie, ratingBook, dateMood];
   //results functions
   resultsPage(categoryPick);
 };
@@ -251,24 +241,12 @@ var resultsPage = function (categoryPick) {
 
 //-----book API--------//
 var bookAPI = function (categoryPick) {
-  // for reference array inputs categoryPick = [keyword1,keyword2,keyword3,genre,ratingMovie,ratingBook,dateMood];
   //API to collect a set of book details based on cateogory pick provided
-  //try to add country=US
-  var keywords =
-    categoryPick[0] +
-    "_" +
-    categoryPick[1] +
-    "_" +
-    categoryPick[2] +
-    "_" +
-    categoryPick[3];
-  console.log(keywords);
-  //var dateMood = "relevance"; //(newest, relevance);
   var apiLocUrl =
     "https://www.googleapis.com/books/v1/volumes?q=" +
-    keywords +
+    categoryPick[0] +
     "&maxResults=30&maturityRating=projection=lite&orderBy=relevance&maxAllowedMaturityRating=" +
-    categoryPick[5] +
+    categoryPick[3] +
     "&key=AIzaSyDu-39j_DJyfyXYR2lSvUZmIG_hIJ7DFHA";
 
   fetch(apiLocUrl)
@@ -323,7 +301,7 @@ var bookResultFunc = function (bookData) {
 
 //-----movie API--------//
 var movieAPI = function (categoryPick) {
-  // for reference array inputs categoryPick = [keyword1,keyword2,keyword3,genre,ratingMovie,ratingBook,dateMood];
+  // for reference array inputs categoryPick = [keywords,genre,ratingMovie,ratingBook,dateMood];
   ////phil is working on
   ////movieResultFunc(movieData);
 };
@@ -367,17 +345,9 @@ var otherResultFunc = function (otherData) {
 
 //create a randomized results page and skip the questions
 var surpriseMeBtnFunc = function () {
-  // for reference array inputs categoryPick = [keyword1,keyword2,keyword3,genre,ratingMovie,ratingBook,dateMood];
+  // for reference array inputs categoryPick = [keywords,genre,ratingMovie,ratingBook,dateMood];
   // update to whatever
-  categoryPick = [
-    "best",
-    "seller",
-    "book",
-    "popular",
-    "PG-13",
-    "not-mature",
-    "modern",
-  ];
+  categoryPick = ["best_seller", "fiction", "PG-13", "not-mature", "modern"];
   resultsPage(categoryPick);
 };
 
