@@ -141,6 +141,7 @@ var nextBtnFunc1 = function () {
     inputEl.classList = "radios answerBlock";
     inputConEl.append(inputEl);
   }
+  //////fix issue
 };
 
 // get input from mood question
@@ -200,25 +201,36 @@ var nextBtnFunc2 = function () {
 
 // determine results types from questions
 var resultTypeFunc = function () {
-  // fixedAnswers[0] pick
-  // fixedAnswers[1] pick
-  // fixedAnswers[2] pick
+  categoryPick = [];
+  // fixedAnswers[0] pick Keyword1
+  // fixedAnswers[1] pick Keyword2
+  // fixedAnswers[2] pick Keyword3
 
   // answers[0] pick genre
   // answers[1] pick rating/maturity
   // answers[2] pick release date
 
-  //i.e. based on results they need a sad result
-  //look into if want to include genre or multiple keywords
+  //replace later with code for results input equals answer X to get y
+
   // pass genre, rating, dateRange, keywords
-  /////(Replace with real answers)
+  /////(Replace with real answers) just constants for testing
   var genre = "comedy";
-  var rating = "PG-13";
+  var ratingMovie = "PG-13";
+  var ratingBook = "MATURE"; // MATURE, not-mature
   var dateMood = "Modern";
-  var Keyword1 = "flowers";
-  var Keyword2 = "western";
-  categoryPick = [genre, rating, dateMood, Keyword1, Keyword2];
-  //replace later with code for results input equals type X to send to get results functions
+  var keyword1 = "flowers";
+  var keyword2 = "western";
+  var keyword3 = "blue";
+  categoryPick = [
+    keyword1,
+    keyword2,
+    keyword3,
+    genre,
+    ratingMovie,
+    ratingBook,
+    dateMood,
+  ];
+  //results functions
   resultsPage(categoryPick);
 };
 
@@ -244,18 +256,30 @@ var resultsPage = function (categoryPick) {
 
 //-----book API--------//
 var bookAPI = function (categoryPick) {
-  //decide where to insert this link
-
+  // for reference array inputs categoryPick = [keyword1,keyword2,keyword3,genre,ratingMovie,ratingBook,dateMood];
   //API to collect a set of book details based on cateogory pick provided
   //try to add country=US
+  var keywords =
+    categoryPick[0] +
+    "_" +
+    categoryPick[1] +
+    "_" +
+    categoryPick[2] +
+    "_" +
+    categoryPick[3];
+  console.log(keywords);
+  //var dateMood = "relevance"; //(newest, relevance);
   var apiLocUrl =
     "https://www.googleapis.com/books/v1/volumes?q=" +
-    categoryPick +
-    "&maxResults=30&projection=lite&orderBy=newest&key=AIzaSyDu-39j_DJyfyXYR2lSvUZmIG_hIJ7DFHA";
+    keywords +
+    "&maxResults=30&maturityRating=projection=lite&orderBy=relevance&maxAllowedMaturityRating=" +
+    categoryPick[5] +
+    "&key=AIzaSyDu-39j_DJyfyXYR2lSvUZmIG_hIJ7DFHA";
+
   fetch(apiLocUrl)
     .then(function (response) {
       // if request was successful
-      console.log(response);
+      //console.log(response);
       if (response.ok) {
         response.json().then(function (bookData) {
           // console.log(data);
@@ -304,6 +328,7 @@ var bookResultFunc = function (bookData) {
 
 //-----movie API--------//
 var movieAPI = function (categoryPick) {
+  // for reference array inputs categoryPick = [keyword1,keyword2,keyword3,genre,ratingMovie,ratingBook,dateMood];
   ////phil is working on
   ////movieResultFunc(movieData);
 };
@@ -344,10 +369,20 @@ var otherResultFunc = function (otherData) {
 };
 
 //------Misc buttons--------//
+
+//create a randomized results page and skip the questions
 var surpriseMeBtnFunc = function () {
-  //add in to create a randomized results page and skip the questions
-  // //create new random c number//don't need I think
-  categoryPick = "best seller"; //update to whatever
+  // for reference array inputs categoryPick = [keyword1,keyword2,keyword3,genre,ratingMovie,ratingBook,dateMood];
+  // update to whatever
+  categoryPick = [
+    "best",
+    "seller",
+    "book",
+    "popular",
+    "PG-13",
+    "not-mature",
+    "modern",
+  ];
   resultsPage(categoryPick);
 };
 
