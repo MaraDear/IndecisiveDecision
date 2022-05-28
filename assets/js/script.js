@@ -29,7 +29,7 @@ var errorMsgArea = document.querySelector("#error");
 
 //--------Item and Object variables-----------//
 var i = 0;
-var categoryPick;
+var categoryPick = [];
 
 var c = 0; //constant for testing
 
@@ -74,11 +74,15 @@ const questions = [
   },
   {
     question: "How mature are you feeling today?",
-    answers: ["Just a babe", "I'm a pretty cool cat", "Don't let any kids in here"],
+    answers: [
+      "Just a babe",
+      "I'm a pretty cool cat",
+      "Don't let any kids in here",
+    ],
   },
   {
     question: "Which best represents your current mentality",
-    answers: ["Classic", "Nastalgic ", "In The Now"],
+    answers: ["Classic", "Nastalgic ", "Modern"],
   },
 ];
 
@@ -102,7 +106,6 @@ var startBtnFunc = function () {
   formInputArea.style.display = "block";
   errorMsgArea.textContent = "";
   //// populate with answers from local storage if there are any
-
 };
 
 // get input from fixed questions
@@ -159,7 +162,7 @@ var getAnswers = function (i) {
     errorMsgArea.textContent = "must select one answer";
   } else {
     //populate answers array
-    answers[i] = answerNow
+    answers[i] = answerNow;
     // reset radio buttons
     for (var a = 0; a < questions[i].answers.length; a++) {
       var answerA = document.getElementById("id", "q" + i + "a" + a + "radio");
@@ -197,8 +200,8 @@ var nextBtnFunc2 = function () {
 
 // determine results types from questions
 var resultTypeFunc = function () {
-  // fixedAnswers[0] pick 
-  // fixedAnswers[1] pick 
+  // fixedAnswers[0] pick
+  // fixedAnswers[1] pick
   // fixedAnswers[2] pick
 
   // answers[0] pick genre
@@ -207,7 +210,14 @@ var resultTypeFunc = function () {
 
   //i.e. based on results they need a sad result
   //look into if want to include genre or multiple keywords
-  categoryPick = "InTheBlues";
+  // pass genre, rating, dateRange, keywords
+  /////(Replace with real answers)
+  var genre = "comedy";
+  var rating = "PG-13";
+  var dateMood = "Modern";
+  var Keyword1 = "flowers";
+  var Keyword2 = "western";
+  categoryPick = [genre, rating, dateMood, Keyword1, Keyword2];
   //replace later with code for results input equals type X to send to get results functions
   resultsPage(categoryPick);
 };
