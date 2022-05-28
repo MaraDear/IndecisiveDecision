@@ -141,7 +141,6 @@ var nextBtnFunc1 = function () {
     inputEl.classList = "radios answerBlock";
     inputConEl.append(inputEl);
   }
-  //////fix issue
 };
 
 // get input from mood question
@@ -150,14 +149,13 @@ var getAnswers = function (i) {
   var answerOptions = document.querySelectorAll('input[name="answerRadio"]');
   console.log(answerOptions);
   for (var a = 0; a < questions[i].answers.length; a++) {
-    var answerA = document.getElementById(
-      "id",
-      "q" + i + "a" + a + "radio"
-    ).checked;
+    var answerA = answerOptions[a].checked;
+    console.log(answerA);
     if (answerA == true) {
-      answerNow = a;
+      var answerNow = a;
     }
   }
+  console.log(answerNow);
   //error if no answer
   if (answerNow == null) {
     errorMsgArea.textContent = "must select one answer";
@@ -166,8 +164,7 @@ var getAnswers = function (i) {
     answers[i] = answerNow;
     // reset radio buttons
     for (var a = 0; a < questions[i].answers.length; a++) {
-      var answerA = document.getElementById("id", "q" + i + "a" + a + "radio");
-      answerA.checked = false;
+      answerOptions[a].checked = false;
     }
   }
 };
@@ -175,8 +172,11 @@ var getAnswers = function (i) {
 //Next mood question button function, end of questions go to resultTypeFunc
 var nextBtnFunc2 = function () {
   //get answer from previous mood question
+  ////fix issue
+  console.log("before answers");
   getAnswers(i);
   i++;
+  console.log("after answers");
   //populate question
   headerArea.textContent = questions[i].question;
   if (i < questions.length) {
