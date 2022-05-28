@@ -201,68 +201,68 @@ var resultTypeFunc = function () {
   var keywords;
   ///////add this results means this answer for category pick array section
   // fixedAnswers[0] //use these 3 to make keywords
-  switch (answers[0]) {
+  switch (fixedAnswers[0]) {
     case 0:
-      keywords = "comedy";
+      genre = "action";
       break;
     case 1:
-      keywords = "tragedy";
+      genre = "comedy";
       break;
     case 2:
-      keywords = "mystery";
+      genre = "drama";
       break;
     case 3:
-      keywords = "nature";
+      genre = "romance";
       break;
   }
   // fixedAnswers[1]
-  switch (answers[1]) {
+  switch (fixedAnswers[1]) {
     case 0:
-      genre = "comedy";
+      genre += "_suspense";
       break;
     case 1:
-      genre = "tragedy";
+      genre += "_comedy";
       break;
     case 2:
-      genre = "mystery";
+      genre += "_classic";
       break;
     case 3:
-      genre = "nature";
+      genre += "_love";
       break;
   }
   // fixedAnswers[2]
-  switch (answers[2]) {
+  switch (fixedAnswers[2]) {
     case 0:
-      genre = "comedy";
+      keywords = "adventure";
       break;
     case 1:
-      genre = "tragedy";
+      keywords = "hilarious";
       break;
     case 2:
-      genre = "mystery";
+      keywords = "family";
       break;
     case 3:
-      genre = "nature";
+      keywords = "happy";
       break;
   }
 
   // answers[0] pick genre
-  switch (answers[3]) {
+  switch (answers[0]) {
     case 0:
-      genre = "comedy";
+      keywords += "_joy";
       break;
     case 1:
-      genre = "tragedy";
+      keywords += "_tears";
       break;
     case 2:
-      genre = "mystery";
+      keywords += "_mystery";
       break;
     case 3:
-      genre = "nature";
+      keywords += "_nature";
       break;
   }
   // answers[1] pick rating/maturity
-  switch (answers[4]) {
+  switch (answers[1]) {
     case 0:
       ratingBook = "not-mature";
       ratingMovie = "PG";
@@ -277,12 +277,12 @@ var resultTypeFunc = function () {
       break;
   }
   // answers[2] pick release date
-  switch (answers[5]) {
+  switch (answers[2]) {
     case 0:
       dateMood = "classic";
       break;
     case 1:
-      dateMood = "1970-2020";
+      dateMood = "retro";
       break;
     case 2:
       dateMood = "new_release";
@@ -321,16 +321,42 @@ var bookAPI = function (categoryPick) {
   var apiLocUrl =
     "https://www.googleapis.com/books/v1/volumes?q=" +
     categoryPick[0] +
+    "&subject:" +
+    categoryPick[1] +
     "&maxResults=30&maturityRating=projection=lite&orderBy=newest&maxAllowedMaturityRating=" +
     categoryPick[3] +
     "&key=AIzaSyDu-39j_DJyfyXYR2lSvUZmIG_hIJ7DFHA";
 
+  bookFetch(apiLocUrl, categoryPick);
+  console.log(apiLocUrl);
+};
+
+//-----get book results
+var bookFetch = function (apiLocUrl, categoryPick) {
+  var redo;
   fetch(apiLocUrl)
     .then(function (response) {
       // if request was successful
       //console.log(response);
       if (response.ok) {
         response.json().then(function (bookData) {
+          if (bookData.length < 30) {
+            if (redo === 1) {
+              bookData = [];
+              document.querySelector(".bookResult").innerHTML = "";
+              return;
+            } else {
+              apiLocUrl =
+                "https://www.googleapis.com/books/v1/volumes?q=subject:" +
+                categoryPick[1] +
+                "&maxResults=30&maturityRating=projection=lite&orderBy=newest&maxAllowedMaturityRating=" +
+                categoryPick[3] +
+                "&key=AIzaSyDu-39j_DJyfyXYR2lSvUZmIG_hIJ7DFHA";
+              apiLocUrl = bookFetch(apiLocUrl);
+              redo = 1;
+            }
+          }
+          redo = 0;
           // console.log(data);
           console.log(bookData);
           bookResultFunc(bookData);
@@ -423,7 +449,38 @@ var otherResultFunc = function (otherData) {
 var surpriseMeBtnFunc = function () {
   // for reference array inputs categoryPick = [keywords,genre,ratingMovie,ratingBook,dateMood];
   // update to whatever
-  categoryPick = ["best_seller", "fiction", "PG-13", "not-mature", "modern"];
+  var cc = c / 3;
+  keywordsPick = [
+    "best-seller",
+    "friends",
+    "war",
+    "garden",
+    "mystery",
+    "man",
+    "story",
+    "witch",
+    "old",
+    "house",
+  ];
+  genrePick = [
+    "comedy",
+    "drama",
+    "suspense",
+    "action",
+    "romance",
+    "fiction",
+    "non-fiction",
+    "family",
+    "classic",
+    "western",
+  ];
+  categoryPick = [
+    keywordsPick[cc],
+    genrePick[cc],
+    "PG-13",
+    "not-mature",
+    "modern",
+  ];
   resultsPage(categoryPick);
 };
 
