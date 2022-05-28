@@ -28,8 +28,8 @@ answerAreaArea.style.display = "none";
 var errorMsgArea = document.querySelector("#error");
 
 //--------Item and Object variables-----------//
-var i = 0;
-var categoryPick;
+var i;
+var categoryPick = [];
 
 var c = 0; //constant for testing
 
@@ -66,16 +66,23 @@ if (LSfixedAnswers) {
 // Mood answers array
 var answers = [];
 
-//questions array
-//will need updating just placeholders for now
+// mood questions array
 const questions = [
   {
-    question: "Pick a Color",
-    answers: ["Blue", "Red", "Yellow", "Green"],
+    question: "Tell us how you are feeling",
+    answers: ["Elated", "Sad", "Confused", "Tired"],
   },
   {
-    question: "Pick a Princess",
-    answers: ["Nala", "Jasmine", "Cinderella", "Tiana"],
+    question: "How mature are you feeling today?",
+    answers: [
+      "Just a babe",
+      "I'm a pretty cool cat",
+      "Don't let any kids in here",
+    ],
+  },
+  {
+    question: "Which best represents your current mentality",
+    answers: ["Classic", "Nastalgic ", "Modern"],
   },
 ];
 
@@ -140,24 +147,21 @@ var nextBtnFunc1 = function () {
 var getAnswers = function (i) {
   //add to answers array to determine category pick
   var answerOptions = document.querySelectorAll('input[name="answerRadio"]');
-  console.log(answerOptions);
   for (var a = 0; a < questions[i].answers.length; a++) {
-    var answerA = document.getElementById(
-      "id",
-      "q" + i + "a" + a + "radio"
-    ).checked;
+    var answerA = answerOptions[a].checked;
     if (answerA == true) {
-      answerNow = a;
+      var answerNow = a;
     }
   }
   //error if no answer
   if (answerNow == null) {
     errorMsgArea.textContent = "must select one answer";
   } else {
+    //populate answers array
+    answers[i] = answerNow;
     // reset radio buttons
     for (var a = 0; a < questions[i].answers.length; a++) {
-      var answerA = document.getElementById("id", "q" + i + "a" + a + "radio");
-      answerA.checked = false;
+      answerOptions[a].checked = false;
     }
   }
 };
@@ -168,8 +172,9 @@ var nextBtnFunc2 = function () {
   getAnswers(i);
   i++;
   //populate question
-  headerArea.textContent = questions[i].question;
+  answerArea.innerHTML = "";
   if (i < questions.length) {
+    headerArea.textContent = questions[i].question;
     for (var a = 0; a < questions[i].answers.length; a++) {
       inputConEl = document.createElement("div");
       inputConEl.classList = "eachAnswerContainer";
@@ -191,10 +196,26 @@ var nextBtnFunc2 = function () {
 
 // determine results types from questions
 var resultTypeFunc = function () {
-  //i.e. based on results they need a sad result
-  //look into if want to include genre or multiple keywords
-  categoryPick = "InTheBlues";
-  //replace later with code for results input equals type X to send to get results functions
+  categoryPick = [];
+  // fixedAnswers[0] pick Keyword1
+  // fixedAnswers[1] pick Keyword2
+  // fixedAnswers[2] pick Keyword3
+
+  // answers[0] pick genre
+  // answers[1] pick rating/maturity
+  // answers[2] pick release date
+
+  //replace later with code for results input equals answer X to get y
+
+  // pass genre, rating, dateRange, keywords
+  /////(Replace with real answers) just constants for testing
+  var genre = "comedy";
+  var ratingMovie = "PG-13";
+  var ratingBook = "MATURE"; // MATURE, not-mature
+  var dateMood = "Modern";
+  var keywords = "flowers_garden";
+  categoryPick = [keywords, genre, ratingMovie, ratingBook, dateMood];
+  //results functions
   resultsPage(categoryPick);
 };
 
@@ -220,18 +241,18 @@ var resultsPage = function (categoryPick) {
 
 //-----book API--------//
 var bookAPI = function (categoryPick) {
-  //decide where to insert this link
-
   //API to collect a set of book details based on cateogory pick provided
-  //try to add country=US
   var apiLocUrl =
     "https://www.googleapis.com/books/v1/volumes?q=" +
-    categoryPick +
-    "&maxResults=30&projection=lite&orderBy=newest&key=AIzaSyDu-39j_DJyfyXYR2lSvUZmIG_hIJ7DFHA";
+    categoryPick[0] +
+    "&maxResults=30&maturityRating=projection=lite&orderBy=relevance&maxAllowedMaturityRating=" +
+    categoryPick[3] +
+    "&key=AIzaSyDu-39j_DJyfyXYR2lSvUZmIG_hIJ7DFHA";
+
   fetch(apiLocUrl)
     .then(function (response) {
       // if request was successful
-      console.log(response);
+      //console.log(response);
       if (response.ok) {
         response.json().then(function (bookData) {
           // console.log(data);
@@ -280,6 +301,7 @@ var bookResultFunc = function (bookData) {
 
 //-----movie API--------//
 var movieAPI = function (categoryPick) {
+  // for reference array inputs categoryPick = [keywords,genre,ratingMovie,ratingBook,dateMood];
   ////phil is working on
   ////movieResultFunc(movieData);
 };
@@ -320,10 +342,12 @@ var otherResultFunc = function (otherData) {
 };
 
 //------Misc buttons--------//
+
+//create a randomized results page and skip the questions
 var surpriseMeBtnFunc = function () {
-  //add in to create a randomized results page and skip the questions
-  // //create new random c number//don't need I think
-  categoryPick = "best seller"; //update to whatever
+  // for reference array inputs categoryPick = [keywords,genre,ratingMovie,ratingBook,dateMood];
+  // update to whatever
+  categoryPick = ["best_seller", "fiction", "PG-13", "not-mature", "modern"];
   resultsPage(categoryPick);
 };
 
