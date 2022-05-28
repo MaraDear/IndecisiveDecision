@@ -19,12 +19,13 @@ var answerAreaArea = document.querySelector(".answerArea");
 var formInputArea = document.querySelector(".formResultsArea");
 var resultsSectionArea = document.querySelector(".resultsSection");
 var headerArea = document.querySelector(".header");
+var answerArea = document.querySelector(".answers");
 //initial onload hide show of sections
 //section1Area.style.display = "none";
 formInputArea.style.display = "none";
 resultsSectionArea.style.display = "none";
 answerAreaArea.style.display = "none";
-
+var errorMsgArea = document.querySelector("#error");
 
 //--------Item and Object variables-----------//
 var i = 0;
@@ -70,17 +71,11 @@ var answers = [];
 const questions = [
   {
     question: "Pick a Color",
-    a: "Blue",
-    b: "Red",
-    c: "Yellow",
-    d: "Green",
+    answers: ["Blue", "Red", "Yellow", "Green"],
   },
   {
     question: "Pick a Princess",
-    a: "Nala",
-    b: "Jasmine",
-    c: "Cinderella",
-    d: "Tiana",
+    answers: ["Nala", "Jasmine", "Cinderella", "Tiana"],
   },
 ];
 
@@ -91,20 +86,31 @@ const questions = [
 var get_c = function () {
   //random number coding
   c = Math.floor(Math.random() * 30);
+  console.log(c);
 };
 get_c();
 
 // loads fixed preference form on start button
 var startBtnFunc = function () {
   // hide show areas;show input form page from html
-resultsSectionArea.style.display = "none";
-answerAreaArea.style.display = "none";
+  resultsSectionArea.style.display = "none";
+  answerAreaArea.style.display = "none";
   section1Area.style.display = "none";
   formInputArea.style.display = "block";
+  errorMsgArea.textContent = "";
   //// populate with answers from local storage if there are any
 };
 
-//Next question button function if doing 1 per page, otherwise a submit answers btn
+// get input from fixed questions
+var getfixedAnswers = function () {
+  //add to answers array to push to local storage for future use
+  // move answers from form to replace local storage
+  //warn if missing any answers
+  //add in if any blank then this, other wise error msg
+  errorMsgArea.textContent = "";
+};
+
+//Next button function save answers from input form and display first mood question
 var nextBtnFunc1 = function () {
   //run get answers func
   getfixedAnswers();
@@ -114,38 +120,73 @@ var nextBtnFunc1 = function () {
   formInputArea.style.display = "none";
   answerAreaArea.style.display = "block";
   i = 0;
+  //populate mood questions page 1
   headerArea.textContent = questions[i].question;
-  document.querySelector(".answers").textContent = questions[i].a;
-  i++;
-};
-
-//Next question button function if doing 1 per page, otherwise a submit answers btn
-var nextBtnFunc2 = function () {
-  //populate questions //redo to form or modal if 1 page only
-  //if 1 page then getAnswers function, otherwise add to answers array as we go through here if then
-  var answerArea = document.querySelector(".answers");
-  if (i < questions.length) {
-    headerArea.textContent = questions[i].question;
-    answerArea.textContent = questions[i].a;
-    i++;
-    //warn if missing any answers
-  } else {
-    //run figure out results type function
-    resultTypeFunc(categoryPick);
+  for (var a = 0; a < questions[i].answers.length; a++) {
+    inputConEl = document.createElement("div");
+    inputConEl.classList = "eachAnswerContainer";
+    inputConEl.innerHTML = questions[i].answers[a];
+    answerArea.append(inputConEl);
+    inputEl = document.createElement("input");
+    inputEl.setAttribute("type", "radio");
+    inputEl.setAttribute("name", "answerRadio");
+    inputEl.setAttribute("id", "q" + i + "a" + a + "radio");
+    inputEl.classList = "radios answerBlock";
+    inputConEl.append(inputEl);
   }
 };
 
-// get input from fixed questions
-var getfixedAnswers = function () {
-  //add to answers array to push to local storage for future use
-  // move answers from form to replace local storage
-  //warn if missing any answers
+// get input from mood question
+var getAnswers = function (i) {
+  //add to answers array to determine category pick
+  var answerOptions = document.querySelectorAll('input[name="answerRadio"]');
+  console.log(answerOptions);
+  for (var a = 0; a < questions[i].answers.length; a++) {
+    var answerA = document.getElementById(
+      "id",
+      "q" + i + "a" + a + "radio"
+    ).checked;
+    if (answerA == true) {
+      answerNow = a;
+    }
+  }
+  //error if no answer
+  if (answerNow == null) {
+    errorMsgArea.textContent = "must select one answer";
+  } else {
+    // reset radio buttons
+    for (var a = 0; a < questions[i].answers.length; a++) {
+      var answerA = document.getElementById("id", "q" + i + "a" + a + "radio");
+      answerA.checked = false;
+    }
+  }
 };
 
-// get input from mood questions
-var getAnswers = function () {
-  //add to answers array to determine category pick
-  //warn if missing any answers
+//Next mood question button function, end of questions go to resultTypeFunc
+var nextBtnFunc2 = function () {
+  //get answer from previous mood question
+  getAnswers(i);
+  i++;
+  //populate question
+  headerArea.textContent = questions[i].question;
+  if (i < questions.length) {
+    for (var a = 0; a < questions[i].answers.length; a++) {
+      inputConEl = document.createElement("div");
+      inputConEl.classList = "eachAnswerContainer";
+      inputConEl.innerHTML = questions[i].answers[a];
+      answerArea.append(inputConEl);
+      inputEl = document.createElement("input");
+      inputEl.setAttribute("type", "radio");
+      inputEl.setAttribute("name", "answerRadio");
+      inputEl.setAttribute("id", "q" + i + "a" + a + "radio");
+      inputEl.classList = "radios answerBlock";
+      inputConEl.append(inputEl);
+    }
+    //warn if missing any answers
+  } else {
+    //run figure out results type function
+    resultTypeFunc();
+  }
 };
 
 // determine results types from questions
@@ -157,7 +198,27 @@ var resultTypeFunc = function () {
   resultsPage(categoryPick);
 };
 
+//---------results display.--------------------///
+var resultsPage = function (categoryPick) {
+  // hide show areas
+  section1Area.style.display = "none";
+  resultsSectionArea.style.display = "block";
+  answerAreaArea.style.display = "none";
+  formInputArea.style.display = "none";
+  //change header
+  headerArea.classList = "header justify-content-center";
+  headerArea.textContent = "Your Plans Are ...";
+  //get bookResult info
+  bookAPI(categoryPick);
+  //get movieResult info
+  movieAPI(categoryPick);
+  //get otherResult info
+  otherAPI();
+};
+
 //---------get apis linked--------------------//
+
+//-----book API--------//
 var bookAPI = function (categoryPick) {
   //decide where to insert this link
 
@@ -186,39 +247,16 @@ var bookAPI = function (categoryPick) {
     });
 };
 
-var movieAPI = function (categoryPick) {
-  ////phil is working on
-  ////movieResultFunc(movieData);
-};
-
-var otherAPI = function () {
-  //API to collect an advice slip
-  var apiLocUrl = "https://api.adviceslip.com/advice";
-  fetch(apiLocUrl)
-    .then(function (response) {
-      // if request was successful
-      console.log(response);
-      if (response.ok) {
-        response.json().then(function (otherData) {
-          //console.log(otherData);
-          otherResultFunc(otherData);
-        });
-      } else {
-        alert("Error: Advice api Not Found");
-      }
-    })
-    .catch(function (error) {
-      alert("Unable to connect to Advice api");
-    });
-};
-
 //get Book result
 var bookResultFunc = function (bookData) {
   //   populate bookResult  //display info in appropriate locations
   /////book google books link ---- if we want to redirect or can change to pop up box
   // var bookGoogleLink = bookData.items[c].volumeInfo.canonicalVolumeLink;
   document
-    .getElementById("bookResultLink")
+    .getElementById("bookResultLink1")
+    .setAttribute("href", bookData.items[c].volumeInfo.canonicalVolumeLink);
+  document
+    .getElementById("bookResultLink2")
     .setAttribute("href", bookData.items[c].volumeInfo.canonicalVolumeLink);
   //title
   var bookTitle = bookData.items[c].volumeInfo.title;
@@ -240,9 +278,37 @@ var bookResultFunc = function (bookData) {
   bookThumbnailGet.setAttribute("alt", bookTitle);
 };
 
+//-----movie API--------//
+var movieAPI = function (categoryPick) {
+  ////phil is working on
+  ////movieResultFunc(movieData);
+};
+
 //get movie result
 var movieResultFunc = function (movieData) {
   // populate movieResult object
+};
+
+//-----advice API--------//
+var otherAPI = function () {
+  //API to collect an advice slip
+  var apiLocUrl = "https://api.adviceslip.com/advice";
+  fetch(apiLocUrl)
+    .then(function (response) {
+      // if request was successful
+      console.log(response);
+      if (response.ok) {
+        response.json().then(function (otherData) {
+          //console.log(otherData);
+          otherResultFunc(otherData);
+        });
+      } else {
+        alert("Error: Advice api Not Found");
+      }
+    })
+    .catch(function (error) {
+      alert("Unable to connect to Advice api");
+    });
 };
 
 //get advice or other
@@ -253,35 +319,17 @@ var otherResultFunc = function (otherData) {
   // var otherAreaArea = otherData.slip.advice;
 };
 
-//results display.
-var resultsPage = function (categoryPick) {
-  // hide show areas
-  section1Area.style.display = "none";
-  resultsSectionArea.style.display = "block";
-  answerAreaArea.style.display = "none";
-  formInputArea.style.display = "none";
-  //change header and btns
-  headerArea.classList = "header justify-content-center";
-  headerArea.textContent = "Your Plans Are ...";
-  //get bookResult info
-  bookAPI(categoryPick);
-  //get movieResult info
-  movieAPI(categoryPick);
-  //get otherResult info
-  otherAPI();
-};
-
+//------Misc buttons--------//
 var surpriseMeBtnFunc = function () {
   //add in to create a randomized results page and skip the questions
-  //create new random c number
-  get_c();
+  // //create new random c number//don't need I think
   categoryPick = "best seller"; //update to whatever
   resultsPage(categoryPick);
 };
 
 // clear all answers button -- clear local storage
 function clearAnswers() {
-//clear then reload form input page
+  //clear then reload form input page
   localStorage.clear();
   startBtnFunc;
 }
@@ -294,8 +342,8 @@ function tryAgainFunc() {
   resultsPage(categoryPick);
 }
 
-function startOver(){
-   location.reload();
+function startOver() {
+  location.reload();
 }
 
 ////----------event listeners----------////
@@ -303,6 +351,6 @@ nextBtn1Get.addEventListener("click", nextBtnFunc1);
 nextBtn2Get.addEventListener("click", nextBtnFunc2);
 clearBtnGet.addEventListener("click", clearAnswers);
 tryAgainBtnGet.addEventListener("click", tryAgainFunc);
-startOverBtnGet.addEventListener("click",startOver);
+startOverBtnGet.addEventListener("click", startOver);
 startBtnGet.addEventListener("click", startBtnFunc);
 surpriseMeBtnGet.addEventListener("click", surpriseMeBtnFunc);
