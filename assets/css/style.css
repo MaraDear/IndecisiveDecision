@@ -31,9 +31,18 @@ header {
 	text-align: center;
 }
 
-header h2 {
+.color-detail {
+  color:crimson;
+}
+
+header h1 {
   font-size: 48px;
   padding-left: 25px;
+  line-height: 1;
+  margin-top: 0;
+  color: #fff;
+  display: inline-block;
+  position: relative;
 }
 
 header span {
