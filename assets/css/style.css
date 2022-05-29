@@ -24,6 +24,10 @@
 
 /*general selectors*/
 
+body {
+  background-image: url(../images/ajit-singh-_6lUTo2UfMY-unsplash.jpg);
+}
+
 /*--headline with quicklinks*/
 header {
 	margin: 0 auto;
