@@ -22,11 +22,12 @@ var answerArea = document.querySelector(".answers");
 //section1Area.style.display = "none";
 formInputArea.style.display = "none";
 resultsSectionArea.style.display = "none";
-var errorMsgArea = document.querySelector("#error");
+var errorMsgArea = document.getElementById("error");
 
 //--------Item and Object variables-----------//
 var i;
 var categoryPick = [];
+var movieCodes;
 
 var c = 0; //constant for testing
 
@@ -106,6 +107,22 @@ var startBtnFunc = function () {
       inputConEl.append(labelEl);
     }
   }
+  // console.log(answers);
+  if (answers) {
+    for (i = 0; i < 3; i++) {
+      var ii = i + 1;
+      var answerSpot = document.querySelectorAll(
+        'input[name="Preference' + ii + '"]'
+      );
+      console.log(answerOptions);
+      for (var a = 0; a < 4; a++) {
+        var answerA = answerOptions[a].checked;
+        if (answerA == true) {
+          
+        }
+      }
+    }
+  }
 };
 
 //Next button function save answers from input form and display first mood question
@@ -133,11 +150,11 @@ var getmoodAnswers = function () {
       }
     }
     //error if no answer
-    if (answerNow == null) {
-      errorMsgArea.textContent = "must select one answer";
-    } else {
+    if (answerNow) {
       //populate answers array
       moodAnswers[i] = answerNow;
+    } else {
+      errorMsgArea.textContent = "must select one answer";
     }
   }
   console.log(moodAnswers);
@@ -152,6 +169,7 @@ var getmoodAnswers = function () {
 // get input from second questions
 var getAnswers = function () {
   //add to answers array to determine category pick
+  var answerNow = "";
   for (i = 0; i < questions.length; i++) {
     var ii = i + 1;
     var answerOptions = document.querySelectorAll(
@@ -160,9 +178,10 @@ var getAnswers = function () {
     for (var a = 0; a < questions[i].answers.length; a++) {
       var answerA = answerOptions[a].checked;
       if (answerA == true) {
-        var answerNow = a;
+        answerNow = a;
       }
     }
+    console.log(answerNow);
     //error if no answer
     if (answerNow == null) {
       errorMsgArea.textContent = "must select one answer";
@@ -185,7 +204,7 @@ var resultTypeFunc = function () {
   var ratingBook; // MATURE, not-mature
   var dateMood; //not certain on words to carry over
   var keywords;
-  var movieCodes;
+  movieCodes = "";
   ///////add this results means this answer for category pick array section
   // moodAnswers[0] //use these 3 to make keywords
   // answers[0] pick genre
@@ -380,10 +399,13 @@ var bookFetch = function (apiLocUrl, categoryPick) {
 
 //get Book result
 var bookResultFunc = function (bookData) {
+  console.log(bookData);
   //   populate bookResult  //display info in appropriate locations
   /////book google books link ---- if we want to redirect or can change to pop up box
   //if there is not data for that c then try again until there is
-  if (bookData.items[c].volumeInfo) {
+  if (c > bookData.items.length - 1) {
+    tryAgainFunc();
+  } else {
     document
       .getElementById("bookResultLink1")
       .setAttribute("href", bookData.items[c].volumeInfo.canonicalVolumeLink);
@@ -394,34 +416,31 @@ var bookResultFunc = function (bookData) {
     var bookTitle = bookData.items[c].volumeInfo.title;
     document.getElementById("bookTitle").textContent = bookTitle;
     //author
-    if (bookData.items[c].volumeInfo.authors[0]) {
-      var bookAuthor = bookData.items[c].volumeInfo.authors[0];
-    } else {
+    if (!bookData.items[c].volumeInfo.authors[0]) {
       var bookAuthor = "";
+    } else {
+      var bookAuthor = bookData.items[c].volumeInfo.authors[0];
     }
     document.getElementById("bookAuthor").textContent = bookAuthor;
     //summary
     ////figure out how to cut off summary if more than # lines
-    if (bookData.items[c].volumeInfo.description) {
-      var bookInfo = bookData.items[c].volumeInfo.description;
-    } else {
+    if (!bookData.items[c].volumeInfo.description) {
       var bookInfo = "";
+    } else {
+      var bookInfo = bookData.items[c].volumeInfo.description;
     }
     document.getElementById("bookInfo").textContent = bookInfo;
     //book thumbnail URL
-    if (bookData.items[c].volumeInfo.imageLinks.smallThumbnail) {
+    if (!bookData.items[c].volumeInfo.imageLinks.smallThumbnail) {
+      document.getElementById("bookImage").innerHTML = "";
+    } else {
       var bookThumbnail =
         bookData.items[c].volumeInfo.imageLinks.smallThumbnail;
-    } else {
-      var bookThumbnail = "";
+      var bookThumbnailGet = document.getElementById("bookImage");
+      bookThumbnailGet.setAttribute("src", bookThumbnail);
+      bookThumbnailGet.setAttribute("height", "50px");
+      bookThumbnailGet.setAttribute("alt", bookTitle);
     }
-    //var bookThumbnailEl = document.createElement("img");
-    var bookThumbnailGet = document.getElementById("bookImage");
-    bookThumbnailGet.setAttribute("src", bookThumbnail);
-    bookThumbnailGet.setAttribute("height", "50px");
-    bookThumbnailGet.setAttribute("alt", bookTitle);
-  } else {
-    tryAgainFunc();
   }
 };
 //-----movie API--------//
@@ -504,8 +523,8 @@ var surpriseMeBtnFunc = function () {
     "not-mature",
     "modern",
   ];
-  console.log(categoryPick);
-  resultsPage(categoryPick);
+  movieCodes = "28_30_31";
+  resultsPage(categoryPick, movieCodes);
 };
 
 // clear all answers button -- clear local storage
@@ -520,7 +539,7 @@ function tryAgainFunc() {
   //create new random c number
   get_c();
   //give new suggestions without resetting category pick
-  resultsPage(categoryPick);
+  resultsPage(categoryPick, movieCodes);
 }
 
 function startOver() {
