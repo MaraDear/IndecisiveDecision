@@ -323,7 +323,7 @@ var bookAPI = function (categoryPick) {
     categoryPick[0] +
     "&subject:" +
     categoryPick[1] +
-    "&maxResults=30&maturityRating=projection=lite&orderBy=newest&maxAllowedMaturityRating=" +
+    "&maxResults=30&orderBy=newest&maxAllowedMaturityRating=" +
     categoryPick[3] +
     "&key=AIzaSyDu-39j_DJyfyXYR2lSvUZmIG_hIJ7DFHA";
 
@@ -349,7 +349,7 @@ var bookFetch = function (apiLocUrl, categoryPick) {
               apiLocUrl =
                 "https://www.googleapis.com/books/v1/volumes?q=subject:" +
                 categoryPick[1] +
-                "&maxResults=30&maturityRating=projection=lite&orderBy=newest&maxAllowedMaturityRating=" +
+                "&maxResults=30&orderBy=newest&maxAllowedMaturityRating=" +
                 categoryPick[3] +
                 "&key=AIzaSyDu-39j_DJyfyXYR2lSvUZmIG_hIJ7DFHA";
               apiLocUrl = bookFetch(apiLocUrl);
@@ -450,7 +450,7 @@ var surpriseMeBtnFunc = function () {
   // for reference array inputs categoryPick = [keywords,genre,ratingMovie,ratingBook,dateMood];
   // update to whatever
   var cc = c / 3;
-  keywordsPick = [
+  var keywordsPick = [
     "best-seller",
     "friends",
     "war",
@@ -462,7 +462,7 @@ var surpriseMeBtnFunc = function () {
     "old",
     "house",
   ];
-  genrePick = [
+  var genrePick = [
     "comedy",
     "drama",
     "suspense",
@@ -481,6 +481,7 @@ var surpriseMeBtnFunc = function () {
     "not-mature",
     "modern",
   ];
+  console.log(categoryPick);
   resultsPage(categoryPick);
 };
 
