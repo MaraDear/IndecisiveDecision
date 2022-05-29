@@ -486,16 +486,6 @@ var bookResultFunc = function (bookData) {
     }
   }
 };
-<<<<<<< HEAD
-
-
-
-
-
-
-
-=======
->>>>>>> main
 //-----movie API--------//
 var searchGenre = function(categoryPick) {
   var genreID = document.getElementsByName('gender');
