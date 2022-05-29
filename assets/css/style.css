@@ -43,14 +43,16 @@ header {
   align-items: center;
   display: flex;
   flex-flow: column;
+  scroll-behavior: smooth;
 }
+
 
 .color-detail {
   color:crimson;
 }
 
 header h1 {
-  font-size: 48px;
+  font-size: 70px;
   padding-left: 25px;
   line-height: 1;
   margin-top: 0;
