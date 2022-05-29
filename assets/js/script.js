@@ -15,7 +15,6 @@ var surpriseMeBtnGet = document.getElementById("surpriseMeBtn");
 
 //--------Section variables-----------//
 var section1Area = document.querySelector(".section1");
-var answerAreaArea = document.querySelector(".answerArea");
 var formInputArea = document.querySelector(".formResultsArea");
 var resultsSectionArea = document.querySelector(".resultsSection");
 var headerArea = document.querySelector(".headerCon");
@@ -24,7 +23,6 @@ var answerArea = document.querySelector(".answers");
 //section1Area.style.display = "none";
 formInputArea.style.display = "none";
 resultsSectionArea.style.display = "none";
-answerAreaArea.style.display = "none";
 var errorMsgArea = document.querySelector("#error");
 
 //--------Item and Object variables-----------//
@@ -46,7 +44,7 @@ if (LSAnswers) {
 
 // fixed answers array
 var moodAnswers = [];
-moodAnswers;
+
 // fixed questions array
 const questions = [
   {
@@ -82,54 +80,10 @@ get_c();
 var startBtnFunc = function () {
   // hide show areas;show input form page from html
   resultsSectionArea.style.display = "none";
-  answerAreaArea.style.display = "none";
-  section1Area.style.display = "none";
   formInputArea.style.display = "block";
+  section1Area.style.display = "none";
   errorMsgArea.textContent = "";
   //// populate with answers from local storage if there are any
-};
-
-// get input from fixed questions
-var getmoodAnswers = function () {
-  //add to answers array to determine category pick
-  for (i = 0; i < 3; i++) {
-    var ii = i + 1;
-    var answerOptions = document.querySelectorAll(
-      'input[name="Preference' + ii + '"]'
-    );
-    console.log(answerOptions);
-    for (var a = 0; a < 4; a++) {
-      var answerA = answerOptions[a].checked;
-      if (answerA == true) {
-        var answerNow = a;
-      }
-    }
-    //error if no answer
-    if (answerNow == null) {
-      errorMsgArea.textContent = "must select one answer";
-    } else {
-      //populate answers array
-      moodAnswers[i] = answerNow;
-    }
-  }
-  console.log(moodAnswers);
-  //add to answers array to push to local storage for future use
-  // move answers from form to replace local storage
-  //warn if missing any answers
-  //add in if any blank then this, other wise error msg
-  errorMsgArea.textContent = "";
-};
-
-//Next button function save answers from input form and display first mood question
-var nextBtnFunc1 = function () {
-  //run get answers func
-  getmoodAnswers();
-  getAnswers();
-  //hide and show for mood questions page 1
-  section1Area.style.display = "none";
-  resultsSectionArea.style.display = "none";
-  formInputArea.style.display = "none";
-  answerAreaArea.style.display = "block";
   //populate question
   // answerArea.innerHTML = "";
   for (i = 0; i < questions.length; i++) {
@@ -153,7 +107,45 @@ var nextBtnFunc1 = function () {
     //warn if missing any answers
     ////need to add
   }
+
+  // get input from fixed questions
+  var getmoodAnswers = function () {
+    //add to answers array to determine category pick
+    for (i = 0; i < 3; i++) {
+      var ii = i + 1;
+      var answerOptions = document.querySelectorAll(
+        'input[name="Preference' + ii + '"]'
+      );
+      console.log(answerOptions);
+      for (var a = 0; a < 4; a++) {
+        var answerA = answerOptions[a].checked;
+        if (answerA == true) {
+          var answerNow = a;
+        }
+      }
+      //error if no answer
+      if (answerNow == null) {
+        errorMsgArea.textContent = "must select one answer";
+      } else {
+        //populate answers array
+        moodAnswers[i] = answerNow;
+      }
+    }
+    console.log(moodAnswers);
+    //add to answers array to push to local storage for future use
+    // move answers from form to replace local storage
+    //warn if missing any answers
+    //add in if any blank then this, other wise error msg
+    errorMsgArea.textContent = "";
+  };
 };
+  //Next button function save answers from input form and display first mood question
+  var nextBtnFunc1 = function () {
+    //run get answers func
+    getmoodAnswers();
+    getAnswers();
+  };
+
 
 // get input from second questions
 var getAnswers = function () {
@@ -293,7 +285,6 @@ var resultsPage = function (categoryPick) {
   // hide show areas
   section1Area.style.display = "none";
   resultsSectionArea.style.display = "block";
-  answerAreaArea.style.display = "none";
   formInputArea.style.display = "none";
   //change header
 
@@ -499,7 +490,6 @@ function startOver() {
 
 ////----------event listeners----------////
 nextBtn1Get.addEventListener("click", nextBtnFunc1);
-nextBtn2Get.addEventListener("click", nextBtnFunc2);
 clearBtnGet.addEventListener("click", clearAnswers);
 tryAgainBtnGet.addEventListener("click", tryAgainFunc);
 startOverBtnGet.addEventListener("click", startOver);
