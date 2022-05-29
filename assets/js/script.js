@@ -27,7 +27,7 @@ var errorMsgArea = document.getElementById("error");
 //--------Item and Object variables-----------//
 var i;
 var categoryPick = [];
-var movieCodes;
+var movieCodes = [];
 
 var c = 0; //constant for testing
 
@@ -103,25 +103,21 @@ var startBtnFunc = function () {
       inputEl.setAttribute("name", "answer" + ii);
       inputEl.setAttribute("id", "q" + i + "a" + a + "radio");
       inputEl.classList = "radios answerBlock";
+      // if (answers) {
+      //   var answerUse = answers[i];
+      //   console.log(answerUse);
+      //   if (answerUse === a) {
+      //     console.log("test");
+      //     //   inputEl.checked = true;
+      //   } else {
+      //     console.log("nope");
+      //     //   inputEl.checked = false;
+      //   }
+      //   answerUse = "";
+      // }
+
       inputConEl.append(inputEl);
       inputConEl.append(labelEl);
-    }
-  }
-  // console.log(answers);
-  if (answers) {
-    for (i = 0; i < 3; i++) {
-      var ii = i + 1;
-      var answerSpot = document.querySelectorAll(
-        'input[name="Preference' + ii + '"]'
-      );
-      for (var a = 0; a < 4; a++) {
-        var answerUse = answerSpot[a];
-        if (answerUse === a) {
-          answerSpot[a].checked;
-        } else {
-          answerSpot[a].unchecked;
-        }
-      }
     }
   }
 };
@@ -190,6 +186,7 @@ var getAnswers = function () {
       //populate answers array
       answers[i] = answerNow;
     }
+    console.log(answers);
   }
   localStorage.setItem("answers", JSON.stringify(answers));
   //run figure out results type function
@@ -205,26 +202,26 @@ var resultTypeFunc = function () {
   var ratingBook; // MATURE, not-mature
   var dateMood; //not certain on words to carry over
   var keywords;
-  movieCodes = "";
+
   ///////add this results means this answer for category pick array section
   // moodAnswers[0] //use these 3 to make keywords
   // answers[0] pick genre
   switch (answers[0]) {
     case 0:
       keywords = "joy";
-      movieCodes = "comedy";
+      movieCodes[0] = 28;
       break;
     case 1:
       keywords = "tears";
-      movieCodes = "drama";
+      movieCodes[0] = 28;
       break;
     case 2:
       keywords = "mystery";
-      movieCodes = "mystery";
+      movieCodes[0] = 28;
       break;
     case 3:
       keywords = "nature";
-      movieCodes = "nature";
+      movieCodes[0] = 28;
       break;
   }
 
@@ -232,38 +229,38 @@ var resultTypeFunc = function () {
   switch (moodAnswers[1]) {
     case 0:
       genre = "suspense";
-      movieCodes += "_suspense";
+      movieCodes[1] = 28;
       break;
     case 1:
       genre = "comedy";
-      movieCodes += "_comedy";
+      movieCodes[1] = 28;
       break;
     case 2:
       genre = "classic";
-      movieCodes += "_classic";
+      movieCodes[1] = 28;
       break;
     case 3:
       genre = "love";
-      movieCodes += "_romance";
+      movieCodes[1] = 28;
       break;
   }
   // moodAnswers[2]
   switch (moodAnswers[2]) {
     case 0:
       keywords += "_adventure";
-      movieCodes += "_thriller";
+      movieCodes[2] = 28;
       break;
     case 1:
       keywords += "_hilarious";
-      movieCodes += "_comedy";
+      movieCodes[2] = 28;
       break;
     case 2:
       keywords += "_family";
-      movieCodes += "_family";
+      movieCodes[2] = 28;
       break;
     case 3:
       keywords += "_happy";
-      movieCodes += "_feel-good";
+      movieCodes[2] = 28;
       break;
   }
 
@@ -271,19 +268,19 @@ var resultTypeFunc = function () {
   switch (moodAnswers[0]) {
     case 0:
       genre += "_action";
-      movieCodes += "_action";
+      movieCodes[3] = 28;
       break;
     case 1:
       genre += "_comedy";
-      movieCodes += "_comedy";
+      movieCodes[3] = 28;
       break;
     case 2:
       genre += "_drama";
-      movieCodes += "_family";
+      movieCodes[3] = 28;
       break;
     case 3:
       genre += "_nature";
-      movieCodes += "_family";
+      movieCodes[3] = 28;
       break;
   }
   // answers[1] pick rating/maturity
@@ -305,20 +302,21 @@ var resultTypeFunc = function () {
   switch (answers[2]) {
     case 0:
       dateMood = "classic";
-      movieCodes += "_classic";
+      movieCodes[4] = 28;
       break;
     case 1:
       dateMood = "retro";
-      movieCodes += "_retro";
+      movieCodes[4] = 28;
       break;
     case 2:
       dateMood = "new_release";
-      movieCodes += "new-release";
+      movieCodes[4] = 28;
       break;
   }
   // pass genre, rating, dateMood, keywords
   ////add code to combine keywords into one string for searching
   categoryPick = [keywords, genre, ratingMovie, ratingBook, dateMood];
+  // console.log(movieCodes);
 
   //results functions
   resultsPage(categoryPick, movieCodes);
@@ -445,7 +443,30 @@ var bookResultFunc = function (bookData) {
   }
 };
 //-----movie API--------//
-var movieAPI = function (categoryPick) {
+var movieAPI = function (categoryPick, movieCodes) {
+  //random number coding
+  m = Math.floor(Math.random() * 5);
+  console.log(m);
+  var genreType = movieCodes[m];
+
+  var apiMovieUrl = "https// blah blah" + genreType + "othercode.com";
+  fetch(apiMovieUrl)
+    .then(function (response) {
+      // if request was successful
+      console.log(response);
+      if (response.ok) {
+        response.json().then(function (otherData) {
+          //console.log(otherData);
+          otherResultFunc(movieData);
+        });
+      } else {
+        alert("Error: Movie api Not Found");
+      }
+    })
+    .catch(function (error) {
+      alert("Unable to connect to movie api");
+    });
+
   // for reference array inputs categoryPick = [keywords,genre,ratingMovie,ratingBook,dateMood];
   ////phil is working on
   ////movieResultFunc(movieData);
