@@ -53,25 +53,24 @@
               <button class="button is-success is-large mt-5" id="startBtn">START</button><br>
               <button class="button is-danger is-large mt-1" id="surpriseMeBtn">Surprise Me</button>
           </div> 
-          <div class="column is-3 has-text-centered">
-      
-      
-      
-          </div>
+            <div class="column is-3 has-text-centered"></div>
         </div>
       </div>
     </article>
     
     <!-- Preference Questions  -->
     <!-- first page will have a form fixed preferences that'll repopulate from local storage -->
-    <article class="formResultsArea">
+    <article class="formResultsArea section2">
       <!-- Replace header with "Preferences" type title -->
-      <button class="btnStyle btn3" id="clearBtn">
-        I didn't mean what I said before
-      </button>
+      
+
+
       <div class="formResults">
         <!-- input form  -->
-        <p>Which do you Perfer?</p>
+
+        <h4 class="is-size-1 has-text-centered is-family-sans-serif has-text-weight-bold">Question 1</h4>
+
+        <p>Which do you Prefer?</p>
 
       <form>
         <input type="radio" id="action" name="Preference" value="action">
@@ -84,37 +83,40 @@
         <label for="romance">Romance</label> 
       </form>
 
-      <p>What sounds more interesting to you?</p>
+        <p>What sounds more interesting to you?</p>
 
-    <form>
-      <input type="radio" id="action" name="Preference" value="action">
-      <label for="action">Being on the edge of your seat</label><br>
-      <input type="radio" id="comedy" name="Preference" value="comedy">
-      <label for="comedy">Laughing until your stomach hurts</label><br>
-      <input type="radio" id="drama" name="Preference" value="drama">
-      <label for="drama">Feeling all the emotions of a movie</label><br>
-      <input type="radio" id="romance" name="Preference" value="romance">
-      <label for="romance">Falling for the love store playing out infront of your eyes</label>
-    </form>
+      <form>
+        <input type="radio" id="action" name="Preference" value="action">
+        <label for="action">Being on the edge of your seat</label><br>
+        <input type="radio" id="comedy" name="Preference" value="comedy">
+        <label for="comedy">Laughing until your stomach hurts</label><br>
+        <input type="radio" id="drama" name="Preference" value="drama">
+        <label for="drama">Feeling all the emotions of a movie</label><br>
+        <input type="radio" id="romance" name="Preference" value="romance">
+        <label for="romance">Falling for the love store playing out infront of your eyes</label>
+      </form>
 
-    <p>What are you looking for?</p>
+       <p>What are you looking for?</p>
 
-    <form>
-      <input type="radio" id="action" name="Preference" value="action">
-      <label for="action">Non stop thrills form beginning to end</label><br>
-      <input type="radio" id="comedy" name="Preference" value="comedy">
-      <label for="comedy">Big acotrs with big jokes </label><br>
-      <input type="radio" id="drama" name="Preference" value="drama">
-      <label for="drama">Wholesome stories with big feelings and pulling of the heart strings</label><br>
-      <input type="radio" id="romance" name="Preference" value="romance">
-      <label for="romance">Heartfelt stories with a happy ending and warm heart</label>
-    </form>
+      <form>
+        <input type="radio" id="action" name="Preference" value="action">
+        <label for="action">Non stop thrills form beginning to end</label><br>
+        <input type="radio" id="comedy" name="Preference" value="comedy">
+        <label for="comedy">Big acotrs with big jokes </label><br>
+        <input type="radio" id="drama" name="Preference" value="drama">
+        <label for="drama">Wholesome stories with big feelings and pulling of the heart strings</label><br>
+        <input type="radio" id="romance" name="Preference" value="romance">
+        <label for="romance">Heartfelt stories with a happy ending and warm heart</label>
+      </form>
 
         <p id="error"></p>
       </div>
-      <button class="btnStyle btn4" id="nextBtn1">NEXT1</button>
+      <button class="button is-warning" id="clearBtn">I didn't mean what I said before</button>  
+      <button class="button is-link" id="nextBtn1">NEXT1</button>
+      
     </article>
 
+    
     <!-- Mood Questions  -->
     <!-- Other pages will be mood related questions to add to the answers  -->
     <article class="answerArea">
@@ -177,8 +179,8 @@
             </div>
           </section>
 
-          <button class="btnStyle btn6" id="tryAgainBtn">Try Again</button>
-          <button class="btnStyle btn7" id="startOverBtn">Start Over</button>
+          <button class="button is-success" id="tryAgainBtn">Try Again</button>
+          <button class="button is-danger" id="startOverBtn">Start Over</button>
         </div>
       </div>
     </article>

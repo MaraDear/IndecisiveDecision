@@ -65,7 +65,22 @@ header h1 {
 
 .section1 {
   width: 100%;
-  height: 100vh;
+  height: 73vh;
+  background-image: url(../images/background-with-shadow-monstera-tree.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  justify-content: center;
+  display: flex;
+}
+
+.section2 {
+  width: 100%;
+  height: 72vh;
+}
+
+h4 {
+  font-family: 'Fjalla One';
 }
 
 /*footer*/
