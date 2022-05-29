@@ -11,6 +11,8 @@ var nextBtn1Get = document.getElementById("nextBtn1");
 var tryAgainBtnGet = document.getElementById("tryAgainBtn");
 var startOverBtnGet = document.getElementById("startOverBtn");
 var surpriseMeBtnGet = document.getElementById("surpriseMeBtn");
+var startNavBtnGet = document.getElementById("startNavBtn");
+var surpriseNavBtnGet = document.getElementById("surpriseMeNavBtn")
 
 //--------Section variables-----------//
 var section1Area = document.querySelector(".section1");
@@ -48,20 +50,20 @@ var moodAnswers = [];
 // fixed questions array
 const questions = [
   {
-    question: "Which is your favorite",
-    answer: ["Action", "Comedy", "Drama", "Romance"],
+    question: "4. Which is your favorite?",
+    answers: ["Action", "Comedy", "Drama", "Romance"],
   },
   {
-    question: "How mature are you?",
-    answer: [
+    question: "5. How mature are you?",
+    answers: [
       "Just a babe",
       "I'm a pretty cool cat",
       "Don't let any kids in here",
     ],
   },
   {
-    question: "Which best represents your personality",
-    answer: ["Classic", "Nastalgic ", "Modern"],
+    question: "6. Which best represents your personality",
+    answers: ["Classic", "Nastalgic ", "Modern"],
   },
 ];
 
@@ -394,6 +396,44 @@ var bookFetch = function (apiLocUrl, categoryPick) {
     });
 };
 
+//GBS_insertPreviewButtonLink(identifiers, opt_options)
+var GBS_PreviewBtn = document.querySelector("#bookInfo");
+GBS_PreviewBtn.addEventListener("click", bookAPI("flowers")); //constant for testing purposes, will be determined by responses to questions
+
+var movieAPI = function () {
+  let tmdbKey = "483e17e3930801f2012e0e7c7f4fb86e";
+  let baseURL = "https://api.themoviedb.org/3/";
+  let configData = null;
+  let baseImageURL = null;
+  let url = "".concat(baseURL, "configuration?api_key=", tmdbKey);
+  fetch(url)
+  .then((result)=>{
+    return result.json();
+  })
+  .then((data)=>{
+    baseImageURL = data.images.secure_base_url;
+    configData = data.images;
+    console.log("config:", data);
+    console.log("config fetched");
+    runSearch("Jaws")
+  })
+  .catch(function(err){
+    alert(err);
+  })
+};
+
+let runSearch = function (keyword) {
+  let url = "".concat(baseURL, "search/movie?api_key=", tmdbKey, "&query=", keyword);
+  fetch(url)
+  .then(result=>result.json())
+  .then((data)=>{
+    document.getElementById("SET ELEMENT HERE").innerHTML = JSON.stringify(data, null, 4);
+  })
+}
+
+
+var otherAPI = function () {};
+
 //get Book result
 var bookResultFunc = function (bookData) {
   //console.log(bookData);
@@ -441,6 +481,7 @@ var bookResultFunc = function (bookData) {
   }
 };
 //-----movie API--------//
+<<<<<<< HEAD
 var movieAPI = function (categoryPick, movieCodes) {
   //random number coding
   m = Math.floor(Math.random() * 5);
@@ -465,10 +506,45 @@ var movieAPI = function (categoryPick, movieCodes) {
       alert("Unable to connect to movie api");
     });
 
+=======
+var searchGenre = function(categoryPick) {
+  var genreID = document.getElementsByName('gender');
+  //   console.log("searchGenre, displayRadioValue, genreID:  "+ genreID)
+  //   for(i = 0; i < genreID.length; i++) {
+  //     if(genreID[i].checked)
+  //     categoryPick = genreID[i].value;
+  //     console.log("searchGenre, displayRadioValue:  " + categoryPick)
+  // }
+  if (genreID = "action"){
+    var categoryPick= 28;
+  } else if (genreID = "comedy"){
+    var categoryPick= 35;
+  } else if (genreID = "drama"){
+    var categoryPick= 18;
+  } else if (genreID = "romance"){
+    var categoryPick= 10749;
+  }
+  console.log("searchGenre, categoryPick:  "+categoryPick);
+  // movieAPI(categoryPick);
+}
+
+var movieAPI = function (categoryPick) {
+  console.log("movieAPI, categoryPick:  "+categoryPick);
+  var apiUrl = "https://api.themoviedb.org/3/discover/movie?api_key=483e17e3930801f2012e0e7c7f4fb86e&certification_country=US&language=en-US&region=US&with_genres=" + categoryPick + "&language=en-US&popularity.desc&include_adult=false&include_video=false&page=1"
+  console.log("movieAPI, apiUrl:  "+apiUrl);
+>>>>>>> main
   // for reference array inputs categoryPick = [keywords,genre,ratingMovie,ratingBook,dateMood];
   ////phil is working on
   ////movieResultFunc(movieData);
 };
+
+document.querySelector("#nextBtn1").addEventListener("click", searchGenre);
+
+
+
+
+
+
 
 //get movie result
 var movieResultFunc = function (movieData) {
@@ -570,6 +646,7 @@ function startOver() {
 nextBtn1Get.addEventListener("click", nextBtnFunc1);
 clearBtnGet.addEventListener("click", clearAnswers);
 tryAgainBtnGet.addEventListener("click", tryAgainFunc);
-startOverBtnGet.addEventListener("click", startOver);
 startBtnGet.addEventListener("click", startBtnFunc);
 surpriseMeBtnGet.addEventListener("click", surpriseMeBtnFunc);
+startNavBtnGet.addEventListener("click", startBtnFunc);
+surpriseNavBtnGet.addEventListener("click", surpriseMeBtnFunc);
