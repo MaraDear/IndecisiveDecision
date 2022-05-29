@@ -22,7 +22,10 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&display=swap"
       rel="stylesheet"
     />
-    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
 
@@ -30,34 +33,42 @@
     <!-- HEADER  -->
     <header>
       <h1 class="headerCon"></h1>
-      <h1>Indecisive <span class="color-detail">Decisions.</span><br>
-      Relax, Let Us Think <span class="color-detail">For You.</span>
+      <h1>
+        Indecisive <span class="color-detail">Decisions.</span><br />
+        Relax, Let Us Think <span class="color-detail">For You.</span>
       </h1>
-      
     </header>
     <!-- opening page  -->
-    
+
     <article class="section1" id="section1">
       <div class="container">
         <div class="columns is-vcentered block mt-6">
           <div class="column is-3 has-text-centered">
             <!-- image is a placeholder until someone designs something cooler.  -->
-            <img src="./assets/images/one-does-not-khv0pk.jpg"/>
+            <img src="./assets/images/one-does-not-khv0pk.jpg" />
           </div>
-      <!-- images info etc  -->
+          <!-- images info etc  -->
           <div class="column is-6 has-text-centered">
             <h2 class="is-size-1 title">SOME COOL STUFF HERE</h2>
             <h3 class="is-size-2 subtitle">Boredom</h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit voluptatem sint provident repudiandae labore deleniti, praesentium tempore quibusdam, architecto error accusamus. Provident blanditiis ea atque quam quia labore suscipit hic!
-              </p>
-              <button class="button is-success is-large mt-5" id="startBtn">START</button><br>
-              <button class="button is-danger is-large mt-1" id="surpriseMeBtn">Surprise Me</button>
-          </div> 
-            <div class="column is-3 has-text-centered"></div>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit
+              voluptatem sint provident repudiandae labore deleniti, praesentium
+              tempore quibusdam, architecto error accusamus. Provident
+              blanditiis ea atque quam quia labore suscipit hic!
+            </p>
+            <button class="button is-success is-large mt-5" id="startBtn">
+              START</button
+            ><br />
+            <button class="button is-danger is-large mt-1" id="surpriseMeBtn">
+              Surprise Me
+            </button>
+          </div>
+          <div class="column is-3 has-text-centered"></div>
         </div>
       </div>
     </article>
-    
+
     <!-- Preference Questions  -->
     <!-- first page will have a form fixed preferences that'll repopulate from local storage -->
     <article class="formResultsArea section2">
@@ -67,65 +78,59 @@
 
       <div class="formResults">
         <!-- input form  -->
+        <p>Tell us how you are feeling?</p>
 
-        <h4 class="is-size-1 has-text-centered is-family-sans-serif has-text-weight-bold">Question 1</h4>
-
-        <p>Which do you Prefer?</p>
-
-      <form>
-        <input type="radio" id="action" name="Preference" value="action">
-        <label for="action">Action</label><br>
-        <input type="radio" id="comedy" name="Preference" value="comedy">
-        <label for="comedy">Comedy</label><br>
-        <input type="radio" id="drama" name="Preference" value="drama">
-        <label for="drama">Drama</label><br>
-        <input type="radio" id="romance" name="Preference" value="romance">
-        <label for="romance">Romance</label> 
-      </form>
+        <form>
+          <input type="radio" id="daring" name="Preference1" value="daring" />
+          <label for="daring">Daring</label><br />
+          <input type="radio" id="elated" name="Preference1" value="elated" />
+          <label for="elated">Elated</label><br />
+          <input type="radio" id="drama" name="Preference1" value="drama" />
+          <label for="drama">Sad</label><br />
+          <input type="radio" id="nature" name="Preference1" value="nature" />
+          <label for="nature">Tired</label>
+        </form>
 
         <p>What sounds more interesting to you?</p>
 
-      <form>
-        <input type="radio" id="action" name="Preference" value="action">
-        <label for="action">Being on the edge of your seat</label><br>
-        <input type="radio" id="comedy" name="Preference" value="comedy">
-        <label for="comedy">Laughing until your stomach hurts</label><br>
-        <input type="radio" id="drama" name="Preference" value="drama">
-        <label for="drama">Feeling all the emotions of a movie</label><br>
-        <input type="radio" id="romance" name="Preference" value="romance">
-        <label for="romance">Falling for the love store playing out infront of your eyes</label>
-      </form>
+        <form>
+          <input type="radio" id="action" name="Preference2" value="action" />
+          <label for="action">Being on the edge of your seat</label><br />
+          <input type="radio" id="comedy" name="Preference2" value="comedy" />
+          <label for="comedy">Laughing until your stomach hurts</label><br />
+          <input type="radio" id="drama" name="Preference2" value="drama" />
+          <label for="drama">Feeling all the emotions of a movie</label><br />
+          <input type="radio" id="romance" name="Preference2" value="romance" />
+          <label for="romance"
+            >Falling for the love story playing out infront of your eyes</label
+          >
+        </form>
 
-       <p>What are you looking for?</p>
+        <p>What are you looking for?</p>
 
-      <form>
-        <input type="radio" id="action" name="Preference" value="action">
-        <label for="action">Non stop thrills form beginning to end</label><br>
-        <input type="radio" id="comedy" name="Preference" value="comedy">
-        <label for="comedy">Big acotrs with big jokes </label><br>
-        <input type="radio" id="drama" name="Preference" value="drama">
-        <label for="drama">Wholesome stories with big feelings and pulling of the heart strings</label><br>
-        <input type="radio" id="romance" name="Preference" value="romance">
-        <label for="romance">Heartfelt stories with a happy ending and warm heart</label>
-      </form>
-
-        <p id="error"></p>
-      </div>
-      <button class="button is-warning" id="clearBtn">I didn't mean what I said before</button>  
-      <button class="button is-link" id="nextBtn1">NEXT1</button>
-      
-    </article>
-
-    
-    <!-- Mood Questions  -->
-    <!-- Other pages will be mood related questions to add to the answers  -->
-    <article class="answerArea">
-      <!-- Replace header with questions if doing 1 per page, otherwise a questions header -->
+        <form>
+          <input type="radio" id="action" name="Preference3" value="action" />
+          <label for="action">Non stop thrills from beginning to end</label
+          ><br />
+          <input type="radio" id="comedy" name="Preference3" value="comedy" />
+          <label for="comedy">Big actors with big jokes </label><br />
+          <input type="radio" id="drama" name="Preference3" value="drama" />
+          <label for="drama"
+            >Wholesome stories with big feelings and pulling of the heart
+            strings</label
+          ><br />
+          <input type="radio" id="romance" name="Preference3" value="romance" />
+          <label for="romance"
+            >Heartfelt stories with a happy ending and warm heart</label
+          >
+        </form>
+    <!-- fixed Questions  -->
       <div class="answers">
-        <!-- input form or drop down or modals or combination???  -->
+        <!-- input form populated with radios in js  -->
       </div>
+      <button class="btnStyle btn4" id="nextBtn1">SUBMIT</button>
+      <!-- //turn into modal? -->
       <p id="error"></p>
-      <button class="btnStyle btn5" id="nextBtn2">NEXT2</button>
     </article>
 
     <!-- Results  -->
@@ -179,15 +184,17 @@
             </div>
           </section>
 
-          <button class="button is-success" id="tryAgainBtn">Try Again</button>
-          <button class="button is-danger" id="startOverBtn">Start Over</button>
+          <button class="btnStyle btn5" id="tryAgainBtn">Try Again</button>
+          <button class="btnStyle btn6" id="startOverBtn">Start Over</button>
         </div>
       </div>
     </article>
 
     <!-- FOOTER  -->
     <footer class="footer">
-      <section class="is-flex flex-wrap is-justify-content-space-between has-text-black is-small">
+      <section
+        class="is-flex flex-wrap is-justify-content-space-between has-text-black"
+      >
         <div>
           <h2>Created by: <span>Caleb, Charissa, Danielle, & Philip</span></h2>
         </div>
