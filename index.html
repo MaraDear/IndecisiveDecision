@@ -11,91 +11,224 @@
     <title>Indecisive Decisions</title>
     <!-- add favicon  -->
     <!-- CSS links  -->
-    <!-- link bootstrap bulma etc for css  -->
+    <!-- link bulma etc for css  -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
 
   <body>
     <!-- HEADER  -->
-    <header class="header" id="header">
-      <h2>
-        Indecisive Decisions
-        <span>something clever</span>
-      </h2>
+    <header>
+      <h1 class="headerCon"></h1>
+      <h1>
+        Indecisive <span class="color-detail">Decisions.</span><br />
+        Relax, Let Us Think <span class="color-detail">For You.</span>
+      </h1>
     </header>
-
     <!-- opening page  -->
+
     <article class="section1" id="section1">
-      <div>SOME COOL STUFF HERE</div>
-      <!-- images info etc  -->
-      <button id="startBtn">START</button>
+      <div class="container">
+        <div class="columns is-vcentered block mt-6">
+          <div class="column is-3 has-text-centered">
+            <!-- image is a placeholder until someone designs something cooler.  -->
+            <img src="./assets/images/one-does-not-khv0pk.jpg" />
+          </div>
+          <!-- images info etc  -->
+          <div class="column is-6 has-text-centered">
+            <h2 class="is-size-1 title">SOME COOL STUFF HERE</h2>
+            <h3 class="is-size-2 subtitle">Boredom</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit
+              voluptatem sint provident repudiandae labore deleniti, praesentium
+              tempore quibusdam, architecto error accusamus. Provident
+              blanditiis ea atque quam quia labore suscipit hic!
+            </p>
+            <button class="button is-success is-large mt-5" id="startBtn">
+              START</button
+            ><br />
+            <button class="button is-danger is-large mt-1" id="surpriseMeBtn">
+              Surprise Me
+            </button>
+          </div>
+          <div class="column is-3 has-text-centered"></div>
+        </div>
+      </div>
     </article>
 
     <!-- Preference Questions  -->
     <!-- first page will have a form fixed preferences that'll repopulate from local storage -->
-    <article>
+    <article class="formResultsArea">
       <!-- Replace header with "Preferences" type title -->
+      <button class="btnStyle btn3" id="clearBtn">
+        I didn't mean what I said before
+      </button>
       <div class="formResults">
         <!-- input form  -->
-        <p>Input 1</p>
-        <p>answer 1</p>
-      </div>
-      <button id="clearBtn">I didn't mean what I said before</button>
-      <button id="nextBtn">NEXT</button>
-    </article>
+        <p>Tell us how you are feeling?</p>
 
-    <!-- Mood Questions  -->
-    <!-- Other pages will be mood related questions to add to the answers  -->
-    <article>
-      <!-- Replace header with questions if doing 1 per page, otherwise a questions header -->
+        <form>
+          <input type="radio" id="daring" name="Preference1" value="daring" />
+          <label for="daring">Daring</label><br />
+          <input type="radio" id="elated" name="Preference1" value="elated" />
+          <label for="elated">Elated</label><br />
+          <input type="radio" id="drama" name="Preference1" value="drama" />
+          <label for="drama">Sad</label><br />
+          <input type="radio" id="nature" name="Preference1" value="nature" />
+          <label for="nature">Tired</label>
+        </form>
+
+        <p>What sounds more interesting to you?</p>
+
+        <form>
+          <input type="radio" id="action" name="Preference2" value="action" />
+          <label for="action">Being on the edge of your seat</label><br />
+          <input type="radio" id="comedy" name="Preference2" value="comedy" />
+          <label for="comedy">Laughing until your stomach hurts</label><br />
+          <input type="radio" id="drama" name="Preference2" value="drama" />
+          <label for="drama">Feeling all the emotions of a movie</label><br />
+          <input type="radio" id="romance" name="Preference2" value="romance" />
+          <label for="romance"
+            >Falling for the love story playing out infront of your eyes</label
+          >
+        </form>
+
+        <p>What are you looking for?</p>
+
+        <form>
+          <input type="radio" id="action" name="Preference3" value="action" />
+          <label for="action">Non stop thrills from beginning to end</label
+          ><br />
+          <input type="radio" id="comedy" name="Preference3" value="comedy" />
+          <label for="comedy">Big actors with big jokes </label><br />
+          <input type="radio" id="drama" name="Preference3" value="drama" />
+          <label for="drama"
+            >Wholesome stories with big feelings and pulling of the heart
+            strings</label
+          ><br />
+          <input type="radio" id="romance" name="Preference3" value="romance" />
+          <label for="romance"
+            >Heartfelt stories with a happy ending and warm heart</label
+          >
+        </form>
+    <!-- fixed Questions  -->
       <div class="answers">
-        <!-- input form or drop down or modals or combination???  -->
-        <p>answer 1</p>
+        <!-- input form populated with radios in js  -->
       </div>
-      <button id="nextBtn">NEXT</button>
+      <button class="btnStyle btn4" id="nextBtn1">SUBMIT</button>
+      <!-- //turn into modal? -->
+      <p id="error"></p>
     </article>
 
     <!-- Results  -->
     <article class="resultsSection" id="resultsSection">
       <!-- replace header with 'our Plans Are ...'  -->
-      <div class="results">
-        <section class="movieResult">
-          <img id="movieImage" />
-          <!-- movie reel or board -->
-          <div id="movieTitle">
-            Movie Title <span id="movieSubtitle"> movie subtitle</span>
-          </div>
-          <div id="movieStarring">Starring:</div>
-          <p id="movieInfo">Movie Info</p>
-        </section>
-        <section class="bookResult">
-          <img id="bookImage" />
+      <div class="columns results">
+        <!-- movie reel or board -->
+        <div class="column is-two-thirds-desktop">
+          <section class="movieResult">
+            <a id="movieResultLink1" target="_blank">
+              <img id="movieImage" />
+            </a>
+            <a id="movieResultLink2" target="_blank">
+              <div id="movieTitle">
+                Movie Title <span id="movieSubtitle"> movie subtitle</span>
+              </div>
+            </a>
+            <div id="movieStarring">Starring:</div>
+            <p id="movieInfo">Movie Info</p>
+          </section>
           <!-- book -->
-          <div id="bookTitle">
-            Book Title <span id="bookSubtitle"> Book subtitle</span>
-          </div>
-          <div id="bookAuthor">By:</div>
-          <button id="bookInfo">Book Info</button>
-        </section>
-        <section class="OtherArea">
-          <img id="adviceSlip" />
+          <section class="bookResult">
+            <a id="bookResultLink1" target="_blank">
+              <img id="bookImage" />
+            </a>
+            <a id="bookResultLink2" target="_blank">
+              <div id="bookTitle">
+                Book Title <span id="bookSubtitle"> Book subtitle</span>
+              </div>
+            </a>
+            <div id="bookAuthor">By:</div>
+            <p id="bookInfo">Book Info</p>
+          </section>
+        </div>
+        <div class="column is-flex-direction-column" style="padding: 20px">
           <!-- advice slip -->
-        </section>
+          <section
+            class="otherArea is-flex"
+            style="
+              background-image: url('./assets/images/typewriter.jpg');
+              background-size: cover;
+              height: 480px;
+              width: 380px;
+            "
+          >
+            <div
+              id="adviceSlipArea"
+              style="font-family: 'IBM Plex Mono', monospace"
+            >
+              <!-- put advice on top of paper in typewriter  -->
+            </div>
+          </section>
+
+          <button class="btnStyle btn5" id="tryAgainBtn">Try Again</button>
+          <button class="btnStyle btn6" id="startOverBtn">Start Over</button>
+        </div>
       </div>
-      <button id="tryAgainBtn">Try Again</button>
     </article>
 
     <!-- FOOTER  -->
-    <footer>
-      <section class="footer d-flex">
+    <footer class="footer">
+      <section
+        class="is-flex flex-wrap is-justify-content-space-between has-text-black"
+      >
         <div>
-          created by:
-          <span>Caleb, Charissa, Danielle, & Philip</span>
+          <h2>Created by: <span>Caleb, Charissa, Danielle, & Philip</span></h2>
         </div>
         <div class="creditLogos">
-          <p>IMDB</p>
-          <p>GoogleBooks</p>
-          <p>advice slip/other</p>
+          <!-- movies credit logo  -->
+          <a href="https://developers.themoviedb.org" title="Movie API">
+            <img
+              src="./assets/images/TMDB.jpg"
+              alt="Movie data populated by themoviedb.org"
+              ;
+              width="60px"
+              ;
+            />
+          </a>
+          <!-- books credit logo  -->
+          <a href="https://developers.google.com/books/" title="Book API">
+            <img
+              src="./assets/images/Google-Books-Update.png"
+              alt="Movie data populated by themoviedb.org"
+              ;
+              width="60px"
+              ;
+            />
+          </a>
+          <!-- other api credit logo  -->
+          <a href="https://api.adviceslip.com/" title="Advice Slip API">
+            <img
+              src="https://pbs.twimg.com/profile_images/3172147527/4bca01881aa553af3df95c076d6ce4d3_400x400.png"
+              alt="Advice data populated by https://adviceslip.com/"
+              ;
+              width="60px"
+              ;
+            />
+          </a>
         </div>
       </section>
     </footer>
@@ -103,7 +236,7 @@
     <!-- link scripts for js  -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <!-- <script type="text/javascript" src="//books.google.com/books/previewlib.js"></script> -->
+    <!-- <script type="text/drama" src="//books.google.com/books/previewlib.js"></script> -->
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="./assets/js/script.js"></script>
   </body>

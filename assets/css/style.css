@@ -1,8 +1,7 @@
 /*Indecisive Decisions*/
 /***************************** */
 
-
-/* Everything in here right now is just a few things copied from previous projects -CRH 05/24/22 */
+/* Some is copied from previous projects -CRH 05/24/22 */
 
 /* Overall */
 *,
@@ -14,161 +13,139 @@
 /*variables*/
 
 :root {
-    --primary-color: #e56fea;
-    --secondary-color: ivory;
-    --bg-color:  #2a607c;
-    --bg-color2: #0076c6;
-    --padding: 20px;
-    --blur: 10px;
+  --primary-color: #5a0d12;
+  --secondary-color: ivory;
+  --third-color: #913b41;
+  --bg-color: #366276;
+  --bg-color2: rgb(255, 255, 255);
+  --padding: 20px;
+  --blur: 10px;
 }
 
 /*general selectors*/
-.left-align{
-    justify-content: left;
+
+body {
+  margin: 0;
 }
-
-
 
 /*--headline with quicklinks*/
 header {
-    display: flex;
-    width: 100vw;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 0;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--secondary-color);
-    z-index: 9999
+	margin: 0 auto;
+	position: relative;
+	text-align: center;
+  background-image: url(../images/ajit-singh-_6lUTo2UfMY-unsplash.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-flow: column;
+  scroll-behavior: smooth;
 }
 
-header h2{
-    font-size: 48px;
-    padding-left: 25px;
+
+.color-detail {
+  color:crimson;
 }
 
-header span {
-    justify-content: space-around;
-    align-items: center;
-    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
-    font-size: 30px;
-    display: flex;
+header h1 {
+  font-size: 70px;
+  padding-left: 25px;
+  line-height: 1;
+  margin-top: 0;
+  color: rgb(255, 255, 255);
+  display: inline-block;
+  position: relative;
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: bold;
 }
 
+.section1 {
+  width: 100%;
+  height: 100vh;
+}
+
+/*footer*/
+footer {
+  padding: 20px;
+  padding-left: 40px;
+  width: 100vw;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--secondary-color);
+  display: inline-block;
+}
+
+footer h2 {
+  display: inline-block;
+  font-size: 35px;
+}
+
+footer span {
+  font-size: 25px;
+}
+
+.creditLogos {
+  padding-right: 40px;
+}
+
+footer a {
+  padding: 7px;
+}
+
+/* Button designs  */
+.btnStyle {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: solid 3pt var(--third-color);
+  padding: 5px 10px;
+}
 
 /*hero background image and subtitle*/
-
+/* do we want for start page?  */
 .heropg {
-    height: 300px;
-    width: 100vw;
-    margin-bottom: 25px;
-    background-image: url(./assets/images/heropgimage.jpg);
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    border: black 1px solid;
+  height: 300px;
+  width: 100vw;
+  margin-bottom: 25px;
+  background-image: url(./assets/images/heropgimage.jpg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  border: black 1px solid;
 }
-
-.heropg div{
-
-}
-
-.heropg p{
-
-}
-
 
 /*all of main sections*/
-main{
-
+body{
+    background-color: var(--bg-color2);
 }
 
-article{
-
+article {
 }
 
 /*within each subsections*/
 
-article div{
-
-}
-
-h3{
-
-}
-
-article section{
-
+article div {
 }
 
 /*subsection unique attributes*/
-.section1{
 
+
+/*Results page*/
+#adviceSlipArea {
+  margin: 48px 80px 210px 105px;
+  /* border: solid black 1px; */
 }
 
-.section2{
+/* //////remove or switch to min-width version, because bulma is mobile-first css??? ////// */
 
+/* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
+@media screen and (max-width: 980px) {
 }
 
-.section3{
-
-}
-
-.other{
-
-}
-
-
-
-
-
-/*footer*/
-footer {
-    padding: 20px;
-    padding-left: 40px;
-    width: 100vw;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--secondary-color);
-    display: inline-block;
-}
-
-footer h2{
-    display: inline-block;
-    font-size: 45px;
-}
-
-footer span{
-    font-size: 25px;
-}
-
-footer p {
-    padding: 10px;
-    padding-bottom: 20px;
-    padding-right: 50px;
-    float: right;
-    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
-    font-size: 30px;
-    color: var(--primary-color);
-}
-
-
-
-
-
-
-/* do we need to do this the other way around to be 'mobile first'??? */
-
-
-  /* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
-  @media screen and (max-width: 980px) {
-
-  }
-
-
-
-
-      /* MEDIA QUERY FOR MOBILE PHONES AND SMALLER */
+/* MEDIA QUERY FOR MOBILE PHONES AND SMALLER */
 @media screen and (max-width: 550px) {
-
 }
