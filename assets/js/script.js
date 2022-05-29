@@ -47,11 +47,11 @@ var moodAnswers = [];
 // fixed questions array
 const questions = [
   {
-    question: "Which is your favorite",
+    question: "4. Which is your favorite?",
     answers: ["Action", "Comedy", "Drama", "radio"],
   },
   {
-    question: "How mature are you?",
+    question: "5. How mature are you?",
     answers: [
       "Just a babe",
       "I'm a pretty cool cat",
@@ -59,7 +59,7 @@ const questions = [
     ],
   },
   {
-    question: "Which best represents your personality",
+    question: "6. Which best represents your personality",
     answers: ["Classic", "Nastalgic ", "Modern"],
   },
 ];
