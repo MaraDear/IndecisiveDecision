@@ -97,48 +97,18 @@ var startBtnFunc = function () {
       answerArea.append(inputConEl);
       var inputEl = document.createElement("input");
       var labelEl = document.createElement("label");
-      labelEl.setAttribute("for", '"mood" + ii');
+      labelEl.setAttribute("for", "q" + i + "a" + a + "radio");
       labelEl.innerHTML = questions[i].answers[a];
       inputEl.setAttribute("type", "radio");
-      inputEl.setAttribute("name", "mood" + ii);
+      inputEl.setAttribute("name", "answer" + ii);
       inputEl.setAttribute("id", "q" + i + "a" + a + "radio");
       inputEl.classList = "radios answerBlock";
       inputConEl.append(inputEl);
       inputConEl.append(labelEl);
     }
   }
-
-  // get input from fixed questions
-  var getmoodAnswers = function () {
-    //add to answers array to determine category pick
-    for (i = 0; i < 3; i++) {
-      var ii = i + 1;
-      var answerOptions = document.querySelectorAll(
-        'input[name="Preference' + ii + '"]'
-      );
-      console.log(answerOptions);
-      for (var a = 0; a < 4; a++) {
-        var answerA = answerOptions[a].checked;
-        if (answerA == true) {
-          var answerNow = a;
-        }
-      }
-      //error if no answer
-      if (answerNow == null) {
-        errorMsgArea.textContent = "must select one answer";
-      } else {
-        //populate answers array
-        moodAnswers[i] = answerNow;
-      }
-    }
-    console.log(moodAnswers);
-    //add to answers array to push to local storage for future use
-    // move answers from form to replace local storage
-    //warn if missing any answers
-    //add in if any blank then this, other wise error msg
-    errorMsgArea.textContent = "";
-  };
 };
+
 //Next button function save answers from input form and display first mood question
 var nextBtnFunc1 = function () {
   //run get answers func
@@ -146,6 +116,38 @@ var nextBtnFunc1 = function () {
   getAnswers();
   //warn if missing any answers
   ////need to add
+};
+
+// get input from fixed questions
+var getmoodAnswers = function () {
+  //add to answers array to determine category pick
+  for (i = 0; i < 3; i++) {
+    var ii = i + 1;
+    var answerOptions = document.querySelectorAll(
+      'input[name="Preference' + ii + '"]'
+    );
+    console.log(answerOptions);
+    for (var a = 0; a < 4; a++) {
+      var answerA = answerOptions[a].checked;
+      if (answerA == true) {
+        var answerNow = a;
+      }
+    }
+    //error if no answer
+    if (answerNow == null) {
+      errorMsgArea.textContent = "must select one answer";
+    } else {
+      //populate answers array
+      moodAnswers[i] = answerNow;
+    }
+  }
+  console.log(moodAnswers);
+  /////fix moodanswers to work
+  //add to answers array to push to local storage for future use
+  // move answers from form to replace local storage
+  //warn if missing any answers
+  //add in if any blank then this, other wise error msg
+  errorMsgArea.textContent = "";
 };
 
 // get input from second questions
