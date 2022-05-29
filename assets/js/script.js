@@ -8,7 +8,6 @@ var startBtnGet = document.getElementById("startBtn");
 var clearBtnGet = document.getElementById("clearBtn");
 // might need for answers if they are buttons
 var nextBtn1Get = document.getElementById("nextBtn1");
-var nextBtn2Get = document.getElementById("nextBtn2");
 var tryAgainBtnGet = document.getElementById("tryAgainBtn");
 var startOverBtnGet = document.getElementById("startOverBtn");
 var surpriseMeBtnGet = document.getElementById("surpriseMeBtn");
@@ -48,11 +47,11 @@ var moodAnswers = [];
 // fixed questions array
 const questions = [
   {
-    question: "Which is your favorite",
+    question: "4. Which is your favorite?",
     answers: ["Action", "Comedy", "Drama", "radio"],
   },
   {
-    question: "How mature are you?",
+    question: "5. How mature are you?",
     answers: [
       "Just a babe",
       "I'm a pretty cool cat",
@@ -60,7 +59,7 @@ const questions = [
     ],
   },
   {
-    question: "Which best represents your personality",
+    question: "6. Which best represents your personality",
     answers: ["Classic", "Nastalgic ", "Modern"],
   },
 ];
@@ -172,6 +171,7 @@ var getAnswers = function () {
       answers[i] = answerNow;
     }
   }
+  localStorage.setItem("answers", JSON.stringify(answers));
   //run figure out results type function
   resultTypeFunc();
 };
@@ -185,21 +185,26 @@ var resultTypeFunc = function () {
   var ratingBook; // MATURE, not-mature
   var dateMood; //not certain on words to carry over
   var keywords;
+  var movieCodes;
   ///////add this results means this answer for category pick array section
   // moodAnswers[0] //use these 3 to make keywords
   // answers[0] pick genre
-  switch (moodAnswers[0]) {
+  switch (answers[0]) {
     case 0:
       keywords = "joy";
+      movieCodes = "comedy";
       break;
     case 1:
       keywords = "tears";
+      movieCodes = "drama";
       break;
     case 2:
       keywords = "mystery";
+      movieCodes = "mystery";
       break;
     case 3:
       keywords = "nature";
+      movieCodes = "nature";
       break;
   }
 
@@ -207,46 +212,58 @@ var resultTypeFunc = function () {
   switch (moodAnswers[1]) {
     case 0:
       genre = "suspense";
+      movieCodes += "_suspense";
       break;
     case 1:
       genre = "comedy";
+      movieCodes += "_comedy";
       break;
     case 2:
       genre = "classic";
+      movieCodes += "_classic";
       break;
     case 3:
       genre = "love";
+      movieCodes += "_romance";
       break;
   }
   // moodAnswers[2]
   switch (moodAnswers[2]) {
     case 0:
       keywords += "_adventure";
+      movieCodes += "_thriller";
       break;
     case 1:
       keywords += "_hilarious";
+      movieCodes += "_comedy";
       break;
     case 2:
       keywords += "_family";
+      movieCodes += "_family";
       break;
     case 3:
       keywords += "_happy";
+      movieCodes += "_feel-good";
       break;
   }
 
-  // answers[0] pick genre
-  switch (answers[0]) {
+  // moodAnswers[0] pick genre
+  switch (moodAnswers[0]) {
     case 0:
       genre += "_action";
+      movieCodes += "_action";
       break;
     case 1:
       genre += "_comedy";
+      movieCodes += "_comedy";
       break;
     case 2:
       genre += "_drama";
+      movieCodes += "_family";
       break;
     case 3:
       genre += "_nature";
+      movieCodes += "_family";
       break;
   }
   // answers[1] pick rating/maturity
@@ -268,23 +285,27 @@ var resultTypeFunc = function () {
   switch (answers[2]) {
     case 0:
       dateMood = "classic";
+      movieCodes += "_classic";
       break;
     case 1:
       dateMood = "retro";
+      movieCodes += "_retro";
       break;
     case 2:
       dateMood = "new_release";
+      movieCodes += "new-release";
       break;
   }
   // pass genre, rating, dateMood, keywords
   ////add code to combine keywords into one string for searching
   categoryPick = [keywords, genre, ratingMovie, ratingBook, dateMood];
+
   //results functions
-  resultsPage(categoryPick);
+  resultsPage(categoryPick, movieCodes);
 };
 
 //---------results display.--------------------///
-var resultsPage = function (categoryPick) {
+var resultsPage = function (categoryPick, movieCodes) {
   // hide show areas
   section1Area.style.display = "none";
   resultsSectionArea.style.display = "block";
@@ -295,7 +316,7 @@ var resultsPage = function (categoryPick) {
   //get bookResult info
   bookAPI(categoryPick);
   //get movieResult info
-  movieAPI(categoryPick);
+  movieAPI(categoryPick, movieCodes); //categoryPick[3] is movie rating
   //get otherResult info
   otherAPI();
 };
@@ -361,33 +382,48 @@ var bookFetch = function (apiLocUrl, categoryPick) {
 var bookResultFunc = function (bookData) {
   //   populate bookResult  //display info in appropriate locations
   /////book google books link ---- if we want to redirect or can change to pop up box
-  // var bookGoogleLink = bookData.items[c].volumeInfo.canonicalVolumeLink;
-  document
-    .getElementById("bookResultLink1")
-    .setAttribute("href", bookData.items[c].volumeInfo.canonicalVolumeLink);
-  document
-    .getElementById("bookResultLink2")
-    .setAttribute("href", bookData.items[c].volumeInfo.canonicalVolumeLink);
-  //title
-  var bookTitle = bookData.items[c].volumeInfo.title;
-  console.log(bookTitle);
-  document.getElementById("bookTitle").textContent = bookTitle;
-  //author
-  var bookAuthor = bookData.items[c].volumeInfo.authors[0];
-  document.getElementById("bookAuthor").textContent = bookAuthor;
-  //summary
-  ////figure out how to cut off summary if more than # lines
-  var bookInfo = bookData.items[c].volumeInfo.description;
-  document.getElementById("bookInfo").textContent = bookInfo;
-  //book thumbnail URL
-  var bookThumbnailGet = document.getElementById("bookImage");
-  var bookThumbnail = bookData.items[c].volumeInfo.imageLinks.smallThumbnail;
-  //var bookThumbnailEl = document.createElement("img");
-  bookThumbnailGet.setAttribute("src", bookThumbnail);
-  bookThumbnailGet.setAttribute("height", "50px");
-  bookThumbnailGet.setAttribute("alt", bookTitle);
+  //if there is not data for that c then try again until there is
+  if (bookData.items[c].volumeInfo) {
+    document
+      .getElementById("bookResultLink1")
+      .setAttribute("href", bookData.items[c].volumeInfo.canonicalVolumeLink);
+    document
+      .getElementById("bookResultLink2")
+      .setAttribute("href", bookData.items[c].volumeInfo.canonicalVolumeLink);
+    //title
+    var bookTitle = bookData.items[c].volumeInfo.title;
+    document.getElementById("bookTitle").textContent = bookTitle;
+    //author
+    if (bookData.items[c].volumeInfo.authors[0]) {
+      var bookAuthor = bookData.items[c].volumeInfo.authors[0];
+    } else {
+      var bookAuthor = "";
+    }
+    document.getElementById("bookAuthor").textContent = bookAuthor;
+    //summary
+    ////figure out how to cut off summary if more than # lines
+    if (bookData.items[c].volumeInfo.description) {
+      var bookInfo = bookData.items[c].volumeInfo.description;
+    } else {
+      var bookInfo = "";
+    }
+    document.getElementById("bookInfo").textContent = bookInfo;
+    //book thumbnail URL
+    if (bookData.items[c].volumeInfo.imageLinks.smallThumbnail) {
+      var bookThumbnail =
+        bookData.items[c].volumeInfo.imageLinks.smallThumbnail;
+    } else {
+      var bookThumbnail = "";
+    }
+    //var bookThumbnailEl = document.createElement("img");
+    var bookThumbnailGet = document.getElementById("bookImage");
+    bookThumbnailGet.setAttribute("src", bookThumbnail);
+    bookThumbnailGet.setAttribute("height", "50px");
+    bookThumbnailGet.setAttribute("alt", bookTitle);
+  } else {
+    tryAgainFunc();
+  }
 };
-
 //-----movie API--------//
 var movieAPI = function (categoryPick) {
   // for reference array inputs categoryPick = [keywords,genre,ratingMovie,ratingBook,dateMood];
@@ -476,7 +512,7 @@ var surpriseMeBtnFunc = function () {
 function clearAnswers() {
   //clear then reload form input page
   localStorage.clear();
-  startBtnFunc;
+  startBtnFunc();
 }
 
 // Try Again button -- shuffles a new suggestion from already existing arrays
