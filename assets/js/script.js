@@ -336,11 +336,7 @@ var resultsPage = function (categoryPick, movieCodes) {
   //get bookResult info
   bookAPI(categoryPick);
   //get movieResult info
-<<<<<<< HEAD
-  // movieAPI(categoryPick);  Commented out by Phil, Sunday @ 2:56pm
-=======
   movieAPI(categoryPick, movieCodes); //categoryPick[3] is movie rating
->>>>>>> main
   //get otherResult info
   otherAPI();
 };
