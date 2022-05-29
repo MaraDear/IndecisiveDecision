@@ -116,9 +116,9 @@ var startBtnFunc = function () {
       );
       for (var a = 0; a < 4; a++) {
         var answerUse = answerSpot[a];
-        if (answerUse == a) {
+        if (answerUse === a) {
           answerSpot[a].checked;
-        }else{
+        } else {
           answerSpot[a].unchecked;
         }
       }
