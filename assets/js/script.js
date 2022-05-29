@@ -11,8 +11,8 @@ var nextBtn1Get = document.getElementById("nextBtn1");
 var tryAgainBtnGet = document.getElementById("tryAgainBtn");
 var startOverBtnGet = document.getElementById("startOverBtn");
 var surpriseMeBtnGet = document.getElementById("surpriseMeBtn");
-var startNavBtnGet = document.getElementById("startBtn");
-var surpriseNavBtnGet = document.getElementById("surpriseMeBtn")
+var startNavBtnGet = document.getElementById("startNavBtn");
+var surpriseNavBtnGet = document.getElementById("surpriseMeNavBtn")
 
 //--------Section variables-----------//
 var section1Area = document.querySelector(".section1");
