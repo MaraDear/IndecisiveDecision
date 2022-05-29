@@ -107,6 +107,22 @@ var startBtnFunc = function () {
       inputConEl.append(labelEl);
     }
   }
+  // console.log(answers);
+  if (answers) {
+    for (i = 0; i < 3; i++) {
+      var ii = i + 1;
+      var answerSpot = document.querySelectorAll(
+        'input[name="Preference' + ii + '"]'
+      );
+      console.log(answerOptions);
+      for (var a = 0; a < 4; a++) {
+        var answerA = answerOptions[a].checked;
+        if (answerA == true) {
+          
+        }
+      }
+    }
+  }
 };
 
 //Next button function save answers from input form and display first mood question
@@ -387,7 +403,7 @@ var bookResultFunc = function (bookData) {
   //   populate bookResult  //display info in appropriate locations
   /////book google books link ---- if we want to redirect or can change to pop up box
   //if there is not data for that c then try again until there is
-  if (c > bookData.items.length) {
+  if (c > bookData.items.length - 1) {
     tryAgainFunc();
   } else {
     document
