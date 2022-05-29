@@ -153,7 +153,37 @@ var bookAPI = function (categoryPick) {
 var GBS_PreviewBtn = document.querySelector("#bookInfo");
 GBS_PreviewBtn.addEventListener("click", bookAPI("flowers")); //constant for testing purposes, will be determined by responses to questions
 
-var movieAPI = function () {};
+var movieAPI = function () {
+  let tmdbKey = "483e17e3930801f2012e0e7c7f4fb86e";
+  let baseURL = "https://api.themoviedb.org/3/";
+  let configData = null;
+  let baseImageURL = null;
+  let url = "".concat(baseURL, "configuration?api_key=", tmdbKey);
+  fetch(url)
+  .then((result)=>{
+    return result.json();
+  })
+  .then((data)=>{
+    baseImageURL = data.images.secure_base_url;
+    configData = data.images;
+    console.log("config:", data);
+    console.log("config fetched");
+    runSearch("Jaws")
+  })
+  .catch(function(err){
+    alert(err);
+  })
+};
+
+let runSearch = function (keyword) {
+  let url = "".concat(baseURL, "search/movie?api_key=", tmdbKey, "&query=", keyword);
+  fetch(url)
+  .then(result=>result.json())
+  .then((data)=>{
+    document.getElementById("SET ELEMENT HERE").innerHTML = JSON.stringify(data, null, 4);
+  })
+}
+
 
 var otherAPI = function () {};
 

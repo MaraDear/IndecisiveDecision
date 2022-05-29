@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TheMovieDB Test Page</title>
+    <meta name="viewport" content="width=device-width">
+</head>
+<body>
+    <h1>TheMovieDB Test Page</h1>
+    <div id="output"></div>
+<script>
+
+let tmdbKey = "483e17e3930801f2012e0e7c7f4fb86e";
+let baseURL = "https://api.themoviedb.org/3/";
+let configData = null;
+let baseImageURL = null;
+
+var movieAPI = function () {
+    let url = "".concat(baseURL, "configuration?api_key=", tmdbKey);
+    fetch(url)
+    .then((result)=>{
+      return result.json();
+    })
+    .then((data)=>{
+      baseImageURL = data.images.secure_base_url;
+      configData = data.images;
+      console.log("config:", data);
+      console.log("config fetched");
+      runSearch("Jaws")
+    })
+    .catch(function(err){
+      alert(err);
+    })
+  };
+  
+  let runSearch = function (keyword) {
+    let url = "".concat(baseURL, "search/movie?api_key=", tmdbKey, "&query=", keyword);
+    fetch(url)
+    .then(result=>result.json())
+    .then((data)=>{
+      document.getElementById("output").innerHTML = JSON.stringify(data, null, 4);
+    })
+  }
+
+  document.addEventListener("DOMContentLoaded", movieAPI);
+  </script>
+  </body>
+  </html>
