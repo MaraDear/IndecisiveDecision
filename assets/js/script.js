@@ -12,7 +12,7 @@ var tryAgainBtnGet = document.getElementById("tryAgainBtn");
 var startOverBtnGet = document.getElementById("startOverBtn");
 var surpriseMeBtnGet = document.getElementById("surpriseMeBtn");
 var startNavBtnGet = document.getElementById("startNavBtn");
-var surpriseNavBtnGet = document.getElementById("surpriseMeNavBtn")
+var surpriseNavBtnGet = document.getElementById("surpriseMeNavBtn");
 
 //--------Section variables-----------//
 var section1Area = document.querySelector(".section1");
@@ -51,11 +51,11 @@ var moodAnswers = [];
 const questions = [
   {
     question: "4. Which is your favorite?",
-    answers: ["Action", "Comedy", "Drama", "Romance"],
+    answer: ["Action", "Comedy", "Drama", "Romance"],
   },
   {
     question: "5. How mature are you?",
-    answers: [
+    answer: [
       "Just a babe",
       "I'm a pretty cool cat",
       "Don't let any kids in here",
@@ -63,7 +63,7 @@ const questions = [
   },
   {
     question: "6. Which best represents your personality",
-    answers: ["Classic", "Nastalgic ", "Modern"],
+    answer: ["Classic", "Nastalgic ", "Modern"],
   },
 ];
 
@@ -77,7 +77,7 @@ var get_c = function () {
   // console.log(c);
 };
 get_c();
-
+window.scrollTo(0, 0);
 // loads fixed preference form on start button
 var startBtnFunc = function () {
   // hide show areas;show input form page from html
@@ -85,7 +85,7 @@ var startBtnFunc = function () {
   formInputArea.style.display = "block";
   section1Area.style.display = "none";
   errorMsgArea.textContent = "";
-  window.scrollTo(x - coordinate, y - coordinate);
+  window.scrollTo(0, 400);
   // populate questionwith answers from local storage if there are any
   for (i = 0; i < questions.length; i++) {
     var ii = i + 1;
@@ -330,7 +330,7 @@ var resultsPage = function (categoryPick, movieCodes) {
   resultsSectionArea.style.display = "block";
   formInputArea.style.display = "none";
   //change header
-
+  window.scrollTo(0, 400);
   headerArea.textContent = "Your Plans Are ...";
   //get bookResult info
   bookAPI(categoryPick);
@@ -341,6 +341,41 @@ var resultsPage = function (categoryPick, movieCodes) {
 };
 
 //---------get apis linked--------------------//
+//-----movie API--------//
+var movieAPI = function (categoryPick, movieCodes) {
+  //random number coding
+  m = Math.floor(Math.random() * 5);
+  //console.log(m);
+  var genreType = movieCodes[m];
+  //// categoryPick[3]=movie rating
+  // var apiMovieUrl = "/";
+  // fetch(apiMovieUrl)
+  //   .then(function (response) {
+  //     // if request was successful
+  //     //console.log(response);
+  //     if (response.ok) {
+  //       response.json().then(function (otherData) {
+  //         //console.log(otherData);
+  //         otherResultFunc(movieData);
+  //       });
+  //     } else {
+  //       alert("Error: Movie api Not Found");
+  //     }
+  //   })
+  //   .catch(function (error) {
+  //     alert("Unable to connect to movie api");
+  //   });
+
+  ////phil is working on
+  ////movieResultFunc(movieData);
+};
+
+// document.querySelector("#nextBtn1").addEventListener("click", searchGenre);
+
+//get movie result
+var movieResultFunc = function (movieData) {
+  // populate movieResult object
+};
 
 //-----book API--------//
 var bookAPI = function (categoryPick) {
@@ -355,11 +390,11 @@ var bookAPI = function (categoryPick) {
     "&key=AIzaSyDu-39j_DJyfyXYR2lSvUZmIG_hIJ7DFHA";
 
   bookFetch(apiLocUrl, categoryPick);
-  //console.log(apiLocUrl);
+  console.log(apiLocUrl);
 };
 
 //-----get book results
-var bookFetch = function (apiLocUrl, categoryPick) {
+var bookFetch = function (apiLocUrl) {
   var redo;
   fetch(apiLocUrl)
     .then(function (response) {
@@ -395,44 +430,6 @@ var bookFetch = function (apiLocUrl, categoryPick) {
       alert("Unable to connect to books api");
     });
 };
-
-//GBS_insertPreviewButtonLink(identifiers, opt_options)
-var GBS_PreviewBtn = document.querySelector("#bookInfo");
-GBS_PreviewBtn.addEventListener("click", bookAPI("flowers")); //constant for testing purposes, will be determined by responses to questions
-
-var movieAPI = function () {
-  let tmdbKey = "483e17e3930801f2012e0e7c7f4fb86e";
-  let baseURL = "https://api.themoviedb.org/3/";
-  let configData = null;
-  let baseImageURL = null;
-  let url = "".concat(baseURL, "configuration?api_key=", tmdbKey);
-  fetch(url)
-  .then((result)=>{
-    return result.json();
-  })
-  .then((data)=>{
-    baseImageURL = data.images.secure_base_url;
-    configData = data.images;
-    console.log("config:", data);
-    console.log("config fetched");
-    runSearch("Jaws")
-  })
-  .catch(function(err){
-    alert(err);
-  })
-};
-
-let runSearch = function (keyword) {
-  let url = "".concat(baseURL, "search/movie?api_key=", tmdbKey, "&query=", keyword);
-  fetch(url)
-  .then(result=>result.json())
-  .then((data)=>{
-    document.getElementById("SET ELEMENT HERE").innerHTML = JSON.stringify(data, null, 4);
-  })
-}
-
-
-var otherAPI = function () {};
 
 //get Book result
 var bookResultFunc = function (bookData) {
@@ -479,48 +476,6 @@ var bookResultFunc = function (bookData) {
       bookThumbnailGet.setAttribute("alt", bookTitle);
     }
   }
-};
-//-----movie API--------//
-var movieAPI = function (categoryPick, movieCodes) {
-  //random number coding
-  m = Math.floor(Math.random() * 5);
-  //console.log(m);
-  var genreType = movieCodes[m];
-
-  var apiMovieUrl = "/";
-  fetch(apiMovieUrl)
-    .then(function (response) {
-      // if request was successful
-      //console.log(response);
-      if (response.ok) {
-        response.json().then(function (otherData) {
-          //console.log(otherData);
-          otherResultFunc(movieData);
-        });
-      } else {
-        alert("Error: Movie api Not Found");
-      }
-    })
-    .catch(function (error) {
-      alert("Unable to connect to movie api");
-    });
-
-  // for reference array inputs categoryPick = [keywords,genre,ratingMovie,ratingBook,dateMood];
-  ////phil is working on
-  ////movieResultFunc(movieData);
-};
-
-document.querySelector("#nextBtn1").addEventListener("click", searchGenre);
-
-
-
-
-
-
-
-//get movie result
-var movieResultFunc = function (movieData) {
-  // populate movieResult object
 };
 
 //-----advice API--------//
