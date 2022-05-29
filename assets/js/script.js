@@ -114,11 +114,12 @@ var startBtnFunc = function () {
       var answerSpot = document.querySelectorAll(
         'input[name="Preference' + ii + '"]'
       );
-      console.log(answerOptions);
       for (var a = 0; a < 4; a++) {
-        var answerA = answerOptions[a].checked;
-        if (answerA == true) {
-          
+        var answerUse = answerSpot[a];
+        if (answerUse === a) {
+          answerSpot[a].checked;
+        } else {
+          answerSpot[a].unchecked;
         }
       }
     }
@@ -397,6 +398,44 @@ var bookFetch = function (apiLocUrl, categoryPick) {
     });
 };
 
+//GBS_insertPreviewButtonLink(identifiers, opt_options)
+var GBS_PreviewBtn = document.querySelector("#bookInfo");
+GBS_PreviewBtn.addEventListener("click", bookAPI("flowers")); //constant for testing purposes, will be determined by responses to questions
+
+var movieAPI = function () {
+  let tmdbKey = "483e17e3930801f2012e0e7c7f4fb86e";
+  let baseURL = "https://api.themoviedb.org/3/";
+  let configData = null;
+  let baseImageURL = null;
+  let url = "".concat(baseURL, "configuration?api_key=", tmdbKey);
+  fetch(url)
+  .then((result)=>{
+    return result.json();
+  })
+  .then((data)=>{
+    baseImageURL = data.images.secure_base_url;
+    configData = data.images;
+    console.log("config:", data);
+    console.log("config fetched");
+    runSearch("Jaws")
+  })
+  .catch(function(err){
+    alert(err);
+  })
+};
+
+let runSearch = function (keyword) {
+  let url = "".concat(baseURL, "search/movie?api_key=", tmdbKey, "&query=", keyword);
+  fetch(url)
+  .then(result=>result.json())
+  .then((data)=>{
+    document.getElementById("SET ELEMENT HERE").innerHTML = JSON.stringify(data, null, 4);
+  })
+}
+
+
+var otherAPI = function () {};
+
 //get Book result
 var bookResultFunc = function (bookData) {
   console.log(bookData);
@@ -444,11 +483,43 @@ var bookResultFunc = function (bookData) {
   }
 };
 //-----movie API--------//
+var searchGenre = function(categoryPick) {
+  var genreID = document.getElementsByName('gender');
+  //   console.log("searchGenre, displayRadioValue, genreID:  "+ genreID)
+  //   for(i = 0; i < genreID.length; i++) {
+  //     if(genreID[i].checked)
+  //     categoryPick = genreID[i].value;
+  //     console.log("searchGenre, displayRadioValue:  " + categoryPick)
+  // }
+  if (genreID = "action"){
+    var categoryPick= 28;
+  } else if (genreID = "comedy"){
+    var categoryPick= 35;
+  } else if (genreID = "drama"){
+    var categoryPick= 18;
+  } else if (genreID = "romance"){
+    var categoryPick= 10749;
+  }
+  console.log("searchGenre, categoryPick:  "+categoryPick);
+  // movieAPI(categoryPick);
+}
+
 var movieAPI = function (categoryPick) {
+  console.log("movieAPI, categoryPick:  "+categoryPick);
+  var apiUrl = "https://api.themoviedb.org/3/discover/movie?api_key=483e17e3930801f2012e0e7c7f4fb86e&certification_country=US&language=en-US&region=US&with_genres=" + categoryPick + "&language=en-US&popularity.desc&include_adult=false&include_video=false&page=1"
+  console.log("movieAPI, apiUrl:  "+apiUrl);
   // for reference array inputs categoryPick = [keywords,genre,ratingMovie,ratingBook,dateMood];
   ////phil is working on
   ////movieResultFunc(movieData);
 };
+
+document.querySelector("#nextBtn1").addEventListener("click", searchGenre);
+
+
+
+
+
+
 
 //get movie result
 var movieResultFunc = function (movieData) {
@@ -550,6 +621,4 @@ function startOver() {
 nextBtn1Get.addEventListener("click", nextBtnFunc1);
 clearBtnGet.addEventListener("click", clearAnswers);
 tryAgainBtnGet.addEventListener("click", tryAgainFunc);
-startOverBtnGet.addEventListener("click", startOver);
 startBtnGet.addEventListener("click", startBtnFunc);
-surpriseMeBtnGet.addEventListener("click", surpriseMeBtnFunc);
