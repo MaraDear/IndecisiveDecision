@@ -65,7 +65,7 @@ header h1 {
 
 .section1 {
   width: 100%;
-  height: 73vh;
+  height: 100vh;
   background-image: url(../images/background-with-shadow-monstera-tree.jpg);
   background-position: center center;
   background-repeat: no-repeat;
@@ -76,7 +76,7 @@ header h1 {
 
 .section2 {
   width: 100%;
-  height: 72vh;
+  height: 100vh;
 }
 
 h4 {
@@ -84,25 +84,7 @@ h4 {
 }
 
 /*footer*/
-footer {
-  padding: 20px;
-  padding-left: 40px;
-  width: 100vw;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--secondary-color);
-  display: inline-block;
-}
 
-footer h2 {
-  display: inline-block;
-  font-size: 35px;
-}
-
-footer span {
-  font-size: 25px;
-}
 
 .creditLogos {
   padding-right: 40px;
