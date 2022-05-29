@@ -49,11 +49,11 @@ var moodAnswers = [];
 const questions = [
   {
     question: "Which is your favorite",
-    answers: ["Action", "Comedy", "Drama", "radio"],
+    answer: ["Action", "Comedy", "Drama", "Romance"],
   },
   {
     question: "How mature are you?",
-    answers: [
+    answer: [
       "Just a babe",
       "I'm a pretty cool cat",
       "Don't let any kids in here",
@@ -61,7 +61,7 @@ const questions = [
   },
   {
     question: "Which best represents your personality",
-    answers: ["Classic", "Nastalgic ", "Modern"],
+    answer: ["Classic", "Nastalgic ", "Modern"],
   },
 ];
 
@@ -72,7 +72,7 @@ const questions = [
 var get_c = function () {
   //random number coding
   c = Math.floor(Math.random() * 30);
-  console.log(c);
+  // console.log(c);
 };
 get_c();
 
@@ -83,38 +83,37 @@ var startBtnFunc = function () {
   formInputArea.style.display = "block";
   section1Area.style.display = "none";
   errorMsgArea.textContent = "";
-  //// populate with answers from local storage if there are any
-  //populate question
-  ////fix to have label and radios on the left
+  window.scrollTo(x - coordinate, y - coordinate);
+  // populate questionwith answers from local storage if there are any
   for (i = 0; i < questions.length; i++) {
     var ii = i + 1;
     var questCon = document.createElement("h3");
     questCon.innerHTML = questions[i].question;
     answerArea.append(questCon);
-    for (var a = 0; a < questions[i].answers.length; a++) {
+    for (var a = 0; a < questions[i].answer.length; a++) {
       var inputConEl = document.createElement("div");
       inputConEl.classList = "eachAnswerContainer";
       answerArea.append(inputConEl);
       var inputEl = document.createElement("input");
       var labelEl = document.createElement("label");
       labelEl.setAttribute("for", "q" + i + "a" + a + "radio");
-      labelEl.innerHTML = questions[i].answers[a];
+      labelEl.innerHTML = questions[i].answer[a];
       inputEl.setAttribute("type", "radio");
       inputEl.setAttribute("name", "answer" + ii);
       inputEl.setAttribute("id", "q" + i + "a" + a + "radio");
       inputEl.classList = "radios answerBlock";
-      // if (answers) {
-      //   var answerUse = answers[i];
-      //   console.log(answerUse);
-      //   if (answerUse === a) {
-      //     console.log("test");
-      //     //   inputEl.checked = true;
-      //   } else {
-      //     console.log("nope");
-      //     //   inputEl.checked = false;
-      //   }
-      //   answerUse = "";
-      // }
+      if (answers) {
+        var answerUse = answers[i];
+        console.log(answerUse);
+        if (answerUse === a) {
+          //console.log("test");
+          inputEl.checked = true;
+        } else {
+          // console.log("nope");
+          inputEl.checked = false;
+        }
+        answerUse = "";
+      }
 
       inputConEl.append(inputEl);
       inputConEl.append(labelEl);
@@ -139,7 +138,7 @@ var getmoodAnswers = function () {
     var answerOptions = document.querySelectorAll(
       'input[name="Preference' + ii + '"]'
     );
-    console.log(answerOptions);
+    //console.log(answerOptions);
     for (var a = 0; a < 4; a++) {
       var answerA = answerOptions[a].checked;
       if (answerA == true) {
@@ -154,7 +153,7 @@ var getmoodAnswers = function () {
       errorMsgArea.textContent = "must select one answer";
     }
   }
-  console.log(moodAnswers);
+  //console.log(moodAnswers);
   /////fix moodanswers to work
   //add to answers array to push to local storage for future use
   // move answers from form to replace local storage
@@ -172,13 +171,13 @@ var getAnswers = function () {
     var answerOptions = document.querySelectorAll(
       'input[name="answer' + ii + '"]'
     );
-    for (var a = 0; a < questions[i].answers.length; a++) {
+    for (var a = 0; a < questions[i].answer.length; a++) {
       var answerA = answerOptions[a].checked;
       if (answerA == true) {
         answerNow = a;
       }
     }
-    console.log(answerNow);
+    //console.log(answerNow);
     //error if no answer
     if (answerNow == null) {
       errorMsgArea.textContent = "must select one answer";
@@ -186,7 +185,7 @@ var getAnswers = function () {
       //populate answers array
       answers[i] = answerNow;
     }
-    console.log(answers);
+    //console.log(answers);
   }
   localStorage.setItem("answers", JSON.stringify(answers));
   //run figure out results type function
@@ -354,7 +353,7 @@ var bookAPI = function (categoryPick) {
     "&key=AIzaSyDu-39j_DJyfyXYR2lSvUZmIG_hIJ7DFHA";
 
   bookFetch(apiLocUrl, categoryPick);
-  console.log(apiLocUrl);
+  //console.log(apiLocUrl);
 };
 
 //-----get book results
@@ -383,8 +382,7 @@ var bookFetch = function (apiLocUrl, categoryPick) {
             }
           }
           redo = 0;
-          // console.log(data);
-          console.log(bookData);
+          //console.log(bookData);
           bookResultFunc(bookData);
         });
       } else {
@@ -398,7 +396,7 @@ var bookFetch = function (apiLocUrl, categoryPick) {
 
 //get Book result
 var bookResultFunc = function (bookData) {
-  console.log(bookData);
+  //console.log(bookData);
   //   populate bookResult  //display info in appropriate locations
   /////book google books link ---- if we want to redirect or can change to pop up box
   //if there is not data for that c then try again until there is
@@ -446,14 +444,14 @@ var bookResultFunc = function (bookData) {
 var movieAPI = function (categoryPick, movieCodes) {
   //random number coding
   m = Math.floor(Math.random() * 5);
-  console.log(m);
+  //console.log(m);
   var genreType = movieCodes[m];
 
-  var apiMovieUrl = "https// blah blah" + genreType + "othercode.com";
+  var apiMovieUrl = "/";
   fetch(apiMovieUrl)
     .then(function (response) {
       // if request was successful
-      console.log(response);
+      //console.log(response);
       if (response.ok) {
         response.json().then(function (otherData) {
           //console.log(otherData);
@@ -484,7 +482,7 @@ var otherAPI = function () {
   fetch(apiLocUrl)
     .then(function (response) {
       // if request was successful
-      console.log(response);
+      //console.log(response);
       if (response.ok) {
         response.json().then(function (otherData) {
           //console.log(otherData);
@@ -545,7 +543,7 @@ var surpriseMeBtnFunc = function () {
     "not-mature",
     "modern",
   ];
-  movieCodes = "28_30_31";
+  movieCodes = [28, 30, 31, 10, 13]; //populate with better options
   resultsPage(categoryPick, movieCodes);
 };
 
