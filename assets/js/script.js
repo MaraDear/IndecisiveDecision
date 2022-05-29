@@ -118,7 +118,6 @@ var startBtnFunc = function () {
       for (var a = 0; a < 4; a++) {
         var answerA = answerOptions[a].checked;
         if (answerA == true) {
-          
         }
       }
     }
