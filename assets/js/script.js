@@ -85,27 +85,27 @@ var startBtnFunc = function () {
   errorMsgArea.textContent = "";
   //// populate with answers from local storage if there are any
   //populate question
-  // answerArea.innerHTML = "";
+  ////fix to have label and radios on the left
   for (i = 0; i < questions.length; i++) {
     var ii = i + 1;
-    headerArea.textContent = "continued"; //something better here. lol
     var questCon = document.createElement("h3");
     questCon.innerHTML = questions[i].question;
     answerArea.append(questCon);
     for (var a = 0; a < questions[i].answers.length; a++) {
       var inputConEl = document.createElement("div");
       inputConEl.classList = "eachAnswerContainer";
-      inputConEl.innerHTML = questions[i].answers[a];
       answerArea.append(inputConEl);
       var inputEl = document.createElement("input");
+      var labelEl = document.createElement("label");
+      labelEl.setAttribute("for", '"mood" + ii');
+      labelEl.innerHTML = questions[i].answers[a];
       inputEl.setAttribute("type", "radio");
       inputEl.setAttribute("name", "mood" + ii);
       inputEl.setAttribute("id", "q" + i + "a" + a + "radio");
       inputEl.classList = "radios answerBlock";
       inputConEl.append(inputEl);
+      inputConEl.append(labelEl);
     }
-    //warn if missing any answers
-    ////need to add
   }
 
   // get input from fixed questions
@@ -139,13 +139,14 @@ var startBtnFunc = function () {
     errorMsgArea.textContent = "";
   };
 };
-  //Next button function save answers from input form and display first mood question
-  var nextBtnFunc1 = function () {
-    //run get answers func
-    getmoodAnswers();
-    getAnswers();
-  };
-
+//Next button function save answers from input form and display first mood question
+var nextBtnFunc1 = function () {
+  //run get answers func
+  getmoodAnswers();
+  getAnswers();
+  //warn if missing any answers
+  ////need to add
+};
 
 // get input from second questions
 var getAnswers = function () {
