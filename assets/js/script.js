@@ -11,6 +11,8 @@ var nextBtn1Get = document.getElementById("nextBtn1");
 var tryAgainBtnGet = document.getElementById("tryAgainBtn");
 var startOverBtnGet = document.getElementById("startOverBtn");
 var surpriseMeBtnGet = document.getElementById("surpriseMeBtn");
+var startNavBtnGet = document.getElementById("startNavBtn");
+var surpriseNavBtnGet = document.getElementById("surpriseMeNavBtn")
 
 //--------Section variables-----------//
 var section1Area = document.querySelector(".section1");
@@ -622,3 +624,6 @@ nextBtn1Get.addEventListener("click", nextBtnFunc1);
 clearBtnGet.addEventListener("click", clearAnswers);
 tryAgainBtnGet.addEventListener("click", tryAgainFunc);
 startBtnGet.addEventListener("click", startBtnFunc);
+surpriseMeBtnGet.addEventListener("click", surpriseMeBtnFunc);
+startNavBtnGet.addEventListener("click", startBtnFunc);
+surpriseNavBtnGet.addEventListener("click", surpriseMeBtnFunc);
