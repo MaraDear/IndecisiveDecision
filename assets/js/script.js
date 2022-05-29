@@ -481,7 +481,6 @@ var bookResultFunc = function (bookData) {
   }
 };
 //-----movie API--------//
-<<<<<<< HEAD
 var movieAPI = function (categoryPick, movieCodes) {
   //random number coding
   m = Math.floor(Math.random() * 5);
@@ -506,33 +505,6 @@ var movieAPI = function (categoryPick, movieCodes) {
       alert("Unable to connect to movie api");
     });
 
-=======
-var searchGenre = function(categoryPick) {
-  var genreID = document.getElementsByName('gender');
-  //   console.log("searchGenre, displayRadioValue, genreID:  "+ genreID)
-  //   for(i = 0; i < genreID.length; i++) {
-  //     if(genreID[i].checked)
-  //     categoryPick = genreID[i].value;
-  //     console.log("searchGenre, displayRadioValue:  " + categoryPick)
-  // }
-  if (genreID = "action"){
-    var categoryPick= 28;
-  } else if (genreID = "comedy"){
-    var categoryPick= 35;
-  } else if (genreID = "drama"){
-    var categoryPick= 18;
-  } else if (genreID = "romance"){
-    var categoryPick= 10749;
-  }
-  console.log("searchGenre, categoryPick:  "+categoryPick);
-  // movieAPI(categoryPick);
-}
-
-var movieAPI = function (categoryPick) {
-  console.log("movieAPI, categoryPick:  "+categoryPick);
-  var apiUrl = "https://api.themoviedb.org/3/discover/movie?api_key=483e17e3930801f2012e0e7c7f4fb86e&certification_country=US&language=en-US&region=US&with_genres=" + categoryPick + "&language=en-US&popularity.desc&include_adult=false&include_video=false&page=1"
-  console.log("movieAPI, apiUrl:  "+apiUrl);
->>>>>>> main
   // for reference array inputs categoryPick = [keywords,genre,ratingMovie,ratingBook,dateMood];
   ////phil is working on
   ////movieResultFunc(movieData);
