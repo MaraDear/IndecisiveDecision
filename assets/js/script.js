@@ -8,7 +8,6 @@ var startBtnGet = document.getElementById("startBtn");
 var clearBtnGet = document.getElementById("clearBtn");
 // might need for answers if they are buttons
 var nextBtn1Get = document.getElementById("nextBtn1");
-var nextBtn2Get = document.getElementById("nextBtn2");
 var tryAgainBtnGet = document.getElementById("tryAgainBtn");
 var startOverBtnGet = document.getElementById("startOverBtn");
 var surpriseMeBtnGet = document.getElementById("surpriseMeBtn");
@@ -369,20 +368,35 @@ var bookResultFunc = function (bookData) {
     .getElementById("bookResultLink2")
     .setAttribute("href", bookData.items[c].volumeInfo.canonicalVolumeLink);
   //title
-  var bookTitle = bookData.items[c].volumeInfo.title;
-  console.log(bookTitle);
-  document.getElementById("bookTitle").textContent = bookTitle;
+  if (bookData.items[c].volumeInfo.title) {
+    var bookTitle = bookData.items[c].volumeInfo.title;
+    document.getElementById("bookTitle").textContent = bookTitle;
+  } else {
+    tryAgainFunc();
+  }
   //author
-  var bookAuthor = bookData.items[c].volumeInfo.authors[0];
+  if (bookData.items[c].volumeInfo.authors[0]) {
+    var bookAuthor = bookData.items[c].volumeInfo.authors[0];
+  } else {
+    var bookAuthor = "";
+  }
   document.getElementById("bookAuthor").textContent = bookAuthor;
   //summary
   ////figure out how to cut off summary if more than # lines
-  var bookInfo = bookData.items[c].volumeInfo.description;
+  if (bookData.items[c].volumeInfo.description) {
+    var bookInfo = bookData.items[c].volumeInfo.description;
+  } else {
+    var bookInfo = "";
+  }
   document.getElementById("bookInfo").textContent = bookInfo;
   //book thumbnail URL
-  var bookThumbnailGet = document.getElementById("bookImage");
-  var bookThumbnail = bookData.items[c].volumeInfo.imageLinks.smallThumbnail;
+  if (bookData.items[c].volumeInfo.imageLinks.smallThumbnail) {
+    var bookThumbnail = bookData.items[c].volumeInfo.imageLinks.smallThumbnail;
+  } else {
+    var bookThumbnail = "";
+  }
   //var bookThumbnailEl = document.createElement("img");
+  var bookThumbnailGet = document.getElementById("bookImage");
   bookThumbnailGet.setAttribute("src", bookThumbnail);
   bookThumbnailGet.setAttribute("height", "50px");
   bookThumbnailGet.setAttribute("alt", bookTitle);
@@ -476,7 +490,7 @@ var surpriseMeBtnFunc = function () {
 function clearAnswers() {
   //clear then reload form input page
   localStorage.clear();
-  startBtnFunc;
+  startBtnFunc();
 }
 
 // Try Again button -- shuffles a new suggestion from already existing arrays
