@@ -114,11 +114,12 @@ var startBtnFunc = function () {
       var answerSpot = document.querySelectorAll(
         'input[name="Preference' + ii + '"]'
       );
-      console.log(answerOptions);
       for (var a = 0; a < 4; a++) {
-        var answerA = answerOptions[a].checked;
-        if (answerA == true) {
-          
+        var answerUse = answerSpot[a];
+        if (answerUse == a) {
+          answerSpot[a].checked;
+        }else{
+          answerSpot[a].unchecked;
         }
       }
     }
