@@ -316,7 +316,7 @@ var resultsPage = function (categoryPick, movieCodes) {
   //get bookResult info
   bookAPI(categoryPick);
   //get movieResult info
-  movieAPI(movieCodes);
+  movieAPI(categoryPick, movieCodes); //categoryPick[3] is movie rating
   //get otherResult info
   otherAPI();
 };
