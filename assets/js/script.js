@@ -27,6 +27,7 @@ var errorMsgArea = document.getElementById("error");
 //--------Item and Object variables-----------//
 var i;
 var categoryPick = [];
+var movieCodes;
 
 var c = 0; //constant for testing
 
@@ -187,7 +188,7 @@ var resultTypeFunc = function () {
   var ratingBook; // MATURE, not-mature
   var dateMood; //not certain on words to carry over
   var keywords;
-  var movieCodes;
+  movieCodes = "";
   ///////add this results means this answer for category pick array section
   // moodAnswers[0] //use these 3 to make keywords
   // answers[0] pick genre
@@ -415,16 +416,15 @@ var bookResultFunc = function (bookData) {
     document.getElementById("bookInfo").textContent = bookInfo;
     //book thumbnail URL
     if (!bookData.items[c].volumeInfo.imageLinks.smallThumbnail) {
-      var bookThumbnail = "";
+      document.getElementById("bookImage").innerHTML = "";
     } else {
       var bookThumbnail =
         bookData.items[c].volumeInfo.imageLinks.smallThumbnail;
+      var bookThumbnailGet = document.getElementById("bookImage");
+      bookThumbnailGet.setAttribute("src", bookThumbnail);
+      bookThumbnailGet.setAttribute("height", "50px");
+      bookThumbnailGet.setAttribute("alt", bookTitle);
     }
-    //var bookThumbnailEl = document.createElement("img");
-    var bookThumbnailGet = document.getElementById("bookImage");
-    bookThumbnailGet.setAttribute("src", bookThumbnail);
-    bookThumbnailGet.setAttribute("height", "50px");
-    bookThumbnailGet.setAttribute("alt", bookTitle);
   }
 };
 //-----movie API--------//
@@ -507,7 +507,7 @@ var surpriseMeBtnFunc = function () {
     "not-mature",
     "modern",
   ];
-  var movieCodes = "28_30_31";
+  movieCodes = "28_30_31";
   resultsPage(categoryPick, movieCodes);
 };
 
