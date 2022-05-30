@@ -11,8 +11,8 @@ var nextBtn1Get = document.getElementById("nextBtn1");
 var tryAgainBtnGet = document.getElementById("tryAgainBtn");
 var startOverBtnGet = document.getElementById("startOverBtn");
 var surpriseMeBtnGet = document.getElementById("surpriseMeBtn");
-var startNavBtnGet = document.getElementById("startBtn");
-var surpriseNavBtnGet = document.getElementById("surpriseMeBtn")
+var startNavBtnGet = document.getElementById("navStartBtn");
+var surpriseNavBtnGet = document.getElementById("navSurpriseMeBtn");
 
 //--------Section variables-----------//
 var section1Area = document.querySelector(".section1");
@@ -47,26 +47,6 @@ if (LSAnswers) {
 // fixed answers array
 var moodAnswers = [];
 
-// fixed questions array
-const questions = [
-  {
-    question: "4. Which is your favorite?",
-    answers: ["Action", "Comedy", "Drama", "radio"],
-  },
-  {
-    question: "5. How mature are you?",
-    answers: [
-      "Just a babe",
-      "I'm a pretty cool cat",
-      "Don't let any kids in here",
-    ],
-  },
-  {
-    question: "6. Which best represents your personality",
-    answers: ["Classic", "Nastalgic ", "Modern"],
-  },
-];
-
 ////--------------functions-----------------////
 
 //get a random number to pick one of the books/movies in the array between 0 and 30
@@ -88,43 +68,48 @@ var startBtnFunc = function () {
   //// populate with answers from local storage if there are any
   //populate question
   ////fix to have label and radios on the left
-  for (i = 0; i < questions.length; i++) {
-    var ii = i + 1;
-    var questCon = document.createElement("h3");
-    questCon.innerHTML = questions[i].question;
-    answerArea.append(questCon);
-    for (var a = 0; a < questions[i].answers.length; a++) {
-      var inputConEl = document.createElement("div");
-      inputConEl.classList = "eachAnswerContainer";
-      answerArea.append(inputConEl);
-      var inputEl = document.createElement("input");
-      var labelEl = document.createElement("label");
-      labelEl.setAttribute("for", "q" + i + "a" + a + "radio");
-      labelEl.innerHTML = questions[i].answers[a];
-      inputEl.setAttribute("type", "radio");
-      inputEl.setAttribute("name", "answer" + ii);
-      inputEl.setAttribute("id", "q" + i + "a" + a + "radio");
-      inputEl.classList = "radios answerBlock";
-      inputConEl.append(inputEl);
-      inputConEl.append(labelEl);
-    }
-  }
+  // for (i = 0; i < questions.length; i++) {
+  //   var ii = i + 1;
+  //   var questCon = document.createElement("h3");
+  //   questCon.innerHTML = questions[i].question;
+  //   answerArea.append(questCon);
+  //   for (var a = 0; a < questions[i].answers.length; a++) {
+  //     var inputConEl = document.createElement("div");
+  //     inputConEl.classList = "eachAnswerContainer";
+  //     answerArea.append(inputConEl);
+  //     var inputEl = document.createElement("input");
+  //     var labelEl = document.createElement("label");
+  //     labelEl.setAttribute("for", "q" + i + "a" + a + "radio");
+  //     labelEl.innerHTML = questions[i].answers[a];
+  //     inputEl.setAttribute("type", "radio");
+  //     inputEl.setAttribute("name", "answer" + ii);
+  //     inputEl.setAttribute("id", "q" + i + "a" + a + "radio");
+  //     inputEl.classList = "radios answerBlock";
+  //     inputConEl.append(inputEl);
+  //     inputConEl.append(labelEl);
+  //   }
+  // }
   // console.log(answers);
-  if (answers) {
-    for (i = 0; i < 3; i++) {
-      var ii = i + 1;
-      var answerSpot = document.querySelectorAll(
-        'input[name="Preference' + ii + '"]'
-      );
-      console.log(answerOptions);
-      for (var a = 0; a < 4; a++) {
-        var answerA = answerOptions[a].checked;
-        if (answerA == true) {
-          
-        }
-      }
-    }
-  }
+  // if (answers) {
+  //   for (i = 0; i < 3; i++) {
+  //     var ii = i + 1;
+  //     var answerSpot = document.querySelectorAll(
+  //       'input[name="answer' + ii + '"]'
+  //     );
+  //     console.log(answerSpot);
+  // var aa;
+  //     if ((i = 0)) {
+  //       aa = 4;
+  //     } else {
+  //       aa = 3;
+  //     }
+  //     for (var a = 0; a < aa; a++) {
+  //       var answerA = answerSpot[a].checked;
+  //       if (answerA == true) {
+  //       }
+  //     }
+  //   }
+  // }
 };
 
 //Next button function save answers from input form and display first mood question
@@ -151,7 +136,7 @@ var getmoodAnswers = function () {
         var answerNow = a;
       }
     }
-    //error if no answer
+    // error if no answer
     if (answerNow) {
       //populate answers array
       moodAnswers[i] = answerNow;
@@ -165,19 +150,25 @@ var getmoodAnswers = function () {
   // move answers from form to replace local storage
   //warn if missing any answers
   //add in if any blank then this, other wise error msg
-  errorMsgArea.textContent = "";
+  // errorMsgArea.textContent = "";
 };
 
 // get input from second questions
 var getAnswers = function () {
   //add to answers array to determine category pick
   var answerNow = "";
-  for (i = 0; i < questions.length; i++) {
+  for (i = 0; i < 3; i++) {
     var ii = i + 1;
     var answerOptions = document.querySelectorAll(
       'input[name="answer' + ii + '"]'
     );
-    for (var a = 0; a < questions[i].answers.length; a++) {
+    var aa;
+    if ((i = 0)) {
+      aa = 4;
+    } else {
+      aa = 3;
+    }
+    for (var a = 0; a < aa; a++) {
       var answerA = answerOptions[a].checked;
       if (answerA == true) {
         answerNow = a;

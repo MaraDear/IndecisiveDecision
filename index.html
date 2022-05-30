@@ -41,8 +41,8 @@
 
       <div class="navbar-menu" id="nav-links">
         <div class="navbar-end">
-          <a id="startBtn" class="navbar-item">Start Now</a>
-          <a id="surpriseMeBtn" class="navbar-item">Surprise me</a>
+          <a id="navStartBtn" class="navbar-item">Start Now</a>
+          <a id="navSurpriseMeBtn" class="navbar-item">Surprise me</a>
         </div>
       </div>
     </nav>
@@ -94,7 +94,7 @@
       </button>
       <div class="formResults">
         <!-- input form  -->
-        <p>Tell us how you are feeling?</p>
+        <h3>Tell us how you are feeling?</h3>
 
         <form>
           <input type="radio" id="daring" name="Preference1" value="daring" />
@@ -107,7 +107,7 @@
           <label for="nature">Tired</label>
         </form>
 
-        <p>What sounds more interesting to you?</p>
+        <h3>What sounds more interesting to you?</h3>
 
         <form>
           <input type="radio" id="action" name="Preference2" value="action" />
@@ -122,7 +122,7 @@
           >
         </form>
 
-        <p>What are you looking for?</p>
+        <h3>What are you looking for?</h3>
 
         <form>
           <input type="radio" id="action" name="Preference3" value="action" />
@@ -141,9 +141,46 @@
           >
         </form>
     <!-- fixed Questions  -->
-      <div class="answers">
-        <!-- input form populated with radios in js  -->
-      </div>
+        <div class="answers">
+        <!-- input form populated with local storage  -->
+                <h3>4. Which is your favorite?</h3>
+            <form>
+          <input type="radio" id="q1a1radio" name="answer1" value="q1a1radio" />
+          <label for="q1a1radio">Action</label><br />
+          <input type="radio" id="q1a2radio" name="answer1" value="q1a2radio" />
+          <label for="q1a2radio">Comedy</label><br />
+          <input type="radio" id="q1a3radio" name="answer1" value="q1a3radio" />
+          <label for="q1a3radio">Drama</label><br />
+          <input type="radio" id="q1a4radio" name="answer1" value="q1a4radio" />
+          <label for="q1a4radio">romance</label>
+        </form>
+
+        <h3>5. How mature are you?</h3>
+
+        <form>
+          <input type="radio" id="q2a1radio" name="answer2" value="q2a1radio" />
+          <label for="q2a1radio">Just a babe</label><br />
+          <input type="radio" id="q2a2radio" name="answer2" value="q2a2radio" />
+          <label for="q2a2radio">I'm a pretty cool cat</label><br />
+          <input type="radio" id="q2a3radio" name="answer2" value="q2a3radio" />
+          <label for="q2a3radio">Don't let any kids in here</label><br />
+
+        </form>
+
+        <h3>6. Which best represents your personality</h3>
+
+        <form>
+          <input type="radio" id="q3a1radio" name="answer3" value="q3a1radio" />
+          <label for="q3a1radio">Classic</label
+          ><br />
+          <input type="radio" id="q3a2radio" name="answer3" value="q3a2radio" />
+          <label for="q3a2radio">Nastalgic</label><br />
+          <input type="radio" id="q3a3radio" name="answer3" value="q3a3radio" />
+          <label for="q3a3radio"
+            >Modern</label
+          ><br />
+           </div>
+        </form>
       <button class="btnStyle btn4" id="nextBtn1">SUBMIT</button>
       <!-- //turn into modal? -->
       <div id="error"></div>
