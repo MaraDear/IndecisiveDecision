@@ -487,10 +487,14 @@ var movieAPI = function (movieCodes) {
 
 //get movie result
 var movieResultFunc = function (movieData) {
-  // JSON.stringify(movieData);
   // populate movieResult object
   var movieTitle = JSON.stringify(movieData.results[0].title);
   document.getElementById("movieTitle").textContent = movieTitle;
+  var movieOverview = JSON.stringify(movieData.results[0].overview);
+  document.getElementById("movieInfo").textContent = movieOverview;
+  var movieImage = JSON.stringify(movieData.results[0].poster_path).slice(1,-1);
+  var imageLink = document.getElementById("movieImage").setAttribute("src", "https://image.tmdb.org/t/p/w500"+movieImage);
+  console.log("imageLink:  " + imageLink);
   
 };
 //-----advice API--------//
