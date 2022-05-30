@@ -86,9 +86,12 @@ header h1 {
   height: 100vh;
 }
 
-h4 {
-  font-family: 'Fjalla One';
+h2, h3, h4, h5  {
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: bold;
 }
+
+
 
 /*footer*/
 
