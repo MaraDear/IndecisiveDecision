@@ -15,6 +15,7 @@ List notes and features here<br />
 ### URL Live Webpage:
 
 [Link to website](https://maradear.github.io/IndecisiveDecision/)
+![screenshot](assets/images/Indecisive.Decisions.screenshot.png)
 
 ### GitHub Repo:
 
