@@ -73,10 +73,10 @@
               tempore quibusdam, architecto error accusamus. Provident
               blanditiis ea atque quam quia labore suscipit hic!
             </p>
-            <button class="button is-success is-large mt-5" id="startBtn">
+            <button class="button is-success is-size-5-mobile is-size-4-desktop  mt-5" id="startBtn">
               START</button
             ><br />
-            <button class="button is-danger is-large mt-1" id="surpriseMeBtn">
+            <button class="button is-danger is-size-5-mobile is-size-4-desktop mt-2" id="surpriseMeBtn">
               Surprise Me
             </button>
           </div>
@@ -89,13 +89,16 @@
     <!-- first page will have a form fixed preferences that'll repopulate from local storage -->
     <article class="formResultsArea">
       <!-- Replace header with "Preferences" type title -->
-      <button class="btnStyle btn3" id="clearBtn">
-        I didn't mean what I said before
-      </button>
-      <div class="formResults">
-        <!-- input form  -->
-        <p>Tell us how you are feeling?</p>
-
+        <h3 class="is-size-5-mobile is-size-1-desktop title has-text-centered">Tell Us More</h3>
+        <div class="formResults container">
+          <!-- input form  -->
+        
+          <div class="columns mt-5 is-one-third is-variable">
+            <div class="column">
+              <div class="card">
+                <div class="card-content">
+                  <div class="content">
+                    <h3 class="Title has-text-centered">How you are feeling?</h3>
         <form>
           <input type="radio" id="daring" name="Preference1" value="daring" />
           <label for="daring">Daring</label><br />
@@ -106,8 +109,15 @@
           <input type="radio" id="nature" name="Preference1" value="nature" />
           <label for="nature">Tired</label>
         </form>
-
-        <p>What sounds more interesting to you?</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+ <div class="column">
+              <div class="card">
+                <div class="card-content">
+                  <div class="content">
+                    <h3 class="Title has-text-centered">What sounds more interesting to you?</h3>
 
         <form>
           <input type="radio" id="action" name="Preference2" value="action" />
@@ -121,8 +131,15 @@
             >Falling for the love story playing out infront of your eyes</label
           >
         </form>
-
-        <p>What are you looking for?</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="column ">
+              <div class="card">
+                <div class="card-content">
+                  <div class="content">
+                    <h3 class="Title has-text-centered">What sounds more interesting to you?</h3>
 
         <form>
           <input type="radio" id="action" name="Preference3" value="action" />
@@ -140,13 +157,66 @@
             >Heartfelt stories with a happy ending and warm heart</label
           >
         </form>
+                          </div>
+                </div>
+              </div>
+            </div>
+          </div>
     <!-- fixed Questions  -->
       <div class="answers">
         <!-- input form populated with radios in js  -->
+
+    <!-- input form populated with local storage  -->
+                <h3>4. Which is your favorite?</h3>
+            <form>
+          <input type="radio" id="q1a1radio" name="answer1" value="q1a1radio" />
+          <label for="q1a1radio">Action</label><br />
+          <input type="radio" id="q1a2radio" name="answer1" value="q1a2radio" />
+          <label for="q1a2radio">Comedy</label><br />
+          <input type="radio" id="q1a3radio" name="answer1" value="q1a3radio" />
+          <label for="q1a3radio">Drama</label><br />
+          <input type="radio" id="q1a4radio" name="answer1" value="q1a4radio" />
+          <label for="q1a4radio">romance</label>
+        </form>
+
+        <h3>5. How mature are you?</h3>
+
+        <form>
+          <input type="radio" id="q2a1radio" name="answer2" value="q2a1radio" />
+          <label for="q2a1radio">Just a babe</label><br />
+          <input type="radio" id="q2a2radio" name="answer2" value="q2a2radio" />
+          <label for="q2a2radio">I'm a pretty cool cat</label><br />
+          <input type="radio" id="q2a3radio" name="answer2" value="q2a3radio" />
+          <label for="q2a3radio">Don't let any kids in here</label><br />
+
+        </form>
+
+        <h3>6. Which best represents your personality</h3>
+
+        <form>
+          <input type="radio" id="q3a1radio" name="answer3" value="q3a1radio" />
+          <label for="q3a1radio">Classic</label
+          ><br />
+          <input type="radio" id="q3a2radio" name="answer3" value="q3a2radio" />
+          <label for="q3a2radio">Nastalgic</label><br />
+          <input type="radio" id="q3a3radio" name="answer3" value="q3a3radio" />
+          <label for="q3a3radio"
+            >Modern</label
+          ><br />
+           </div>
+        </form>
+
+
+
+
+
       </div>
-      <button class="btnStyle btn4" id="nextBtn1">SUBMIT</button>
-      <!-- //turn into modal? -->
-      <div id="error"></div>
+            <!-- //turn into modal? -->
+            <div id="error"></div>
+      
+            <button class="button is-warning ml-6 px-6" id="clearBtn">I didn't mean what I said before</button>
+            <button class="button is-success" id="nextBtn1">SUBMIT</button>
+      </div>
     </article>
 
     <!-- Results  -->
