@@ -26,10 +26,35 @@
       href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap"
       rel="stylesheet"
     />
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Lobster&display=swap" 
+      rel="stylesheet">
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Lobster&family=Oswald:wght@300;400&display=swap" 
+      rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
 
   <body>
+    <!--NAVBAR-->
+    <nav class="navbar">
+      <div class="navbar-brand">
+        <a class="navbar-item">
+          <img
+            src="./assets/images/pngfind.com-lightbulb-icon-png-805759.png"
+            alt="lightbulb logo"
+            style="max-height: 50px"
+          />
+        </a>
+      </div>
+
+      <div class="navbar-menu" id="nav-links">
+        <div class="navbar-end">
+          <a id="startNavBtn" class="navbar-item">Start Now</a>
+          <a id="surpriseMeNavBtn" class="navbar-item">Surprise me</a>
+        </div>
+      </div>
+    </nav>
     <!-- HEADER  -->
     <header>
       <h1 class="headerCon"></h1>
@@ -49,96 +74,172 @@
           </div>
           <!-- images info etc  -->
           <div class="column is-6 has-text-centered">
-            <h2 class="is-size-1 title">PREPARE FOR RELAXATION</h2>
-            <h3 class="is-size-2 subtitle">WE ARE HERE TO HELP</h3>
+            <h2 class="is-size-5-mobile is-size-1-desktop title">
+              PREPARE FOR RELAXATION
+            </h2>
+            <h2 class="is-size-6-mobile is-size-2-desktop subtitle">
+              WE ARE HERE TO HELP
+            </h2>
             <p>
-              Welcome to indecisive decisions, where we do the thinking
-              for you! Get ready for the stress to be free from your 
-              shoulders. It's simple please take our six question quiz 
-              and we will do the deciding for you. You will recieve a 
-              movie and a book recommendation based off of your feelings,
-              and preferences. You can also go wild and chose the 'Suprise me'
-              selection option which will randomly select and give you
-              recommendations. 
-              Enjoy and relax,
-                    Thank you!
+              Welcome to Indecisive Decisions, where we do the thinking for you!
+              Get ready for stress to be free from your shoulders. It's
+              simple, just take our six question quiz and we will do the
+              deciding for you. You will recieve a movie and a book
+              recommendation based off of your feelings, and preferences. You
+              can also go wild and choose the 'Suprise me' selection option which
+              will randomly select and give you recommendations. Enjoy and
+              relax, Thank you!
             </p>
-            <button class="button is-success is-large mt-5" id="startBtn">
-              START</button
-            ><br />
-            <button class="button is-danger is-large mt-1" id="surpriseMeBtn">
-              Surprise Me
-            </button>
-          </div>
-          <div class="column is-3 has-text-centered"></div>
+            <button class="button is-success is-size-5-mobile is-size-4-desktop mt-5" id="startBtn">Start</button><br/>
+            <button class="button is-danger is-size-5-mobile is-size-4-desktop mt-2" id="surpriseMeBtn">Surprise Me</button>
+          </div>  
         </div>
       </div>
     </article>
 
     <!-- Preference Questions  -->
+
     <!-- first page will have a form fixed preferences that'll repopulate from local storage -->
     <article class="formResultsArea">
+
       <!-- Replace header with "Preferences" type title -->
-      <button class="btnStyle btn3" id="clearBtn">
-        I didn't mean what I said before
-      </button>
-      <div class="formResults">
-        <!-- input form  -->
-        <p>1. Tell us how you are feeling?</p>
+        <h3 class="is-size-5-mobile is-size-1-desktop title has-text-centered">Tell Us More</h3>
+        <div class="formResults container">
 
-        <form>
-          <input type="radio" id="daring" name="Preference1" value="daring" />
-          <label for="daring">Daring</label><br />
-          <input type="radio" id="elated" name="Preference1" value="elated" />
-          <label for="elated">Elated</label><br />
-          <input type="radio" id="drama" name="Preference1" value="drama" />
-          <label for="drama">Sad</label><br />
-          <input type="radio" id="nature" name="Preference1" value="nature" />
-          <label for="nature">Tired</label>
-        </form>
+          <!-- input form  -->
+          <div class="columns mt-5 is-one-third is-variable">
+            <div class="column">
+              <div class="card">
+                <div class="card-content">
+                  <div class="content">
+                    <h3 class="Title has-text-centered">How you are feeling?</h3>
+                    <form>
+                      <input type="radio" id="daring" name="Preference1" value="daring" />
+                      <label for="daring">Daring</label><br />
+                      <input type="radio" id="elated" name="Preference1" value="elated" />
+                      <label for="elated">Elated</label><br />
+                      <input type="radio" id="drama" name="Preference1" value="drama" />
+                      <label for="drama">Sad</label><br />
+                      <input type="radio" id="nature" name="Preference1" value="nature" />
+                      <label for="nature">Tired</label>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            <div class="column">
+              <div class="card">
+                <div class="card-content">
+                  <div class="content">
+                    <h3 class="Title has-text-centered">What sounds more interesting to you?</h3>
+                    <form>
+                      <input type="radio" id="action" name="Preference2" value="action" />
+                      <label for="action">Being on the edge of your seat</label><br />
+                      <input type="radio" id="comedy" name="Preference2" value="comedy" />
+                      <label for="comedy">Laughing until your stomach hurts</label><br />
+                      <input type="radio" id="drama" name="Preference2" value="drama" />
+                      <label for="drama">Feeling all the emotions of a movie</label><br />
+                      <input type="radio" id="romance" name="Preference2" value="romance" />
+                      <label for="romance">Falling for the love story playing out infront of your eyes</label>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-        <p>2. What sounds more interesting to you?</p>
+            <div class="column ">
+              <div class="card">
+                <div class="card-content">
+                  <div class="content">
+                    <h3 class="Title has-text-centered">What sounds more interesting to you?</h3>
+                    <form>
+                      <input type="radio" id="action" name="Preference3" value="action" />
+                      <label for="action">Non stop thrills from beginning to end</label><br />
+                      <input type="radio" id="comedy" name="Preference3" value="comedy" />
+                      <label for="comedy">Big actors with big jokes </label><br />
+                      <input type="radio" id="drama" name="Preference3" value="drama" />
+                      <label for="drama">Wholesome stories with big feelings and pulling of the heartstrings</label><br />
+                      <input type="radio" id="romance" name="Preference3" value="romance" />
+                      <label for="romance">Heartfelt stories with a happy ending and warm heart</label><br />
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-        <form>
-          <input type="radio" id="action" name="Preference2" value="action" />
-          <label for="action">Being on the edge of your seat</label><br />
-          <input type="radio" id="comedy" name="Preference2" value="comedy" />
-          <label for="comedy">Laughing until your stomach hurts</label><br />
-          <input type="radio" id="drama" name="Preference2" value="drama" />
-          <label for="drama">Feeling all the emotions of a movie</label><br />
-          <input type="radio" id="romance" name="Preference2" value="romance" />
-          <label for="romance"
-            >Falling for the love story playing out infront of your eyes</label
-          >
-        </form>
-
-        <p>3. What are you looking for?</p>
-
-        <form>
-          <input type="radio" id="action" name="Preference3" value="action" />
-          <label for="action">Non stop thrills from beginning to end</label
-          ><br />
-          <input type="radio" id="comedy" name="Preference3" value="comedy" />
-          <label for="comedy">Big actors with big jokes </label><br />
-          <input type="radio" id="drama" name="Preference3" value="drama" />
-          <label for="drama"
-            >Wholesome stories with big feelings and pulling of the heart
-            strings</label
-          ><br />
-          <input type="radio" id="romance" name="Preference3" value="romance" />
-          <label for="romance"
-            >Heartfelt stories with a happy ending and warm heart</label
-          >
-        </form>
-    <!-- fixed Questions  -->
+              <!-- fixed Questions  -->
       <div class="answers">
-        <!-- input form populated with radios in js  -->
-      </div>
-      <button class="btnStyle btn4" id="nextBtn1">SUBMIT</button>
-      <!-- //turn into modal? -->
-      <div id="error"></div>
-    </article>
+              <!-- input form populated with radios in js  -->
 
+              <!-- input form populated with local storage  -->
+          <div class="columns mt-5 is-one-third is-variable">
+            <div class="column ">
+              <div class="card">
+                <div class="card-content">
+                  <div class="content">
+                    <h3 class="Title has-text-centered">Which is your favorite?</h3>
+                    <form>
+                      <input type="radio" id="q1a1radio" name="answer1" value="q1a1radio" />
+                      <label for="q1a1radio">Action</label><br />
+                      <input type="radio" id="q1a2radio" name="answer1" value="q1a2radio" />
+                      <label for="q1a2radio">Comedy</label><br />
+                      <input type="radio" id="q1a3radio" name="answer1" value="q1a3radio" />
+                      <label for="q1a3radio">Drama</label><br />
+                      <input type="radio" id="q1a4radio" name="answer1" value="q1a4radio" />
+                      <label for="q1a4radio">romance</label>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="column ">
+              <div class="card">
+                <div class="card-content">
+                  <div class="content">
+                    <h3 class="Title has-text-centered"> How mature are you?</h3>
+                    <form>
+                      <input type="radio" id="q2a1radio" name="answer2" value="q2a1radio" />
+                      <label for="q2a1radio">Just a babe</label><br />
+                      <input type="radio" id="q2a2radio" name="answer2" value="q2a2radio" />
+                      <label for="q2a2radio">I'm a pretty cool cat</label><br />
+                      <input type="radio" id="q2a3radio" name="answer2" value="q2a3radio" />
+                      <label for="q2a3radio">Don't let any kids in here</label><br />
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="column ">
+              <div class="card">
+                <div class="card-content">
+                  <div class="content">
+                    <h3 class="Title has-text-centered">6. Which best represents your personality</h3>
+                    <form>
+                    <input type="radio" id="q3a1radio" name="answer3" value="q3a1radio" />
+                    <label for="q3a1radio">Classic</label><br />
+                    <input type="radio" id="q3a2radio" name="answer3" value="q3a2radio" />
+                    <label for="q3a2radio">Nastalgic</label><br />
+                    <input type="radio" id="q3a3radio" name="answer3" value="q3a3radio" />
+                    <label for="q3a3radio">Modern</label><br />
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>     
+          </div>
+      </div>
+
+            <!-- //turn into modal? -->
+      <div id="error"></div>
+
+      <button class="button is-warning ml-6 px-6" id="clearBtn">I didn't mean what I said before</button>
+      <button class="button is-success" id="nextBtn1">SUBMIT</button>
+                
+    </article>
     <!-- Results  -->
     <article class="resultsSection" id="resultsSection">
       <!-- replace header with 'our Plans Are ...'  -->
@@ -197,42 +298,34 @@
     </article>
 
     <!-- FOOTER  -->
-    <footer class="footer">
-      <section
-        class="is-flex flex-wrap is-justify-content-space-between has-text-black"
-      >
-        <div>
-          <h2>Created by: <span>Caleb, Charissa, Danielle, & Philip</span></h2>
-        </div>
+    <footer>
+      <section class="footer-content">
+          <h5 class="has-text-left">Created by:</h5>
+            <h6 class="mt-1 ml-2">Caleb K.</h6>
+            <h6 class="mt-1 ml-1">Charissa H.</h6>
+            <h6 class="mt-1 ml-1">Danielle G.</h6>
+            <h6 class="mt-1 ml-1">& Philip G.</h6>
+        
         <div class="creditLogos">
           <!-- movies credit logo  -->
-          <a href="https://developers.themoviedb.org" title="Movie API">
-            <img
+          <a class="image is-32x32 is-right" href="https://developers.themoviedb.org" title="Movie API">
+            <img class="is-rounded" 
               src="./assets/images/TMDB.jpg"
-              alt="Movie data populated by themoviedb.org"
-              ;
-              width="60px"
-              ;
+              alt="Movie data populated by themoviedb.org";
             />
           </a>
           <!-- books credit logo  -->
-          <a href="https://developers.google.com/books/" title="Book API">
-            <img
+          <a class="image is-32x32" href="https://developers.google.com/books/" title="Book API">
+            <img class="is-rounded"
               src="./assets/images/Google-Books-Update.png"
-              alt="Movie data populated by themoviedb.org"
-              ;
-              width="60px"
-              ;
+              alt="Movie data populated by themoviedb.org";
             />
           </a>
           <!-- other api credit logo  -->
-          <a href="https://api.adviceslip.com/" title="Advice Slip API">
-            <img
+          <a class="image is-32x32" href="https://api.adviceslip.com/" title="Advice Slip API">
+            <img class="is-rounded"
               src="https://pbs.twimg.com/profile_images/3172147527/4bca01881aa553af3df95c076d6ce4d3_400x400.png"
-              alt="Advice data populated by https://adviceslip.com/"
-              ;
-              width="60px"
-              ;
+              alt="Advice data populated by https://adviceslip.com/";
             />
           </a>
         </div>

@@ -10,6 +10,9 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 /*variables*/
 
 :root {
@@ -28,6 +31,11 @@ body {
   margin: 0;
 }
 
+
+.navbar {
+  background-color: #c4d3d8;
+}
+
 /*--headline with quicklinks*/
 header {
 	margin: 0 auto;
@@ -43,7 +51,6 @@ header {
   align-items: center;
   display: flex;
   flex-flow: column;
-  scroll-behavior: smooth;
 }
 
 
@@ -66,36 +73,67 @@ header h1 {
 .section1 {
   width: 100%;
   height: 100vh;
+  background-image: url(../images/milad-fakurian-UiiHVEyxtyA-unsplash.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  justify-content: center;
+  display: flex;
 }
+
+.section2 {
+  width: 100%;
+  height: 100vh;
+}
+
+.formResultsArea {
+  width: 100%;
+  height: 100vh;
+  background-image: url(..//images/milad-fakurian-UiiHVEyxtyA-unsplash.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  justify-content: center;
+  display: flex;
+}
+
+h2, h3, h4  {
+  font-family: 'Fjalla One', sans-serif;
+  font-weight: bold;
+}
+
+
 
 /*footer*/
-footer {
-  padding: 20px;
-  padding-left: 40px;
-  width: 100vw;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--secondary-color);
-  display: inline-block;
-}
 
-footer h2 {
-  display: inline-block;
-  font-size: 35px;
-}
-
-footer span {
-  font-size: 25px;
-}
 
 .creditLogos {
   padding-right: 40px;
 }
 
-footer a {
-  padding: 7px;
+.footer-content {
+  background-repeat: no-repeat;
+  background-position: bottom;
+  display: flex;
+  flex-flow: row wrap;
+  border-top: 1px;
 }
+
+h5 {
+  font-family: 'Lobster', cursive;
+  font-weight: 400;
+  font-size: 25px;
+  justify-content: left;
+}
+
+
+h6 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  justify-content: left;
+}
+
 
 /* Button designs  */
 .btnStyle {
@@ -123,13 +161,8 @@ body{
     background-color: var(--bg-color2);
 }
 
-article {
-}
 
 /*within each subsections*/
-
-article div {
-}
 
 /*subsection unique attributes*/
 
