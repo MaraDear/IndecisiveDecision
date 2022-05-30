@@ -353,7 +353,7 @@ var resultsPage = function (categoryPick, movieCodes) {
   //get bookResult info
   bookAPI(categoryPick);
   //get movieResult info
-  movieAPI(categoryPick, movieCodes); //categoryPick[3] is movie rating
+  movieAPI(movieCodes); //categoryPick[3] is movie rating
   //get otherResult info
   otherAPI();
 };
@@ -422,10 +422,8 @@ var bookResultFunc = function (bookData) {
   /////book google books link ---- if we want to redirect or can change to pop up box
   //if there is not data for that c then try again until there is
   if (c > bookData.items.length - 1) {
-    console.log("bookResultFunc, c var, IF:  "+c);
     tryAgainFunc();
   } else {
-    console.log("bookResultFunc, c var, ELSE:  "+c);
     document
       .getElementById("bookResultLink1")
       .setAttribute("href", bookData.items[c].volumeInfo.canonicalVolumeLink);
@@ -463,15 +461,10 @@ var bookResultFunc = function (bookData) {
     }
   }
 };
+
 //-----movie API--------//
-var movieAPI = function (categoryPick, movieCodes) {
-  console.log("movieAPI, categoryPick:  "+categoryPick);
-  console.log("movieAPI, movieCodes:  "+movieCodes);
-  //random number coding
-  m = Math.floor(Math.random() * 5);
-  console.log("movieAPI, Math.random:  "+m); // functioning properly
+var movieAPI = function (movieCodes) {
   var genreType = movieCodes;
-  
   var apiMovieUrl = "https://api.themoviedb.org/3/discover/movie?api_key="+tmdbKey+"&certification_country=US&language=en-US&region=US&popularity.desc&include_adult=false&include_video=false&page="+ c +"&with_genres=" + genreType;
   console.log("apiMovieUrl:  "+apiMovieUrl);
   fetch(apiMovieUrl)
@@ -485,23 +478,20 @@ var movieAPI = function (categoryPick, movieCodes) {
       }
     })
     .then(function (movieData) {
-      //console.log(otherData);
-      console.log("fetch(apiMovUrl) if(response.ok).then(function(movieData):  "+JSON.parse(movieData));
+      movieResultFunc(movieData);
     })
     .catch(function (error) {
-      alert("Error: Unable to connect to movie api"+ error.message);
+      alert("Error: Unable to connect to movie api "+ error.message);
     });
-
-/*var movieAPI = function (categoryPick) {
-  // for reference array inputs categoryPick = [keywords,genre,ratingMovie,ratingBook,dateMood];
-  ////phil is working on
-  ////movieResultFunc(movieData);
 };
 
 //get movie result
 var movieResultFunc = function (movieData) {
+  // JSON.stringify(movieData);
   // populate movieResult object
-  */
+  var movieTitle = JSON.stringify(movieData.results[0].title);
+  document.getElementById("movieTitle").textContent = movieTitle;
+  
 };
 //-----advice API--------//
 var otherAPI = function () {
