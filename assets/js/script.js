@@ -472,7 +472,7 @@ var movieAPI = function (categoryPick, movieCodes) {
   console.log("movieAPI, Math.random:  "+m); // functioning properly
   var genreType = movieCodes;
   
-  var apiMovieUrl = "https://api.themoviedb.org/3/discover/movie?api_key="+tmdbKey+"&certification_country=US&language=en-US&region=US&popularity.desc&include_adult=false&include_video=false&page=1&with_genres=" + genreType;
+  var apiMovieUrl = "https://api.themoviedb.org/3/discover/movie?api_key="+tmdbKey+"&certification_country=US&language=en-US&region=US&popularity.desc&include_adult=false&include_video=false&page="+ c +"&with_genres=" + genreType;
   console.log("apiMovieUrl:  "+apiMovieUrl);
   fetch(apiMovieUrl)
     .then(function (response) {
