@@ -227,19 +227,19 @@ var resultTypeFunc = function () {
   switch (answers[0]) {
     case 0:
       keywords = "joy";
-      // movieCodes = "35";
+      movieCodes = "35";
       break;
     case 1:
       keywords = "tears";
-      // movieCodes = "18";
+      movieCodes = "18";
       break;
     case 2:
       keywords = "mystery";
-      // movieCodes = "9648";
+      movieCodes = "9648";
       break;
     case 3:
       keywords = "nature";
-      // movieCodes = "99";
+      movieCodes = "99";
       break;
   }
 
@@ -286,19 +286,19 @@ var resultTypeFunc = function () {
   switch (moodAnswers[0]) {
     case 0:
       genre += "_action";
-      movieCodes[3] += "28";
+      // movieCodes[3] += "28";
       break;
     case 1:
       genre += "_comedy";
-      movieCodes[3] += "35";
+      // movieCodes[3] += "35";
       break;
     case 2:
       genre += "_drama";
-      movieCodes[3] += "10751";
+      // movieCodes[3] += "10751";
       break;
     case 3:
       genre += "_nature";
-      movieCodes[3] += "10751";
+      // movieCodes[3] += "10751";
       break;
   }
   // answers[1] pick rating/maturity
@@ -334,7 +334,8 @@ var resultTypeFunc = function () {
   // pass genre, rating, dateMood, keywords
   ////add code to combine keywords into one string for searching
   categoryPick = [keywords, genre, ratingMovie, ratingBook, dateMood];
-
+  console.log("resultTypeFunc, categoryPick:  "+categoryPick)
+  console.log("resultTypeFunc, movieCodes:  "+movieCodes);
   //results functions
   resultsPage(categoryPick, movieCodes);
 };
@@ -421,8 +422,10 @@ var bookResultFunc = function (bookData) {
   /////book google books link ---- if we want to redirect or can change to pop up box
   //if there is not data for that c then try again until there is
   if (c > bookData.items.length - 1) {
+    console.log("bookResultFunc, c var, IF:  "+c);
     tryAgainFunc();
   } else {
+    console.log("bookResultFunc, c var, ELSE:  "+c);
     document
       .getElementById("bookResultLink1")
       .setAttribute("href", bookData.items[c].volumeInfo.canonicalVolumeLink);
@@ -466,11 +469,11 @@ var movieAPI = function (categoryPick, movieCodes) {
   console.log("movieAPI, movieCodes:  "+movieCodes);
   //random number coding
   m = Math.floor(Math.random() * 5);
-  console.log("movieAPI, Math.random:  "+m);
-  var genreType = movieCodes[m];
-
-  var apiMovieUrl = "https://api.themoviedb.org/3/discover/movie?api_key="+tmdbKey+"&certification_country=US&language=en-US&region=US&with_genres=" + genreType + "&popularity.desc&include_adult=false&include_video=false&page=1";
-
+  console.log("movieAPI, Math.random:  "+m); // functioning properly
+  var genreType = movieCodes;
+  
+  var apiMovieUrl = "https://api.themoviedb.org/3/discover/movie?api_key="+tmdbKey+"&certification_country=US&language=en-US&region=US&popularity.desc&include_adult=false&include_video=false&page=1&with_genres=" + genreType;
+  console.log("apiMovieUrl:  "+apiMovieUrl);
   fetch(apiMovieUrl)
     .then(function (response) {
       // if request was successful
@@ -483,7 +486,7 @@ var movieAPI = function (categoryPick, movieCodes) {
     })
     .then(function (movieData) {
       //console.log(otherData);
-      console.log(movieData)
+      console.log("fetch(apiMovUrl) if(response.ok).then(function(movieData):  "+JSON.parse(movieData));
     })
     .catch(function (error) {
       alert("Error: Unable to connect to movie api"+ error.message);
