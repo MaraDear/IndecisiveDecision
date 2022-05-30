@@ -12,8 +12,7 @@ var tryAgainBtnGet = document.getElementById("tryAgainBtn");
 var startOverBtnGet = document.getElementById("startOverBtn");
 var surpriseMeBtnGet = document.getElementById("surpriseMeBtn");
 var startNavBtnGet = document.getElementById("startNavBtn");
-var surpriseNavBtnGet = document.getElementById("surpriseMeNavBtn")
-
+var surpriseNavBtnGet = document.getElementById("surpriseMeNavBtn");
 
 //--------Section variables-----------//
 var section1Area = document.querySelector(".section1");
@@ -157,35 +156,37 @@ var getmoodAnswers = function () {
 // get input from second questions
 var getAnswers = function () {
   //add to answers array to determine category pick
-  var answerNow = "";
-  for (i = 0; i < 3; i++) {
-    var ii = i + 1;
-    var answerOptions = document.querySelectorAll(
-      'input[name="answer' + ii + '"]'
-    );
-    var aa;
-    if ((i = 0)) {
-      aa = 4;
-    } else {
-      aa = 3;
-    }
-    for (var a = 0; a < aa; a++) {
-      var answerA = answerOptions[a].checked;
-      if (answerA == true) {
-        answerNow = a;
-      }
-    }
-    console.log(answerNow);
-    //error if no answer
-    if (answerNow == null) {
-      errorMsgArea.textContent = "must select one answer";
-    } else {
-      //populate answers array
-      answers[i] = answerNow;
-    }
-  }
-  localStorage.setItem("answers", JSON.stringify(answers));
-  //run figure out results type function
+  // var answerNow = "";
+  // for (i = 0; i < 3; i++) {
+  //   var ii = i + 1;
+  //   var answerSpot = document.querySelectorAll(
+  //     'input[name="answer' + ii + '"]'
+  //   );
+  //   var aa;
+  //   if ((i = 0)) {
+  //     aa = 4;
+  //   } else {
+  //     aa = 3;
+  //   }
+  //   for (var a = 0; a < aa; a++) {
+  //     var answerA = answerSpot[a].checked;
+  //     if (answerA == true) {
+  //       answerNow = a;
+  //     }
+  //   }
+  //   answerNow = 1; //constant for testing
+  //   console.log(answerNow);
+  //   //error if no answer
+  //   // if (answerNow == null) {
+  //   //   errorMsgArea.textContent = "must select one answer";
+  //   // } else {
+  //   //populate answers array
+  //   answers[i] = answerNow;
+  //   //   }
+  // }
+  // // localStorage.setItem("answers", JSON.stringify(answers));
+  // //run figure out results type function
+  answers = [1, 1, 1];
   resultTypeFunc();
 };
 
@@ -201,6 +202,7 @@ var resultTypeFunc = function () {
   movieCodes = "";
   ///////add this results means this answer for category pick array section
   // moodAnswers[0] //use these 3 to make keywords
+
   // answers[0] pick genre
   switch (answers[0]) {
     case 0:
@@ -391,10 +393,6 @@ var bookFetch = function (apiLocUrl, categoryPick) {
     });
 };
 
-//GBS_insertPreviewButtonLink(identifiers, opt_options)
-var GBS_PreviewBtn = document.querySelector("#bookInfo");
-GBS_PreviewBtn.addEventListener("click", bookAPI("flowers")); //constant for testing purposes, will be determined by responses to questions
-
 var movieAPI = function () {
   let tmdbKey = "483e17e3930801f2012e0e7c7f4fb86e";
   let baseURL = "https://api.themoviedb.org/3/";
@@ -402,30 +400,39 @@ var movieAPI = function () {
   let baseImageURL = null;
   let url = "".concat(baseURL, "configuration?api_key=", tmdbKey);
   fetch(url)
-  .then((result)=>{
-    return result.json();
-  })
-  .then((data)=>{
-    baseImageURL = data.images.secure_base_url;
-    configData = data.images;
-    console.log("config:", data);
-    console.log("config fetched");
-    runSearch("Jaws")
-  })
-  .catch(function(err){
-    alert(err);
-  })
+    .then((result) => {
+      return result.json();
+    })
+    .then((data) => {
+      baseImageURL = data.images.secure_base_url;
+      configData = data.images;
+      console.log("config:", data);
+      console.log("config fetched");
+      runSearch("Jaws");
+    })
+    .catch(function (err) {
+      alert(err);
+    });
 };
 
 let runSearch = function (keyword) {
-  let url = "".concat(baseURL, "search/movie?api_key=", tmdbKey, "&query=", keyword);
+  let url = "".concat(
+    baseURL,
+    "search/movie?api_key=",
+    tmdbKey,
+    "&query=",
+    keyword
+  );
   fetch(url)
-  .then(result=>result.json())
-  .then((data)=>{
-    document.getElementById("SET ELEMENT HERE").innerHTML = JSON.stringify(data, null, 4);
-  })
-}
-
+    .then((result) => result.json())
+    .then((data) => {
+      document.getElementById("SET ELEMENT HERE").innerHTML = JSON.stringify(
+        data,
+        null,
+        4
+      );
+    });
+};
 
 var otherAPI = function () {};
 
@@ -476,43 +483,40 @@ var bookResultFunc = function (bookData) {
   }
 };
 //-----movie API--------//
-var searchGenre = function(categoryPick) {
-  var genreID = document.getElementsByName('gender');
+var searchGenre = function (categoryPick) {
+  var genreID = document.getElementsByName("gender");
   //   console.log("searchGenre, displayRadioValue, genreID:  "+ genreID)
   //   for(i = 0; i < genreID.length; i++) {
   //     if(genreID[i].checked)
   //     categoryPick = genreID[i].value;
   //     console.log("searchGenre, displayRadioValue:  " + categoryPick)
   // }
-  if (genreID = "action"){
-    var categoryPick= 28;
-  } else if (genreID = "comedy"){
-    var categoryPick= 35;
-  } else if (genreID = "drama"){
-    var categoryPick= 18;
-  } else if (genreID = "romance"){
-    var categoryPick= 10749;
+  if ((genreID = "action")) {
+    var categoryPick = 28;
+  } else if ((genreID = "comedy")) {
+    var categoryPick = 35;
+  } else if ((genreID = "drama")) {
+    var categoryPick = 18;
+  } else if ((genreID = "romance")) {
+    var categoryPick = 10749;
   }
-  console.log("searchGenre, categoryPick:  "+categoryPick);
+  console.log("searchGenre, categoryPick:  " + categoryPick);
   // movieAPI(categoryPick);
-}
+};
 
 var movieAPI = function (categoryPick) {
-  console.log("movieAPI, categoryPick:  "+categoryPick);
-  var apiUrl = "https://api.themoviedb.org/3/discover/movie?api_key=483e17e3930801f2012e0e7c7f4fb86e&certification_country=US&language=en-US&region=US&with_genres=" + categoryPick + "&language=en-US&popularity.desc&include_adult=false&include_video=false&page=1"
-  console.log("movieAPI, apiUrl:  "+apiUrl);
+  console.log("movieAPI, categoryPick:  " + categoryPick);
+  var apiUrl =
+    "https://api.themoviedb.org/3/discover/movie?api_key=483e17e3930801f2012e0e7c7f4fb86e&certification_country=US&language=en-US&region=US&with_genres=" +
+    categoryPick +
+    "&language=en-US&popularity.desc&include_adult=false&include_video=false&page=1";
+  console.log("movieAPI, apiUrl:  " + apiUrl);
   // for reference array inputs categoryPick = [keywords,genre,ratingMovie,ratingBook,dateMood];
   ////phil is working on
   ////movieResultFunc(movieData);
 };
 
 document.querySelector("#nextBtn1").addEventListener("click", searchGenre);
-
-
-
-
-
-
 
 //get movie result
 var movieResultFunc = function (movieData) {
