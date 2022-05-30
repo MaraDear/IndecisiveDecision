@@ -10,6 +10,9 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 /*variables*/
 
 :root {
@@ -48,7 +51,6 @@ header {
   align-items: center;
   display: flex;
   flex-flow: column;
-  scroll-behavior: smooth;
 }
 
 
@@ -125,13 +127,8 @@ body{
     background-color: var(--bg-color2);
 }
 
-article {
-}
 
 /*within each subsections*/
-
-article div {
-}
 
 /*subsection unique attributes*/
 
