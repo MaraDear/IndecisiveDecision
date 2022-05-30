@@ -48,26 +48,6 @@ if (LSAnswers) {
 // fixed answers array
 var moodAnswers = [];
 
-// fixed questions array
-const questions = [
-  {
-    question: "4. Which is your favorite?",
-    answer: ["Action", "Comedy", "Drama", "Romance"],
-  },
-  {
-    question: "5. How mature are you?",
-    answer: [
-      "Just a babe",
-      "I'm a pretty cool cat",
-      "Don't let any kids in here",
-    ],
-  },
-  {
-    question: "6. Which best represents your personality",
-    answer: ["Classic", "Nastalgic ", "Modern"],
-  },
-];
-
 ////--------------functions-----------------////
 
 //get a random number to pick one of the books/movies in the array between 0 and 30
@@ -88,41 +68,24 @@ var startBtnFunc = function () {
   errorMsgArea.textContent = "";
   window.scrollTo(0, 400);
   // populate questionwith answers from local storage if there are any
-  for (i = 0; i < questions.length; i++) {
-    var ii = i + 1;
-    var questCon = document.createElement("h3");
-    questCon.innerHTML = questions[i].question;
-    answerArea.append(questCon);
-    for (var a = 0; a < questions[i].answer.length; a++) {
-      var inputConEl = document.createElement("div");
-      inputConEl.classList = "eachAnswerContainer";
-      answerArea.append(inputConEl);
-      var inputEl = document.createElement("input");
-      var labelEl = document.createElement("label");
-      labelEl.setAttribute("for", "q" + i + "a" + a + "radio");
-      labelEl.innerHTML = questions[i].answer[a];
-      inputEl.setAttribute("type", "radio");
-      inputEl.setAttribute("name", "answer" + ii);
-      inputEl.setAttribute("id", "q" + i + "a" + a + "radio");
-      inputEl.classList = "radios answerBlock";
-      if (answers) {
-        var answerUse = answers[i];
-        console.log(answerUse);
-        if (answerUse === a) {
-          //console.log("test");
-          inputEl.checked = true;
-        } else {
-          // console.log("nope");
-          inputEl.checked = false;
-        }
-        answerUse = "";
-      }
-
-      inputConEl.append(inputEl);
-      inputConEl.append(labelEl);
-    }
+  ////need to get working
+  // for (i = 0; i < questions.length; i++) {
+  //   var ii = i + 1;
+  
+      // if (answers) {
+      //   var answerUse = answers[i];
+      //   console.log(answerUse);
+      //   if (answerUse === a) {
+      //     //console.log("test");
+      //     inputEl.checked = true;
+      //   } else {
+      //     // console.log("nope");
+      //     inputEl.checked = false;
+      //   }
+      //   answerUse = "";
+      // }
+    // }
   }
-};
 
 //Next button function save answers from input form and display first mood question
 var nextBtnFunc1 = function () {
