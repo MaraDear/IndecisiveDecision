@@ -89,23 +89,31 @@
     <!-- first page will have a form fixed preferences that'll repopulate from local storage -->
     <article class="formResultsArea">
       <!-- Replace header with "Preferences" type title -->
-      <button class="btnStyle btn3" id="clearBtn">
-        I didn't mean what I said before
-      </button>
-      <div class="formResults">
+      
+      <div class="formResults container">
         <!-- input form  -->
-        <p>Tell us how you are feeling?</p>
-
-        <form>
-          <input type="radio" id="daring" name="Preference1" value="daring" />
-          <label for="daring">Daring</label><br />
-          <input type="radio" id="elated" name="Preference1" value="elated" />
-          <label for="elated">Elated</label><br />
-          <input type="radio" id="drama" name="Preference1" value="drama" />
-          <label for="drama">Sad</label><br />
-          <input type="radio" id="nature" name="Preference1" value="nature" />
-          <label for="nature">Tired</label>
-        </form>
+        
+          <div class="columns mt-5 is-8 is-variable">
+              <div class="column is-2-tablet is-2-desktop">
+                <div class="card">
+                  <div class="card-content">
+                    <div class="content">
+                      <p class="Title has-text-centered is-size-5">Tell us how you are feeling?</p>
+            <form>
+              <input type="radio" id="daring" name="Preference1" value="daring" />
+              <label for="daring">Daring</label><br />
+              <input type="radio" id="elated" name="Preference1" value="elated" />
+              <label for="elated">Elated</label><br />
+              <input type="radio" id="drama" name="Preference1" value="drama" />
+              <label for="drama">Sad</label><br />
+              <input type="radio" id="nature" name="Preference1" value="nature" />
+              <label for="nature">Tired</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
 
         <p>What sounds more interesting to you?</p>
 
@@ -144,6 +152,9 @@
       <div class="answers">
         <!-- input form populated with radios in js  -->
       </div>
+      <button class="btnStyle btn3" id="clearBtn">
+        I didn't mean what I said before
+      </button>
       <button class="btnStyle btn4" id="nextBtn1">SUBMIT</button>
       <!-- //turn into modal? -->
       <div id="error"></div>
