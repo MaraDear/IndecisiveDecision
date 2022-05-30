@@ -476,16 +476,17 @@ var movieAPI = function (categoryPick, movieCodes) {
       // if request was successful
       console.log(response);
       if (response.ok) {
-        response.json().then(function (otherData) {
-          //console.log(otherData);
-          otherResultFunc(movieData);
-        });
+       return response.json()
       } else {
         alert("Error: Movie api Not Found");
       }
     })
+    .then(function (movieData) {
+      //console.log(otherData);
+      console.log(movieData)
+    })
     .catch(function (error) {
-      alert("Unable to connect to movie api");
+      alert("Error: Unable to connect to movie api"+ error.message);
     });
 
 /*var movieAPI = function (categoryPick) {
