@@ -14,6 +14,7 @@ var surpriseMeBtnGet = document.getElementById("surpriseMeBtn");
 var startNavBtnGet = document.getElementById("startNavBtn");
 var surpriseNavBtnGet = document.getElementById("surpriseMeNavBtn")
 
+
 //--------Section variables-----------//
 var section1Area = document.querySelector(".section1");
 var formInputArea = document.querySelector(".formResultsArea");
