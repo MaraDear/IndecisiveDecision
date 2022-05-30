@@ -14,6 +14,7 @@ var surpriseMeBtnGet = document.getElementById("surpriseMeBtn");
 var startNavBtnGet = document.getElementById("startNavBtn");
 var surpriseNavBtnGet = document.getElementById("surpriseMeNavBtn");
 
+
 //--------Section variables-----------//
 var section1Area = document.querySelector(".section1");
 var formInputArea = document.querySelector(".formResultsArea");
@@ -65,45 +66,26 @@ var startBtnFunc = function () {
   formInputArea.style.display = "block";
   section1Area.style.display = "none";
   errorMsgArea.textContent = "";
-  window.scrollTo(0, 500);
+  window.scrollTo(0, 400);
   // populate questionwith answers from local storage if there are any
   ////need to get working
-  for (i = 0; i < 1; i++) {
-    var ii = i + 1;
-    //var a = 2; //constant for testing
-    if (answers) {
-      var answerFill = document.querySelectorAll(
-        'input[name="answer' + ii + '"]'
-      );
-      var answerUse = answers[i];
-      console.log(answerUse);
-      for (var a = 0; a < 4; a++) {
-        if (answerUse === a) {
-          answerFill[a].checked = true;
-        }
-      }
-      // answerFill[i] =;
-    }
+  // for (i = 0; i < questions.length; i++) {
+  //   var ii = i + 1;
+  
+      // if (answers) {
+      //   var answerUse = answers[i];
+      //   console.log(answerUse);
+      //   if (answerUse === a) {
+      //     //console.log("test");
+      //     inputEl.checked = true;
+      //   } else {
+      //     // console.log("nope");
+      //     inputEl.checked = false;
+      //   }
+      //   answerUse = "";
+      // }
+    // }
   }
-  for (i = 1; i < 3; i++) {
-    var ii = i + 1;
-
-    //var a = 2; //constant for testing
-    if (answers) {
-      var answerFill = document.querySelectorAll(
-        'input[name="answer' + ii + '"]'
-      );
-      var answerUse = answers[i];
-      console.log(answerUse);
-      for (var a = 0; a < 3; a++) {
-        if (answerUse === a) {
-          answerFill[a].checked = true;
-        }
-      }
-      // answerFill[i] =;
-    }
-  }
-};
 
 //Next button function save answers from input form and display first mood question
 var nextBtnFunc1 = function () {
@@ -119,7 +101,6 @@ var getmoodAnswers = function () {
   //add to answers array to determine category pick
   for (i = 0; i < 3; i++) {
     var ii = i + 1;
-
     var answerOptions = document.querySelectorAll(
       'input[name="Preference' + ii + '"]'
     );
@@ -151,25 +132,12 @@ var getmoodAnswers = function () {
 var getAnswers = function () {
   //add to answers array to determine category pick
   var answerNow = "";
-  for (i = 0; i < 1; i++) {
+  for (i = 0; i < questions.length; i++) {
     var ii = i + 1;
     var answerOptions = document.querySelectorAll(
       'input[name="answer' + ii + '"]'
     );
-    for (var a = 0; a < 4; a++) {
-      var answerA = answerOptions[a].checked;
-      if (answerA == true) {
-        answerNow = a;
-      }
-    }
-    answers[i] = answerNow;
-  }
-  for (i = 1; i < 3; i++) {
-    var ii = i + 1;
-    var answerOptions = document.querySelectorAll(
-      'input[name="answer' + ii + '"]'
-    );
-    for (var a = 0; a < 3; a++) {
+    for (var a = 0; a < questions[i].answer.length; a++) {
       var answerA = answerOptions[a].checked;
       if (answerA == true) {
         answerNow = a;
@@ -177,12 +145,13 @@ var getAnswers = function () {
     }
     //console.log(answerNow);
     //error if no answer
-    // if (answerNow == null) {
-    //   errorMsgArea.textContent = "must select one answer";
-    // } else {
-    //populate answers array
-    answers[i] = answerNow;
-    // }
+    if (answerNow == null) {
+      errorMsgArea.textContent = "must select one answer";
+    } else {
+      //populate answers array
+      answers[i] = answerNow;
+    }
+    //console.log(answers);
   }
   localStorage.setItem("answers", JSON.stringify(answers));
   //run figure out results type function
@@ -336,32 +305,33 @@ var resultsPage = function (categoryPick, movieCodes) {
 };
 
 //---------get apis linked--------------------//
-// //-----movie API--------//
+//-----movie API--------//
 var movieAPI = function (categoryPick, movieCodes) {
-  //   //random number coding
-  //   m = Math.floor(Math.random() * 5);
-  //   //console.log(m);
-  //   var genreType = movieCodes[m];
-  //   //// categoryPick[3]=movie rating
-  //   // var apiMovieUrl = "/";
-  //   // fetch(apiMovieUrl)
-  //   //   .then(function (response) {
-  //   //     // if request was successful
-  //   //     //console.log(response);
-  //   //     if (response.ok) {
-  //   //       response.json().then(function (otherData) {
-  //   //         //console.log(otherData);
-  //   //         otherResultFunc(movieData);
-  //   //       });
-  //   //     } else {
-  //   //       alert("Error: Movie api Not Found");
-  //   //     }
-  //   //   })
-  //   //   .catch(function (error) {
-  //   //     alert("Unable to connect to movie api");
-  //   //   });
-  //   ////phil is working on
-  //   ////movieResultFunc(movieData);
+  //random number coding
+  m = Math.floor(Math.random() * 5);
+  //console.log(m);
+  var genreType = movieCodes[m];
+  //// categoryPick[3]=movie rating
+  // var apiMovieUrl = "/";
+  // fetch(apiMovieUrl)
+  //   .then(function (response) {
+  //     // if request was successful
+  //     //console.log(response);
+  //     if (response.ok) {
+  //       response.json().then(function (otherData) {
+  //         //console.log(otherData);
+  //         otherResultFunc(movieData);
+  //       });
+  //     } else {
+  //       alert("Error: Movie api Not Found");
+  //     }
+  //   })
+  //   .catch(function (error) {
+  //     alert("Unable to connect to movie api");
+  //   });
+
+  ////phil is working on
+  ////movieResultFunc(movieData);
 };
 
 // document.querySelector("#nextBtn1").addEventListener("click", searchGenre);
@@ -425,47 +395,6 @@ var bookFetch = function (apiLocUrl) {
     });
 };
 
-// var movieAPI = function () {
-// let tmdbKey = "483e17e3930801f2012e0e7c7f4fb86e";
-// let baseURL = "https://api.themoviedb.org/3/";
-// let configData = null;
-// let baseImageURL = null;
-// let url = "".concat(baseURL, "configuration?api_key=", tmdbKey);
-// fetch(url)
-//   .then((result) => {
-//     return result.json();
-//   })
-//   .then((data) => {
-//     baseImageURL = data.images.secure_base_url;
-//     configData = data.images;
-//     console.log("config:", data);
-//     console.log("config fetched");
-//     runSearch("Jaws");
-//   })
-//   .catch(function (err) {
-//     alert(err);
-//   });
-// };
-
-let runSearch = function (keyword) {
-  // let url = "".concat(
-  //   baseURL,
-  //   "search/movie?api_key=",
-  //   tmdbKey,
-  //   "&query=",
-  //   keyword
-  // );
-  // fetch(url)
-  //   .then((result) => result.json())
-  //   .then((data) => {
-  //     document.getElementById("SET ELEMENT HERE").innerHTML = JSON.stringify(
-  //       data,
-  //       null,
-  //       4
-  //     );
-  //   });
-};
-
 //get Book result
 var bookResultFunc = function (bookData) {
   //console.log(bookData);
@@ -500,15 +429,16 @@ var bookResultFunc = function (bookData) {
     }
     document.getElementById("bookInfo").textContent = bookInfo;
     //book thumbnail URL
-    // if (!bookData.items[c].volumeInfo.imageLinks.smallThumbnail) {
-    //   document.getElementById("bookImage").innerHTML = "";
-    // } else {
-    var bookThumbnail = bookData.items[c].volumeInfo.imageLinks.smallThumbnail;
-    var bookThumbnailGet = document.getElementById("bookImage");
-    bookThumbnailGet.setAttribute("src", bookThumbnail);
-    bookThumbnailGet.setAttribute("height", "50px");
-    bookThumbnailGet.setAttribute("alt", bookTitle);
-    // }
+    if (!bookData.items[c].volumeInfo.imageLinks.smallThumbnail) {
+      document.getElementById("bookImage").innerHTML = "";
+    } else {
+      var bookThumbnail =
+        bookData.items[c].volumeInfo.imageLinks.smallThumbnail;
+      var bookThumbnailGet = document.getElementById("bookImage");
+      bookThumbnailGet.setAttribute("src", bookThumbnail);
+      bookThumbnailGet.setAttribute("height", "50px");
+      bookThumbnailGet.setAttribute("alt", bookTitle);
+    }
   }
 };
 
@@ -607,7 +537,6 @@ function startOver() {
 nextBtn1Get.addEventListener("click", nextBtnFunc1);
 clearBtnGet.addEventListener("click", clearAnswers);
 tryAgainBtnGet.addEventListener("click", tryAgainFunc);
-startOverBtnGet.addEventListener("click", startOver);
 startBtnGet.addEventListener("click", startBtnFunc);
 surpriseMeBtnGet.addEventListener("click", surpriseMeBtnFunc);
 startNavBtnGet.addEventListener("click", startBtnFunc);
