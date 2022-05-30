@@ -12,7 +12,7 @@ var tryAgainBtnGet = document.getElementById("tryAgainBtn");
 var startOverBtnGet = document.getElementById("startOverBtn");
 var surpriseMeBtnGet = document.getElementById("surpriseMeBtn");
 var startNavBtnGet = document.getElementById("startNavBtn");
-var surpriseNavBtnGet = document.getElementById("surpriseMeNavBtn")
+var surpriseNavBtnGet = document.getElementById("surpriseMeNavBtn");
 
 
 //--------Section variables-----------//
@@ -30,7 +30,7 @@ var errorMsgArea = document.getElementById("error");
 //--------Item and Object variables-----------//
 var i;
 var categoryPick = [];
-var movieCodes;
+var movieCodes = [];
 
 var c = 0; //constant for testing
 
@@ -52,11 +52,11 @@ var moodAnswers = [];
 const questions = [
   {
     question: "4. Which is your favorite?",
-    answers: ["Action", "Comedy", "Drama", "radio"],
+    answer: ["Action", "Comedy", "Drama", "Romance"],
   },
   {
     question: "5. How mature are you?",
-    answers: [
+    answer: [
       "Just a babe",
       "I'm a pretty cool cat",
       "Don't let any kids in here",
@@ -64,7 +64,7 @@ const questions = [
   },
   {
     question: "6. Which best represents your personality",
-    answers: ["Classic", "Nastalgic ", "Modern"],
+    answer: ["Classic", "Nastalgic ", "Modern"],
   },
 ];
 
@@ -75,10 +75,10 @@ const questions = [
 var get_c = function () {
   //random number coding
   c = Math.floor(Math.random() * 30);
-  console.log(c);
+  // console.log(c);
 };
 get_c();
-
+window.scrollTo(0, 0);
 // loads fixed preference form on start button
 var startBtnFunc = function () {
   // hide show areas;show input form page from html
@@ -86,45 +86,40 @@ var startBtnFunc = function () {
   formInputArea.style.display = "block";
   section1Area.style.display = "none";
   errorMsgArea.textContent = "";
-  //// populate with answers from local storage if there are any
-  //populate question
-  ////fix to have label and radios on the left
+  window.scrollTo(0, 400);
+  // populate questionwith answers from local storage if there are any
   for (i = 0; i < questions.length; i++) {
     var ii = i + 1;
     var questCon = document.createElement("h3");
     questCon.innerHTML = questions[i].question;
     answerArea.append(questCon);
-    for (var a = 0; a < questions[i].answers.length; a++) {
+    for (var a = 0; a < questions[i].answer.length; a++) {
       var inputConEl = document.createElement("div");
       inputConEl.classList = "eachAnswerContainer";
       answerArea.append(inputConEl);
       var inputEl = document.createElement("input");
       var labelEl = document.createElement("label");
       labelEl.setAttribute("for", "q" + i + "a" + a + "radio");
-      labelEl.innerHTML = questions[i].answers[a];
+      labelEl.innerHTML = questions[i].answer[a];
       inputEl.setAttribute("type", "radio");
       inputEl.setAttribute("name", "answer" + ii);
       inputEl.setAttribute("id", "q" + i + "a" + a + "radio");
       inputEl.classList = "radios answerBlock";
+      if (answers) {
+        var answerUse = answers[i];
+        console.log(answerUse);
+        if (answerUse === a) {
+          //console.log("test");
+          inputEl.checked = true;
+        } else {
+          // console.log("nope");
+          inputEl.checked = false;
+        }
+        answerUse = "";
+      }
+
       inputConEl.append(inputEl);
       inputConEl.append(labelEl);
-    }
-  }
-  // console.log(answers);
-  if (answers) {
-    for (i = 0; i < 3; i++) {
-      var ii = i + 1;
-      var answerSpot = document.querySelectorAll(
-        'input[name="Preference' + ii + '"]'
-      );
-      for (var a = 0; a < 4; a++) {
-        var answerUse = answerSpot[a];
-        if (answerUse === a) {
-          answerSpot[a].checked;
-        } else {
-          answerSpot[a].unchecked;
-        }
-      }
     }
   }
 };
@@ -146,7 +141,7 @@ var getmoodAnswers = function () {
     var answerOptions = document.querySelectorAll(
       'input[name="Preference' + ii + '"]'
     );
-    console.log(answerOptions);
+    //console.log(answerOptions);
     for (var a = 0; a < 4; a++) {
       var answerA = answerOptions[a].checked;
       if (answerA == true) {
@@ -161,7 +156,7 @@ var getmoodAnswers = function () {
       errorMsgArea.textContent = "must select one answer";
     }
   }
-  console.log(moodAnswers);
+  //console.log(moodAnswers);
   /////fix moodanswers to work
   //add to answers array to push to local storage for future use
   // move answers from form to replace local storage
@@ -179,13 +174,13 @@ var getAnswers = function () {
     var answerOptions = document.querySelectorAll(
       'input[name="answer' + ii + '"]'
     );
-    for (var a = 0; a < questions[i].answers.length; a++) {
+    for (var a = 0; a < questions[i].answer.length; a++) {
       var answerA = answerOptions[a].checked;
       if (answerA == true) {
         answerNow = a;
       }
     }
-    console.log(answerNow);
+    //console.log(answerNow);
     //error if no answer
     if (answerNow == null) {
       errorMsgArea.textContent = "must select one answer";
@@ -193,6 +188,7 @@ var getAnswers = function () {
       //populate answers array
       answers[i] = answerNow;
     }
+    //console.log(answers);
   }
   localStorage.setItem("answers", JSON.stringify(answers));
   //run figure out results type function
@@ -208,26 +204,26 @@ var resultTypeFunc = function () {
   var ratingBook; // MATURE, not-mature
   var dateMood; //not certain on words to carry over
   var keywords;
-  movieCodes = "";
+
   ///////add this results means this answer for category pick array section
   // moodAnswers[0] //use these 3 to make keywords
   // answers[0] pick genre
   switch (answers[0]) {
     case 0:
       keywords = "joy";
-      movieCodes = "comedy";
+      movieCodes[0] = 28;
       break;
     case 1:
       keywords = "tears";
-      movieCodes = "drama";
+      movieCodes[0] = 28;
       break;
     case 2:
       keywords = "mystery";
-      movieCodes = "mystery";
+      movieCodes[0] = 28;
       break;
     case 3:
       keywords = "nature";
-      movieCodes = "nature";
+      movieCodes[0] = 28;
       break;
   }
 
@@ -235,38 +231,38 @@ var resultTypeFunc = function () {
   switch (moodAnswers[1]) {
     case 0:
       genre = "suspense";
-      movieCodes += "_suspense";
+      movieCodes[1] = 28;
       break;
     case 1:
       genre = "comedy";
-      movieCodes += "_comedy";
+      movieCodes[1] = 28;
       break;
     case 2:
       genre = "classic";
-      movieCodes += "_classic";
+      movieCodes[1] = 28;
       break;
     case 3:
       genre = "love";
-      movieCodes += "_romance";
+      movieCodes[1] = 28;
       break;
   }
   // moodAnswers[2]
   switch (moodAnswers[2]) {
     case 0:
       keywords += "_adventure";
-      movieCodes += "_thriller";
+      movieCodes[2] = 28;
       break;
     case 1:
       keywords += "_hilarious";
-      movieCodes += "_comedy";
+      movieCodes[2] = 28;
       break;
     case 2:
       keywords += "_family";
-      movieCodes += "_family";
+      movieCodes[2] = 28;
       break;
     case 3:
       keywords += "_happy";
-      movieCodes += "_feel-good";
+      movieCodes[2] = 28;
       break;
   }
 
@@ -274,19 +270,19 @@ var resultTypeFunc = function () {
   switch (moodAnswers[0]) {
     case 0:
       genre += "_action";
-      movieCodes += "_action";
+      movieCodes[3] = 28;
       break;
     case 1:
       genre += "_comedy";
-      movieCodes += "_comedy";
+      movieCodes[3] = 28;
       break;
     case 2:
       genre += "_drama";
-      movieCodes += "_family";
+      movieCodes[3] = 28;
       break;
     case 3:
       genre += "_nature";
-      movieCodes += "_family";
+      movieCodes[3] = 28;
       break;
   }
   // answers[1] pick rating/maturity
@@ -308,20 +304,21 @@ var resultTypeFunc = function () {
   switch (answers[2]) {
     case 0:
       dateMood = "classic";
-      movieCodes += "_classic";
+      movieCodes[4] = 28;
       break;
     case 1:
       dateMood = "retro";
-      movieCodes += "_retro";
+      movieCodes[4] = 28;
       break;
     case 2:
       dateMood = "new_release";
-      movieCodes += "new-release";
+      movieCodes[4] = 28;
       break;
   }
   // pass genre, rating, dateMood, keywords
   ////add code to combine keywords into one string for searching
   categoryPick = [keywords, genre, ratingMovie, ratingBook, dateMood];
+  // console.log(movieCodes);
 
   //results functions
   resultsPage(categoryPick, movieCodes);
@@ -334,7 +331,7 @@ var resultsPage = function (categoryPick, movieCodes) {
   resultsSectionArea.style.display = "block";
   formInputArea.style.display = "none";
   //change header
-
+  window.scrollTo(0, 400);
   headerArea.textContent = "Your Plans Are ...";
   //get bookResult info
   bookAPI(categoryPick);
@@ -345,6 +342,41 @@ var resultsPage = function (categoryPick, movieCodes) {
 };
 
 //---------get apis linked--------------------//
+//-----movie API--------//
+var movieAPI = function (categoryPick, movieCodes) {
+  //random number coding
+  m = Math.floor(Math.random() * 5);
+  //console.log(m);
+  var genreType = movieCodes[m];
+  //// categoryPick[3]=movie rating
+  // var apiMovieUrl = "/";
+  // fetch(apiMovieUrl)
+  //   .then(function (response) {
+  //     // if request was successful
+  //     //console.log(response);
+  //     if (response.ok) {
+  //       response.json().then(function (otherData) {
+  //         //console.log(otherData);
+  //         otherResultFunc(movieData);
+  //       });
+  //     } else {
+  //       alert("Error: Movie api Not Found");
+  //     }
+  //   })
+  //   .catch(function (error) {
+  //     alert("Unable to connect to movie api");
+  //   });
+
+  ////phil is working on
+  ////movieResultFunc(movieData);
+};
+
+// document.querySelector("#nextBtn1").addEventListener("click", searchGenre);
+
+//get movie result
+var movieResultFunc = function (movieData) {
+  // populate movieResult object
+};
 
 //-----book API--------//
 var bookAPI = function (categoryPick) {
@@ -363,7 +395,7 @@ var bookAPI = function (categoryPick) {
 };
 
 //-----get book results
-var bookFetch = function (apiLocUrl, categoryPick) {
+var bookFetch = function (apiLocUrl) {
   var redo;
   fetch(apiLocUrl)
     .then(function (response) {
@@ -388,8 +420,7 @@ var bookFetch = function (apiLocUrl, categoryPick) {
             }
           }
           redo = 0;
-          // console.log(data);
-          console.log(bookData);
+          //console.log(bookData);
           bookResultFunc(bookData);
         });
       } else {
@@ -401,47 +432,9 @@ var bookFetch = function (apiLocUrl, categoryPick) {
     });
 };
 
-//GBS_insertPreviewButtonLink(identifiers, opt_options)
-var GBS_PreviewBtn = document.querySelector("#bookInfo");
-GBS_PreviewBtn.addEventListener("click", bookAPI("flowers")); //constant for testing purposes, will be determined by responses to questions
-
-var movieAPI = function () {
-  let tmdbKey = "483e17e3930801f2012e0e7c7f4fb86e";
-  let baseURL = "https://api.themoviedb.org/3/";
-  let configData = null;
-  let baseImageURL = null;
-  let url = "".concat(baseURL, "configuration?api_key=", tmdbKey);
-  fetch(url)
-  .then((result)=>{
-    return result.json();
-  })
-  .then((data)=>{
-    baseImageURL = data.images.secure_base_url;
-    configData = data.images;
-    console.log("config:", data);
-    console.log("config fetched");
-    runSearch("Jaws")
-  })
-  .catch(function(err){
-    alert(err);
-  })
-};
-
-let runSearch = function (keyword) {
-  let url = "".concat(baseURL, "search/movie?api_key=", tmdbKey, "&query=", keyword);
-  fetch(url)
-  .then(result=>result.json())
-  .then((data)=>{
-    document.getElementById("SET ELEMENT HERE").innerHTML = JSON.stringify(data, null, 4);
-  })
-}
-
-
-var otherAPI = function () {};
-
 //get Book result
 var bookResultFunc = function (bookData) {
-  console.log(bookData);
+  //console.log(bookData);
   //   populate bookResult  //display info in appropriate locations
   /////book google books link ---- if we want to redirect or can change to pop up box
   //if there is not data for that c then try again until there is
@@ -485,49 +478,6 @@ var bookResultFunc = function (bookData) {
     }
   }
 };
-//-----movie API--------//
-var searchGenre = function(categoryPick) {
-  var genreID = document.getElementsByName('gender');
-  //   console.log("searchGenre, displayRadioValue, genreID:  "+ genreID)
-  //   for(i = 0; i < genreID.length; i++) {
-  //     if(genreID[i].checked)
-  //     categoryPick = genreID[i].value;
-  //     console.log("searchGenre, displayRadioValue:  " + categoryPick)
-  // }
-  if (genreID = "action"){
-    var categoryPick= 28;
-  } else if (genreID = "comedy"){
-    var categoryPick= 35;
-  } else if (genreID = "drama"){
-    var categoryPick= 18;
-  } else if (genreID = "romance"){
-    var categoryPick= 10749;
-  }
-  console.log("searchGenre, categoryPick:  "+categoryPick);
-  // movieAPI(categoryPick);
-}
-
-var movieAPI = function (categoryPick) {
-  console.log("movieAPI, categoryPick:  "+categoryPick);
-  var apiUrl = "https://api.themoviedb.org/3/discover/movie?api_key=483e17e3930801f2012e0e7c7f4fb86e&certification_country=US&language=en-US&region=US&with_genres=" + categoryPick + "&language=en-US&popularity.desc&include_adult=false&include_video=false&page=1"
-  console.log("movieAPI, apiUrl:  "+apiUrl);
-  // for reference array inputs categoryPick = [keywords,genre,ratingMovie,ratingBook,dateMood];
-  ////phil is working on
-  ////movieResultFunc(movieData);
-};
-
-document.querySelector("#nextBtn1").addEventListener("click", searchGenre);
-
-
-
-
-
-
-
-//get movie result
-var movieResultFunc = function (movieData) {
-  // populate movieResult object
-};
 
 //-----advice API--------//
 var otherAPI = function () {
@@ -536,7 +486,7 @@ var otherAPI = function () {
   fetch(apiLocUrl)
     .then(function (response) {
       // if request was successful
-      console.log(response);
+      //console.log(response);
       if (response.ok) {
         response.json().then(function (otherData) {
           //console.log(otherData);
@@ -597,7 +547,7 @@ var surpriseMeBtnFunc = function () {
     "not-mature",
     "modern",
   ];
-  movieCodes = "28_30_31";
+  movieCodes = [28, 30, 31, 10, 13]; //populate with better options
   resultsPage(categoryPick, movieCodes);
 };
 
