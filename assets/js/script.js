@@ -583,6 +583,7 @@ function startOver() {
 nextBtn1Get.addEventListener("click", nextBtnFunc1);
 clearBtnGet.addEventListener("click", clearAnswers);
 tryAgainBtnGet.addEventListener("click", tryAgainFunc);
+startOverBtnGet.addEventListener("click", startOver);
 startBtnGet.addEventListener("click", startBtnFunc);
 surpriseMeBtnGet.addEventListener("click", surpriseMeBtnFunc);
 startNavBtnGet.addEventListener("click", startBtnFunc);
