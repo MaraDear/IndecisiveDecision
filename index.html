@@ -75,10 +75,10 @@
           <!-- images info etc  -->
           <div class="column is-6 has-text-centered">
             <h2 class="is-size-5-mobile is-size-1-desktop title">
-              PREPARE FOR RELAXATION
+              Prepare for Relaxation
             </h2>
             <h2 class="is-size-6-mobile is-size-2-desktop subtitle">
-              WE ARE HERE TO HELP
+              We Are Here to Help
             </h2>
             <p>
               Welcome to Indecisive Decisions, where we do the thinking for you!
@@ -103,7 +103,7 @@
     <article class="formResultsArea">
 
       <!-- Replace header with "Preferences" type title -->
-        <h3 class="is-size-5-mobile is-size-1-desktop title has-text-centered">Tell Us More</h3>
+        <h3 class="is-size-5-mobile is-size-1-desktop title has-text-centered mt-5">Tell Us More</h3>
         <div class="formResults container">
 
           <!-- input form  -->
@@ -132,7 +132,7 @@
               <div class="card">
                 <div class="card-content">
                   <div class="content">
-                    <h3 class="Title has-text-centered">What sounds more interesting to you?</h3>
+                    <h3 class="Title has-text-centered">Which one sounds more interesting?</h3>
                     <form>
                       <input type="radio" id="action" name="Preference2" value="action" />
                       <label for="action">Being on the edge of your seat</label><br />
@@ -152,7 +152,7 @@
               <div class="card">
                 <div class="card-content">
                   <div class="content">
-                    <h3 class="Title has-text-centered">What sounds more interesting to you?</h3>
+                    <h3 class="Title has-text-centered">Which one catches your attention?</h3>
                     <form>
                       <input type="radio" id="action" name="Preference3" value="action" />
                       <label for="action">Non stop thrills from beginning to end</label><br />
@@ -217,7 +217,7 @@
               <div class="card">
                 <div class="card-content">
                   <div class="content">
-                    <h3 class="Title has-text-centered">6. Which best represents your personality</h3>
+                    <h3 class="Title has-text-centered">Which best represents your personality</h3>
                     <form>
                     <input type="radio" id="q3a1radio" name="answer3" value="q3a1radio" />
                     <label for="q3a1radio">Classic</label><br />
@@ -240,13 +240,16 @@
       <button class="button is-success" id="nextBtn1">SUBMIT</button>
                 
     </article>
+
+
     <!-- Results  -->
     <article class="resultsSection" id="resultsSection">
-      <!-- replace header with 'our Plans Are ...'  -->
-      <div class="columns results">
-        <!-- movie reel or board -->
-        <div class="column is-two-thirds-desktop">
-          <section class="movieResult">
+            <!-- replace header with 'our Plans Are ...'  -->
+      <div class="container">
+        <div class="columns results">
+              <!-- movie reel or board -->
+          <div class="column is-two-thirds-desktop">
+            <section class="movieResult">
             <a id="movieResultLink1" target="_blank">
               <img id="movieImage" width="25%"/>
             </a>
@@ -272,29 +275,22 @@
             <p id="bookInfo">Book Info</p>
           </section>
         </div>
+                        <!-- advice slip -->
         <div class="column is-flex-direction-column" style="padding: 20px">
-          <!-- advice slip -->
-          <section
-            class="otherArea is-flex"
+          <section class="otherArea is-flex"
             style="
-              background-image: url('./assets/images/typewriter.jpg');
-              background-size: cover;
-              height: 480px;
-              width: 380px;
-            "
-          >
-            <div
-              id="adviceSlipArea"
-              style="font-family: 'IBM Plex Mono', monospace"
-            >
+            background-image: url('./assets/images/typewriter.jpg');
+            background-size: cover;
+            height: 480px;
+            width: 380px;">
+            <div id="adviceSlipArea" style="font-family: 'IBM Plex Mono', monospace">
               <!-- put advice on top of paper in typewriter  -->
             </div>
           </section>
-
-          <button class="btnStyle btn5" id="tryAgainBtn">Try Again</button>
-          <button class="btnStyle btn6" id="startOverBtn">Start Over</button>
         </div>
       </div>
+        <button class="button is-warning" id="tryAgainBtn">Random</button>
+        <button class="button is-danger" id="startOverBtn">Start Over</button>
     </article>
 
     <!-- FOOTER  -->
