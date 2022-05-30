@@ -400,10 +400,6 @@ var bookFetch = function (apiLocUrl, categoryPick) {
     });
 };
 
-//GBS_insertPreviewButtonLink(identifiers, opt_options)
-var GBS_PreviewBtn = document.querySelector("#bookInfo");
-GBS_PreviewBtn.addEventListener("click", bookAPI("flowers")); //constant for testing purposes, will be determined by responses to questions
-
 var movieAPI = function () {
   let tmdbKey = "483e17e3930801f2012e0e7c7f4fb86e";
   let baseURL = "https://api.themoviedb.org/3/";
