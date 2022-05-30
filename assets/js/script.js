@@ -90,7 +90,7 @@ var startBtnFunc = function () {
   formInputArea.style.display = "block";
   section1Area.style.display = "none";
   errorMsgArea.textContent = "";
-  window.scrollTo(0, 500);
+  window.scrollTo(0, 826);
   // populate questionwith answers from local storage if there are any
   ////need to get working
   for (i = 0; i < 1; i++) {
@@ -382,7 +382,7 @@ var resultsPage = function (categoryPick, movieCodes) {
   resultsSectionArea.style.display = "block";
   formInputArea.style.display = "none";
   //change header
-  window.scrollTo(0, 400);
+  window.scrollTo(0, 826);
   headerArea.textContent = "Your Plans Are ...";
   //get bookResult info
   bookAPI(categoryPick);
