@@ -89,76 +89,87 @@
     <!-- first page will have a form fixed preferences that'll repopulate from local storage -->
     <article class="formResultsArea">
       <!-- Replace header with "Preferences" type title -->
-      
-      <div class="formResults container">
-        <!-- input form  -->
+        <h4 class="is-size-5-mobile is-size-1-desktop title has-text-centered mt-6">Tell Us More</h4>
+        <div class="formResults container">
+          <!-- input form  -->
         
-          <div class="columns mt-5 is-8 is-variable">
-              <div class="column is-2-tablet is-2-desktop">
-                <div class="card">
-                  <div class="card-content">
-                    <div class="content">
-                      <p class="Title has-text-centered is-size-5">Tell us how you are feeling?</p>
-            <form>
-              <input type="radio" id="daring" name="Preference1" value="daring" />
-              <label for="daring">Daring</label><br />
-              <input type="radio" id="elated" name="Preference1" value="elated" />
-              <label for="elated">Elated</label><br />
-              <input type="radio" id="drama" name="Preference1" value="drama" />
-              <label for="drama">Sad</label><br />
-              <input type="radio" id="nature" name="Preference1" value="nature" />
-              <label for="nature">Tired</label>
-                    </div>
+          <div class="columns mt-5 is-one-third is-variable">
+            <div class="column">
+              <div class="card">
+                <div class="card-content">
+                  <div class="content">
+                    <p class="Title has-text-centered">How you are feeling?</p>
+                    <form>
+                      <input type="radio" id="daring" name="Preference1" value="daring" />
+                      <label for="daring">Daring</label><br />
+                      <input type="radio" id="elated" name="Preference1" value="elated" />
+                      <label for="elated">Elated</label><br />
+                      <input type="radio" id="drama" name="Preference1" value="drama" />
+                      <label for="drama">Sad</label><br />
+                      <input type="radio" id="nature" name="Preference1" value="nature" />
+                      <label for="nature">Tired</label>
+                    </form>
                   </div>
                 </div>
               </div>
-            </form>
+            </div>
+            
+            <div class="column">
+              <div class="card">
+                <div class="card-content">
+                  <div class="content">
+                    <p class="Title has-text-centered">What sounds more interesting to you?</p>
+                    <form>
+                      <input type="radio" id="action" name="Preference2" value="action" />
+                      <label for="action">Being on the edge of your seat</label><br />
+                      <input type="radio" id="comedy" name="Preference2" value="comedy" />
+                      <label for="comedy">Laughing until your stomach hurts</label><br />
+                      <input type="radio" id="drama" name="Preference2" value="drama" />
+                      <label for="drama">Feeling all the emotions of a movie</label><br />
+                      <input type="radio" id="romance" name="Preference2" value="romance" />
+                      <label for="romance">Falling for the love story playing out infront of your eyes</label>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+
+            <div class="column ">
+              <div class="card">
+                <div class="card-content">
+                  <div class="content">
+                    <p class="Title has-text-centered ">What are you looking for?</p>
+                    <form>
+                      <input type="radio" id="action" name="Preference3" value="action" />
+                      <label for="action">Non stop thrills from beginning to end</label><br />
+                      <input type="radio" id="comedy" name="Preference3" value="comedy" />
+                      <label for="comedy">Big actors with big jokes </label><br />
+                      <input type="radio" id="drama" name="Preference3" value="drama" />
+                      <label for="drama">Wholesome stories with big feelings and pulling of the heartstrings</label><br />
+                      <input type="radio" id="romance" name="Preference3" value="romance" />
+                      <label for="romance">Heartfelt stories with a happy ending and warm heart</label><br />
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-
-        <p>What sounds more interesting to you?</p>
-
-        <form>
-          <input type="radio" id="action" name="Preference2" value="action" />
-          <label for="action">Being on the edge of your seat</label><br />
-          <input type="radio" id="comedy" name="Preference2" value="comedy" />
-          <label for="comedy">Laughing until your stomach hurts</label><br />
-          <input type="radio" id="drama" name="Preference2" value="drama" />
-          <label for="drama">Feeling all the emotions of a movie</label><br />
-          <input type="radio" id="romance" name="Preference2" value="romance" />
-          <label for="romance"
-            >Falling for the love story playing out infront of your eyes</label
-          >
-        </form>
-
-        <p>What are you looking for?</p>
-
-        <form>
-          <input type="radio" id="action" name="Preference3" value="action" />
-          <label for="action">Non stop thrills from beginning to end</label
-          ><br />
-          <input type="radio" id="comedy" name="Preference3" value="comedy" />
-          <label for="comedy">Big actors with big jokes </label><br />
-          <input type="radio" id="drama" name="Preference3" value="drama" />
-          <label for="drama"
-            >Wholesome stories with big feelings and pulling of the heart
-            strings</label
-          ><br />
-          <input type="radio" id="romance" name="Preference3" value="romance" />
-          <label for="romance"
-            >Heartfelt stories with a happy ending and warm heart</label
-          >
-        </form>
-    <!-- fixed Questions  -->
-      <div class="answers">
-        <!-- input form populated with radios in js  -->
+          
+            <!-- fixed Questions  -->
+            <div class="answers">
+            <!-- input form populated with radios in js  -->
+            </div>
+      
+            <!-- //turn into modal? -->
+            <div id="error"></div>
+      
+            <button class="button is-warning ml-6 px-6" id="clearBtn">I didn't mean what I said before</button>
+            <button class="button is-success" id="nextBtn1">SUBMIT</button>
       </div>
-      <button class="btnStyle btn3" id="clearBtn">
-        I didn't mean what I said before
-      </button>
-      <button class="btnStyle btn4" id="nextBtn1">SUBMIT</button>
-      <!-- //turn into modal? -->
-      <div id="error"></div>
+      
     </article>
+
 
     <!-- Results  -->
     <article class="resultsSection" id="resultsSection">
