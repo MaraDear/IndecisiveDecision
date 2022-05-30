@@ -48,6 +48,26 @@ if (LSAnswers) {
 var moodAnswers = [];
 
 
+// fixed questions array
+const questions = [
+  {
+    question: "4. Which is your favorite?",
+    answers: ["Action", "Comedy", "Drama", "radio"],
+  },
+  {
+    question: "5. How mature are you?",
+    answers: [
+      "Just a babe",
+      "I'm a pretty cool cat",
+      "Don't let any kids in here",
+    ],
+  },
+  {
+    question: "6. Which best represents your personality",
+    answers: ["Classic", "Nastalgic ", "Modern"],
+  },
+];
+
 //// API Keys  /////
 var tmdbKey = "483e17e3930801f2012e0e7c7f4fb86e"
 
@@ -70,7 +90,7 @@ var startBtnFunc = function () {
   formInputArea.style.display = "block";
   section1Area.style.display = "none";
   errorMsgArea.textContent = "";
-  window.scrollTo(0, 826);
+  window.scrollTo(0, 500);
   // populate questionwith answers from local storage if there are any
   ////need to get working
   for (i = 0; i < 1; i++) {
@@ -362,7 +382,7 @@ var resultsPage = function (categoryPick, movieCodes) {
   resultsSectionArea.style.display = "block";
   formInputArea.style.display = "none";
   //change header
-  window.scrollTo(0, 826);
+  window.scrollTo(0, 400);
   headerArea.textContent = "Your Plans Are ...";
   //get bookResult info
   bookAPI(categoryPick);
