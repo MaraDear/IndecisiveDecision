@@ -97,7 +97,7 @@ header h1 {
   display: flex;
 }
 
-h2, h3, h4, h5  {
+h2, h3, h4  {
   font-family: 'Fjalla One', sans-serif;
   font-weight: bold;
 }
@@ -111,9 +111,29 @@ h2, h3, h4, h5  {
   padding-right: 40px;
 }
 
-footer a {
-  padding: 7px;
+.footer-content {
+  background-repeat: no-repeat;
+  background-position: bottom;
+  display: flex;
+  flex-flow: row wrap;
+  border-top: 1px;
 }
+
+h5 {
+  font-family: 'Lobster', cursive;
+  font-weight: 400;
+  font-size: 25px;
+  justify-content: left;
+}
+
+
+h6 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  justify-content: left;
+}
+
 
 /* Button designs  */
 .btnStyle {
