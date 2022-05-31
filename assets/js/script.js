@@ -373,6 +373,7 @@ var movieAPI = function (movieCodes) {
     })
     .then(function (movieData) {
       movieResultFunc(movieData);
+    console.log(movieData)
     })
     .catch(function (error) {
       alert("Error: Unable to connect to movie api "+ error.message);
