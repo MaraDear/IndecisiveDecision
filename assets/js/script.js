@@ -29,7 +29,7 @@ var errorMsgArea = document.getElementById("error");
 //--------Item and Object variables-----------//
 var i;
 var categoryPick = [];
-var movieCodes = [];
+var movieCodes;
 
 var c = 0; //constant for testing
 
@@ -47,10 +47,8 @@ if (LSAnswers) {
 // fixed answers array
 var moodAnswers = [];
 
-
 //// API Keys  /////
-var tmdbKey = "483e17e3930801f2012e0e7c7f4fb86e"
-
+var tmdbKey = "483e17e3930801f2012e0e7c7f4fb86e";
 
 ////--------------functions-----------------////
 
@@ -74,7 +72,7 @@ var startBtnFunc = function () {
   window.scrollTo(0, 826);
   // populate questionwith answers from local storage if there are any
   ////need to get working
-for (i = 0; i < 1; i++) {
+  for (i = 0; i < 1; i++) {
     var ii = i + 1;
     //var a = 2; //constant for testing
     if (answers) {
@@ -329,8 +327,8 @@ var resultTypeFunc = function () {
   ////add code to combine keywords into one string for searching
   categoryPick = [keywords, genre, ratingMovie, ratingBook, dateMood];
 
-  console.log("resultTypeFunc, categoryPick:  "+categoryPick)
-  console.log("resultTypeFunc, movieCodes:  "+movieCodes);
+  console.log("resultTypeFunc, categoryPick:  " + categoryPick);
+  console.log("resultTypeFunc, movieCodes:  " + movieCodes);
 
   //results functions
   resultsPage(categoryPick, movieCodes);
@@ -338,7 +336,7 @@ var resultTypeFunc = function () {
 
 //---------results display.--------------------///
 var resultsPage = function (categoryPick, movieCodes) {
-  console.log("resultsPage, movieCodes:  "+movieCodes);
+  console.log("resultsPage, movieCodes:  " + movieCodes);
   // hide show areas
   section1Area.style.display = "none";
   resultsSectionArea.style.display = "block";
@@ -359,24 +357,30 @@ var resultsPage = function (categoryPick, movieCodes) {
 //-----movie API--------//
 var movieAPI = function (movieCodes) {
   var genreType = movieCodes;
-  var apiMovieUrl = "https://api.themoviedb.org/3/discover/movie?api_key="+tmdbKey+"&certification_country=US&language=en-US&region=US&popularity.desc&include_adult=false&include_video=false&page="+ c +"&with_genres=" + genreType;
-  console.log("apiMovieUrl:  "+apiMovieUrl);
+  var apiMovieUrl =
+    "https://api.themoviedb.org/3/discover/movie?api_key=" +
+    tmdbKey +
+    "&certification_country=US&language=en-US&region=US&popularity.desc&include_adult=false&include_video=false&page=" +
+    c +
+    "&with_genres=" +
+    genreType;
+  console.log("apiMovieUrl:  " + apiMovieUrl);
   fetch(apiMovieUrl)
     .then(function (response) {
       // if request was successful
       console.log(response);
       if (response.ok) {
-       return response.json()
+        return response.json();
       } else {
         alert("Error: Movie api Not Found");
       }
     })
     .then(function (movieData) {
       movieResultFunc(movieData);
-    console.log(movieData)
+      console.log(movieData);
     })
     .catch(function (error) {
-      alert("Error: Unable to connect to movie api "+ error.message);
+      alert("Error: Unable to connect to movie api " + error.message);
     });
 };
 
@@ -387,48 +391,15 @@ var movieResultFunc = function (movieData) {
   document.getElementById("movieTitle").textContent = movieTitle;
   var movieOverview = JSON.stringify(movieData.results[0].overview);
   document.getElementById("movieInfo").textContent = movieOverview;
-  var movieImage = JSON.stringify(movieData.results[0].poster_path).slice(1,-1);
-  var imageLink = document.getElementById("movieImage").setAttribute("src", "https://image.tmdb.org/t/p/w500"+movieImage);
+  var movieImage = JSON.stringify(movieData.results[0].poster_path).slice(
+    1,
+    -1
+  );
+  var imageLink = document
+    .getElementById("movieImage")
+    .setAttribute("src", "https://image.tmdb.org/t/p/w500" + movieImage);
   console.log("imageLink:  " + imageLink);
-
 };
-
-// //-----movie API--------//
-// var movieAPI = function (movieCodes) {
-//   var genreType = movieCodes;
-//   var apiMovieUrl = "https://api.themoviedb.org/3/discover/movie?api_key="+tmdbKey+"&certification_country=US&language=en-US&region=US&popularity.desc&include_adult=false&include_video=false&page="+ c +"&with_genres=" + genreType;
-//   console.log("apiMovieUrl:  "+apiMovieUrl);
-//   fetch(apiMovieUrl)
-//     .then(function (response) {
-//       // if request was successful
-//       console.log(response);
-//       if (response.ok) {
-//        return response.json()
-//       } else {
-//         alert("Error: Movie api Not Found");
-//       }
-//     })
-//     .then(function (movieData) {
-//       movieResultFunc(movieData);
-//     })
-//     .catch(function (error) {
-//       alert("Error: Unable to connect to movie api "+ error.message);
-//     });
-// };
-
-// //get movie result
-// var movieResultFunc = function (movieData) {
-//   // populate movieResult object
-//   var movieTitle = JSON.stringify(movieData.results[0].title);
-//   document.getElementById("movieTitle").textContent = movieTitle;
-//   var movieOverview = JSON.stringify(movieData.results[0].overview);
-//   document.getElementById("movieInfo").textContent = movieOverview;
-//   var movieImage = JSON.stringify(movieData.results[0].poster_path).slice(1,-1);
-//   var imageLink = document.getElementById("movieImage").setAttribute("src", "https://image.tmdb.org/t/p/w500"+movieImage);
-//   console.log("imageLink:  " + imageLink);
-  
-// };
-
 
 //-----book API--------//
 var bookAPI = function (categoryPick) {
@@ -530,8 +501,6 @@ var bookResultFunc = function (bookData) {
   }
 };
 
-
-
 //-----advice API--------//
 var otherAPI = function () {
   //API to collect an advice slip
@@ -600,7 +569,7 @@ var surpriseMeBtnFunc = function () {
     "not-mature",
     "modern",
   ];
-  movieCodes = [28, 30, 31, 10, 13]; //populate with better options
+  // movieCodes = [28, 30, 31, 10, 13]; //populate with better options
   resultsPage(categoryPick, movieCodes);
 };
 
