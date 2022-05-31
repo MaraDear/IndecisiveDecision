@@ -83,6 +83,7 @@ var get_c = function () {
 };
 get_c();
 window.scrollTo(0, 0);
+
 // loads fixed preference form on start button
 var startBtnFunc = function () {
   // hide show areas;show input form page from html
@@ -93,47 +94,30 @@ var startBtnFunc = function () {
   window.scrollTo(0, 500);
   // populate questionwith answers from local storage if there are any
   ////need to get working
-  for (i = 0; i < 1; i++) {
+for (i = 0; i < 1; i++) {
     var ii = i + 1;
-
-    var questCon = document.createElement("h3");
-    questCon.innerHTML = questions[i].question;
-    answerArea.append(questCon);
-    for (var a = 0; a < questions[i].answers.length; a++) {
-      var inputConEl = document.createElement("div");
-      inputConEl.classList = "eachAnswerContainer";
-      answerArea.append(inputConEl);
-      var inputEl = document.createElement("input");
-      var labelEl = document.createElement("label");
-      labelEl.setAttribute("for", "q" + i + "a" + a + "radio");
-      labelEl.innerHTML = questions[i].answers[a];
-      inputEl.setAttribute("type", "radio");
-      inputEl.setAttribute("name", "answer" + ii);
-      inputEl.setAttribute("id", "q" + i + "a" + a + "radio");
-      inputEl.classList = "radios answerBlock";
-      if (answers) {
-          var answerUse = answers[i];
-          console.log(answerUse);
-          if (answerUse === a) {
-            console.log("test");
-            //   inputEl.checked = true;
-          } else {
-            console.log("nope");
-            //   inputEl.checked = false;
-          }
-          answerUse = "";
-        }
-          inputConEl.append(inputEl);
-          inputConEl.append(labelEl);
+    //var a = 2; //constant for testing
+    if (answers) {
+      var answerFill = document.querySelectorAll(
+        'input[name="answer' + ii + '"]'
+      );
+      var answerUse = answers[i];
+      console.log(answerUse);
+      for (var a = 0; a < 4; a++) {
+        if (answerUse === a) {
+          answerFill[a].checked = true;
         }
       }
-  // console.log(answers);
-  if (answers) {
-    for (i = 0; i < 3; i++) {
-      var ii = i + 1;
-      var answerSpot = document.querySelectorAll(
-        'input[name="Preference' + ii + '"]'
+      // answerFill[i] =;
+    }
+  }
+  for (i = 1; i < 3; i++) {
+    var ii = i + 1;
 
+    //var a = 2; //constant for testing
+    if (answers) {
+      var answerFill = document.querySelectorAll(
+        'input[name="answer' + ii + '"]'
       );
       var answerUse = answers[i];
       console.log(answerUse);
@@ -217,7 +201,6 @@ var getAnswers = function () {
         answerNow = a;
       }
     }
-
     //console.log(answerNow);
     //error if no answer
     // if (answerNow == null) {
@@ -226,7 +209,6 @@ var getAnswers = function () {
     //populate answers array
     answers[i] = answerNow;
     // }
-
   }
   localStorage.setItem("answers", JSON.stringify(answers));
   //run figure out results type function
@@ -394,39 +376,79 @@ var resultsPage = function (categoryPick, movieCodes) {
 
 //---------get apis linked--------------------//
 // //-----movie API--------//
-var movieAPI = function (categoryPick, movieCodes) {
-  //   //random number coding
-  //   m = Math.floor(Math.random() * 5);
-  //   //console.log(m);
-  //   var genreType = movieCodes[m];
-  //   //// categoryPick[3]=movie rating
-  //   // var apiMovieUrl = "/";
-  //   // fetch(apiMovieUrl)
-  //   //   .then(function (response) {
-  //   //     // if request was successful
-  //   //     //console.log(response);
-  //   //     if (response.ok) {
-  //   //       response.json().then(function (otherData) {
-  //   //         //console.log(otherData);
-  //   //         otherResultFunc(movieData);
-  //   //       });
-  //   //     } else {
-  //   //       alert("Error: Movie api Not Found");
-  //   //     }
-  //   //   })
-  //   //   .catch(function (error) {
-  //   //     alert("Unable to connect to movie api");
-  //   //   });
-  //   ////phil is working on
-  //   ////movieResultFunc(movieData);
+//-----movie API--------//
+var movieAPI = function (movieCodes) {
+  var genreType = movieCodes;
+  var apiMovieUrl = "https://api.themoviedb.org/3/discover/movie?api_key="+tmdbKey+"&certification_country=US&language=en-US&region=US&popularity.desc&include_adult=false&include_video=false&page="+ c +"&with_genres=" + genreType;
+  console.log("apiMovieUrl:  "+apiMovieUrl);
+  fetch(apiMovieUrl)
+    .then(function (response) {
+      // if request was successful
+      console.log(response);
+      if (response.ok) {
+       return response.json()
+      } else {
+        alert("Error: Movie api Not Found");
+      }
+    })
+    .then(function (movieData) {
+      movieResultFunc(movieData);
+    console.log(movieData)
+    })
+    .catch(function (error) {
+      alert("Error: Unable to connect to movie api "+ error.message);
+    });
 };
-
-// document.querySelector("#nextBtn1").addEventListener("click", searchGenre);
 
 //get movie result
 var movieResultFunc = function (movieData) {
   // populate movieResult object
+  var movieTitle = JSON.stringify(movieData.results[0].title);
+  document.getElementById("movieTitle").textContent = movieTitle;
+  var movieOverview = JSON.stringify(movieData.results[0].overview);
+  document.getElementById("movieInfo").textContent = movieOverview;
+  var movieImage = JSON.stringify(movieData.results[0].poster_path).slice(1,-1);
+  var imageLink = document.getElementById("movieImage").setAttribute("src", "https://image.tmdb.org/t/p/w500"+movieImage);
+  console.log("imageLink:  " + imageLink);
+
 };
+
+// //-----movie API--------//
+// var movieAPI = function (movieCodes) {
+//   var genreType = movieCodes;
+//   var apiMovieUrl = "https://api.themoviedb.org/3/discover/movie?api_key="+tmdbKey+"&certification_country=US&language=en-US&region=US&popularity.desc&include_adult=false&include_video=false&page="+ c +"&with_genres=" + genreType;
+//   console.log("apiMovieUrl:  "+apiMovieUrl);
+//   fetch(apiMovieUrl)
+//     .then(function (response) {
+//       // if request was successful
+//       console.log(response);
+//       if (response.ok) {
+//        return response.json()
+//       } else {
+//         alert("Error: Movie api Not Found");
+//       }
+//     })
+//     .then(function (movieData) {
+//       movieResultFunc(movieData);
+//     })
+//     .catch(function (error) {
+//       alert("Error: Unable to connect to movie api "+ error.message);
+//     });
+// };
+
+// //get movie result
+// var movieResultFunc = function (movieData) {
+//   // populate movieResult object
+//   var movieTitle = JSON.stringify(movieData.results[0].title);
+//   document.getElementById("movieTitle").textContent = movieTitle;
+//   var movieOverview = JSON.stringify(movieData.results[0].overview);
+//   document.getElementById("movieInfo").textContent = movieOverview;
+//   var movieImage = JSON.stringify(movieData.results[0].poster_path).slice(1,-1);
+//   var imageLink = document.getElementById("movieImage").setAttribute("src", "https://image.tmdb.org/t/p/w500"+movieImage);
+//   console.log("imageLink:  " + imageLink);
+  
+// };
+
 
 //-----book API--------//
 var bookAPI = function (categoryPick) {
@@ -482,47 +504,6 @@ var bookFetch = function (apiLocUrl) {
     });
 };
 
-// var movieAPI = function () {
-// let tmdbKey = "483e17e3930801f2012e0e7c7f4fb86e";
-// let baseURL = "https://api.themoviedb.org/3/";
-// let configData = null;
-// let baseImageURL = null;
-// let url = "".concat(baseURL, "configuration?api_key=", tmdbKey);
-// fetch(url)
-//   .then((result) => {
-//     return result.json();
-//   })
-//   .then((data) => {
-//     baseImageURL = data.images.secure_base_url;
-//     configData = data.images;
-//     console.log("config:", data);
-//     console.log("config fetched");
-//     runSearch("Jaws");
-//   })
-//   .catch(function (err) {
-//     alert(err);
-//   });
-// };
-
-let runSearch = function (keyword) {
-  // let url = "".concat(
-  //   baseURL,
-  //   "search/movie?api_key=",
-  //   tmdbKey,
-  //   "&query=",
-  //   keyword
-  // );
-  // fetch(url)
-  //   .then((result) => result.json())
-  //   .then((data) => {
-  //     document.getElementById("SET ELEMENT HERE").innerHTML = JSON.stringify(
-  //       data,
-  //       null,
-  //       4
-  //     );
-  //   });
-};
-
 //get Book result
 var bookResultFunc = function (bookData) {
   //console.log(bookData);
@@ -570,41 +551,6 @@ var bookResultFunc = function (bookData) {
 };
 
 
-//-----movie API--------//
-var movieAPI = function (movieCodes) {
-  var genreType = movieCodes;
-  var apiMovieUrl = "https://api.themoviedb.org/3/discover/movie?api_key="+tmdbKey+"&certification_country=US&language=en-US&region=US&popularity.desc&include_adult=false&include_video=false&page="+ c +"&with_genres=" + genreType;
-  console.log("apiMovieUrl:  "+apiMovieUrl);
-  fetch(apiMovieUrl)
-    .then(function (response) {
-      // if request was successful
-      console.log(response);
-      if (response.ok) {
-       return response.json()
-      } else {
-        alert("Error: Movie api Not Found");
-      }
-    })
-    .then(function (movieData) {
-      movieResultFunc(movieData);
-    })
-    .catch(function (error) {
-      alert("Error: Unable to connect to movie api "+ error.message);
-    });
-};
-
-//get movie result
-var movieResultFunc = function (movieData) {
-  // populate movieResult object
-  var movieTitle = JSON.stringify(movieData.results[0].title);
-  document.getElementById("movieTitle").textContent = movieTitle;
-  var movieOverview = JSON.stringify(movieData.results[0].overview);
-  document.getElementById("movieInfo").textContent = movieOverview;
-  var movieImage = JSON.stringify(movieData.results[0].poster_path).slice(1,-1);
-  var imageLink = document.getElementById("movieImage").setAttribute("src", "https://image.tmdb.org/t/p/w500"+movieImage);
-  console.log("imageLink:  " + imageLink);
-  
-};
 
 //-----advice API--------//
 var otherAPI = function () {
