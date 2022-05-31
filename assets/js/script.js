@@ -63,6 +63,7 @@ var get_c = function () {
 };
 get_c();
 window.scrollTo(0, 0);
+
 // loads fixed preference form on start button
 var startBtnFunc = function () {
   // hide show areas;show input form page from html
@@ -73,30 +74,41 @@ var startBtnFunc = function () {
   window.scrollTo(0, 826);
   // populate questionwith answers from local storage if there are any
   ////need to get working
-//   for (i = 0; i < 1; i++) {
-//     var ii = i + 1;
-//     //var a = 2; //constant for testing
-//     if (answers) {
-//       var answerFill = document.querySelectorAll(
-//         'input[name="answer' + ii + '"]'
-//       );
-//       var answerUse = answers[i];
-//       console.log(answerUse);
-//       for (var a = 0; a < 4; a++) {
-//         if (answerUse === a) {
-//           answerFill[a].checked = true;
-//         }
-//       }
-//       var answerUse = answers[i];
-//       console.log(answerUse);
-//       for (var a = 0; a < 3; a++) {
-//         if (answerUse === a) {
-//           answerFill[a].checked = true;
-//         }
-//       }
-//       // answerFill[i] =;
-//     }
-//   }
+for (i = 0; i < 1; i++) {
+    var ii = i + 1;
+    //var a = 2; //constant for testing
+    if (answers) {
+      var answerFill = document.querySelectorAll(
+        'input[name="answer' + ii + '"]'
+      );
+      var answerUse = answers[i];
+      console.log(answerUse);
+      for (var a = 0; a < 4; a++) {
+        if (answerUse === a) {
+          answerFill[a].checked = true;
+        }
+      }
+      // answerFill[i] =;
+    }
+  }
+  for (i = 1; i < 3; i++) {
+    var ii = i + 1;
+
+    //var a = 2; //constant for testing
+    if (answers) {
+      var answerFill = document.querySelectorAll(
+        'input[name="answer' + ii + '"]'
+      );
+      var answerUse = answers[i];
+      console.log(answerUse);
+      for (var a = 0; a < 3; a++) {
+        if (answerUse === a) {
+          answerFill[a].checked = true;
+        }
+      }
+      // answerFill[i] =;
+    }
+  }
 };
 
 //Next button function save answers from input form and display first mood question
@@ -169,7 +181,6 @@ var getAnswers = function () {
         answerNow = a;
       }
     }
-
     //console.log(answerNow);
     //error if no answer
     // if (answerNow == null) {
@@ -178,7 +189,6 @@ var getAnswers = function () {
     //populate answers array
     answers[i] = answerNow;
     // }
-
   }
   localStorage.setItem("answers", JSON.stringify(answers));
   //run figure out results type function
