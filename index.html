@@ -64,7 +64,7 @@
       </h1>
     </header>
     <!-- opening page  -->
-
+<main>
     <article class="section1" id="section1">
       <div class="container">
         <div class="columns is-vcentered block mt-6">
@@ -74,8 +74,8 @@
           </div>
           <!-- images info etc  -->
           <div class="column is-6 has-text-centered">
-            <h2 class="is-size-5-mobile is-size-1-desktop title">
-              PREPARE FOR RELAXATION
+            <h2 class="is-size-3-mobile is-size-1-desktop title">
+              Prepare for Relaxation
             </h2>
             <h2 class="is-size-6-mobile is-size-2-desktop subtitle">
               WE ARE HERE TO HELP
@@ -90,8 +90,8 @@
               will randomly select and give you recommendations. Enjoy and
               relax, Thank you!
             </p>
-            <button class="button is-success is-size-5-mobile is-size-4-desktop mt-5" id="startBtn">Start</button><br/>
-            <button class="button is-danger is-size-5-mobile is-size-4-desktop mt-2" id="surpriseMeBtn">Surprise Me</button>
+            <button class="button is-success is-size-6-mobile is-size-4-desktop mt-5" id="startBtn">Start</button><br/>
+            <button class="button is-danger is-size-6-mobile is-size-4-desktop mt-2" id="surpriseMeBtn">Surprise Me</button>
           </div>  
         </div>
       </div>
@@ -100,7 +100,7 @@
     <!-- Preference Questions  -->
 
     <!-- first page will have a form fixed preferences that'll repopulate from local storage -->
-    <article class="formResultsArea">
+    <section class="formResultsArea">
 
       <!-- Replace header with "Preferences" type title -->
         <h3 class="is-size-5-mobile is-size-1-desktop title has-text-centered">Tell Us More</h3>
@@ -236,10 +236,14 @@
             <!-- //turn into modal? -->
       <div id="error"></div>
 
+    <div class="block">
       <button class="button is-warning ml-6 px-6" id="clearBtn">I didn't mean what I said before</button>
       <button class="button is-success" id="nextBtn1">SUBMIT</button>
-                
-    </article>
+    </div>
+               
+  </section>
+
+
     <!-- Results  -->
     <article class="resultsSection" id="resultsSection">
       <!-- replace header with 'our Plans Are ...'  -->
@@ -297,39 +301,42 @@
       </div>
     </article>
 
+  </main>
     <!-- FOOTER  -->
-    <footer>
-      <section class="footer-content">
-          <h5 class="has-text-left">Created by:</h5>
-            <h6 class="mt-1 ml-2">Caleb K.</h6>
-            <h6 class="mt-1 ml-1">Charissa H.</h6>
-            <h6 class="mt-1 ml-1">Danielle G.</h6>
-            <h6 class="mt-1 ml-1">& Philip G.</h6>
-        
-        <div class="creditLogos">
+    <footer class="footer">
+      <div class="content">
+          <h5>Created by:</h5>
+            <h6>Caleb K.,<br/> Charissa H.,<br/> Danielle G.,<br/> & Philip G.</h6>
+        <ul class="creditLogos">
           <!-- movies credit logo  -->
-          <a class="image is-32x32 is-right" href="https://developers.themoviedb.org" title="Movie API">
-            <img class="is-rounded" 
-              src="./assets/images/TMDB.jpg"
-              alt="Movie data populated by themoviedb.org";
-            />
-          </a>
-          <!-- books credit logo  -->
-          <a class="image is-32x32" href="https://developers.google.com/books/" title="Book API">
-            <img class="is-rounded"
-              src="./assets/images/Google-Books-Update.png"
-              alt="Movie data populated by themoviedb.org";
-            />
-          </a>
+          <li><a class="image is-32x32 is-right" href="https://developers.themoviedb.org" title="Movie API">
+                <img class="is-rounded" 
+                  src="./assets/images/TMDB.jpg"
+                  alt="Movie data populated by themoviedb.org";
+                />
+              </a>
+            </li>
+            <!-- books credit logo  -->
+          <li><a class="image is-32x32" href="https://developers.google.com/books/" title="Book API">
+                <img class="is-rounded"
+                  src="./assets/images/Google-Books-Update.png"
+                  alt="Movie data populated by themoviedb.org";
+                />
+              </a>
+            </li>
           <!-- other api credit logo  -->
-          <a class="image is-32x32" href="https://api.adviceslip.com/" title="Advice Slip API">
-            <img class="is-rounded"
-              src="https://pbs.twimg.com/profile_images/3172147527/4bca01881aa553af3df95c076d6ce4d3_400x400.png"
-              alt="Advice data populated by https://adviceslip.com/";
-            />
-          </a>
-        </div>
-      </section>
+          <li><a class="image is-32x32" href="https://api.adviceslip.com/" title="Advice Slip API">
+                <img class="is-rounded"
+                  src="https://pbs.twimg.com/profile_images/3172147527/4bca01881aa553af3df95c076d6ce4d3_400x400.png"
+                  alt="Advice data populated by https://adviceslip.com/";
+                />
+              </a>
+            </li>  
+        </ul>
+      </div>
+      <div class="footer-bottom">
+        <p>Made with ❤ 2022</p>
+      </div>
     </footer>
 
     <!-- link scripts for js  -->

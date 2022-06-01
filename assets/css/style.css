@@ -29,8 +29,17 @@ html {
 
 body {
   margin: 0;
+  min-height: 100vh;
 }
 
+main {
+  height: 100%;
+  padding: 40px 0;
+  background-image: url(../images/milad-fakurian-UiiHVEyxtyA-unsplash.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 .navbar {
   background-color: #c4d3d8;
@@ -73,7 +82,7 @@ header h1 {
 .section1 {
   width: 100%;
   height: 100vh;
-  background-image: url(../images/milad-fakurian-UiiHVEyxtyA-unsplash.jpg);
+ 
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -88,7 +97,7 @@ header h1 {
 
 .formResultsArea {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-image: url(..//images/milad-fakurian-UiiHVEyxtyA-unsplash.jpg);
   background-position: center center;
   background-repeat: no-repeat;
@@ -102,28 +111,49 @@ h2, h3, h4  {
   font-weight: bold;
 }
 
+<<<<<<< HEAD
 
+=======
+.resultsSection {
+  width: 100%;
+  height: 100%;
+  background-image: url(../images/milad-fakurian-UiiHVEyxtyA-unsplash.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  justify-content: center;
+  display: flex;
+}
+>>>>>>> ffccf5a15078e5b4b07b86cd49c3f78804ced5ec
 
 /*footer*/
 
+footer {
+  position: relative;
+  bottom: 0;
+}
+
 
 .creditLogos {
-  padding-right: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer-content {
-  background-repeat: no-repeat;
-  background-position: bottom;
   display: flex;
   flex-flow: row wrap;
   border-top: 1px;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 h5 {
   font-family: 'Lobster', cursive;
   font-weight: 400;
   font-size: 25px;
-  justify-content: left;
+  text-align: center;
 }
 
 
@@ -131,9 +161,16 @@ h6 {
   font-family: 'Oswald', sans-serif;
   font-size: 20px;
   font-weight: 400;
-  justify-content: left;
+  text-align: center;
 }
 
+.footer-bottom {
+  text-align: center;
+}
+
+li {
+  list-style: none;
+}
 
 /* Button designs  */
 .btnStyle {
