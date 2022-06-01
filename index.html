@@ -64,7 +64,7 @@
       </h1>
     </header>
     <!-- opening page  -->
-
+<main>
     <article class="section1" id="section1">
       <div class="container">
         <div class="columns is-vcentered block mt-6">
@@ -100,7 +100,7 @@
     <!-- Preference Questions  -->
 
     <!-- first page will have a form fixed preferences that'll repopulate from local storage -->
-    <article class="formResultsArea">
+    <section class="formResultsArea">
 
       <!-- Replace header with "Preferences" type title -->
         <h3 class="is-size-5-mobile is-size-1-desktop title has-text-centered mt-5">Tell Us More</h3>
@@ -236,10 +236,12 @@
             <!-- //turn into modal? -->
       <div id="error"></div>
 
+    <div class="block">
       <button class="button is-warning ml-6 px-6" id="clearBtn">I didn't mean what I said before</button>
       <button class="button is-success" id="nextBtn1">SUBMIT</button>
-                
-    </article>
+    </div>
+               
+  </section>
 
 
     <!-- Results  -->
@@ -293,9 +295,10 @@
         <button class="button is-danger" id="startOverBtn">Start Over</button>
     </article>
 
+  </main>
     <!-- FOOTER  -->
-    <footer>
-      <section class="footer-content">
+    <footer class="footer">
+      <div class="content">
           <h5>Created by:</h5>
             <h6>Caleb K.,<br/> Charissa H.,<br/> Danielle G.,<br/> & Philip G.</h6>
         <ul class="creditLogos">
@@ -324,7 +327,7 @@
               </a>
             </li>  
         </ul>
-      </section>
+      </div>
       <div class="footer-bottom">
         <p>Made with ❤ 2022</p>
       </div>
