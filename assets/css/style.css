@@ -45,11 +45,54 @@ main {
   background-color: #c4d3d8;
 }
 
+#lightbulbBtn {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+}
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding: 20px; /* Location of the box */
+  left: 40%;
+  top: 50px;
+  width: 60%; /* Full width */
+  height: fit-content; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  /* background-color: rgb(0, 0, 0); Fallback color */
+  /* background-color: rgba(0, 0, 0, 0.4); Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 30px;
+  margin: auto;
+  padding: 20px;
+  border: none;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
 /*--headline with quicklinks*/
 header {
-	margin: 0 auto;
-	position: relative;
-	text-align: center;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
   background-image: url(../images/ajit-singh-_6lUTo2UfMY-unsplash.jpg);
   background-position: center center;
   background-repeat: no-repeat;
@@ -62,9 +105,8 @@ header {
   flex-flow: column;
 }
 
-
 .color-detail {
-  color:crimson;
+  color: crimson;
 }
 
 header h1 {
@@ -75,14 +117,14 @@ header h1 {
   color: rgb(255, 255, 255);
   display: inline-block;
   position: relative;
-  font-family: 'Fjalla One', sans-serif;
+  font-family: "Fjalla One", sans-serif;
   font-weight: bold;
 }
 
 .section1 {
   width: 100%;
   height: 100vh;
- 
+
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -106,8 +148,10 @@ header h1 {
   display: flex;
 }
 
-h2, h3, h4  {
-  font-family: 'Fjalla One', sans-serif;
+h2,
+h3,
+h4 {
+  font-family: "Fjalla One", sans-serif;
   font-weight: bold;
 }
 
@@ -129,7 +173,6 @@ footer {
   bottom: 0;
 }
 
-
 .creditLogos {
   display: flex;
   align-items: center;
@@ -146,15 +189,14 @@ footer {
 }
 
 h5 {
-  font-family: 'Lobster', cursive;
+  font-family: "Lobster", cursive;
   font-weight: 400;
   font-size: 25px;
   text-align: center;
 }
 
-
 h6 {
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   font-size: 20px;
   font-weight: 400;
   text-align: center;
@@ -190,15 +232,13 @@ li {
 }
 
 /*all of main sections*/
-body{
-    background-color: var(--bg-color2);
+body {
+  background-color: var(--bg-color2);
 }
-
 
 /*within each subsections*/
 
 /*subsection unique attributes*/
-
 
 /*Results page*/
 #adviceSlipArea {

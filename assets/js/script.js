@@ -25,6 +25,7 @@ var answerArea = document.querySelector(".answers");
 formInputArea.style.display = "none";
 resultsSectionArea.style.display = "none";
 var errorMsgArea = document.getElementById("error");
+var modalTextInfo = document.getElementById("modalText");
 
 //--------Item and Object variables-----------//
 var i;
@@ -357,6 +358,9 @@ var resultsPage = function (categoryPick, movieCodes) {
 //-----movie API--------//
 var movieAPI = function (movieCodes) {
   var genreType = movieCodes;
+  if (c === o) {
+    c = 1;
+  }
   var apiMovieUrl =
     "https://api.themoviedb.org/3/discover/movie?api_key=" +
     tmdbKey +
@@ -591,6 +595,53 @@ function tryAgainFunc() {
 function startOver() {
   location.reload();
 }
+
+var lightbulbFunc = function () {
+  $.ajax({
+    method: "GET",
+    url: "https://api.api-ninjas.com/v1/facts?limit=1",
+    headers: { "X-Api-Key": "a8hifqhtb46evIGIS1vf8g==VKBgu6AQ2bQT5Gec" },
+    contentType: "application/json",
+    success: function (result) {
+      // console.log(result);
+      // console.log(result[0]);
+      // console.log(fact);
+      modalTextInfo.innerHTML = "";
+      var factoid = result[0].fact;
+      console.log(factoid);
+      modalTextInfo.innerHTML = factoid;
+    },
+    error: function ajaxError(jqXHR) {
+      console.error("Error: ", jqXHR.responseText);
+    },
+  });
+};
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("lightbulbBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function () {
+  modal.style.display = "block";
+  lightbulbFunc();
+};
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+  modal.style.display = "none";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
 
 ////----------event listeners----------////
 nextBtn1Get.addEventListener("click", nextBtnFunc1);
