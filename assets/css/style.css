@@ -45,6 +45,10 @@ main {
   background-color: #c4d3d8;
 }
 
+#lightbulbBtn {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+}
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
