@@ -603,7 +603,13 @@ var lightbulbFunc = function () {
     headers: { "X-Api-Key": "a8hifqhtb46evIGIS1vf8g==VKBgu6AQ2bQT5Gec" },
     contentType: "application/json",
     success: function (result) {
-      console.log(result);
+      // console.log(result);
+      // console.log(result[0]);
+      // console.log(fact);
+      modalTextInfo.innerHTML = "";
+      var factoid = result[0].fact;
+      console.log(factoid);
+      modalTextInfo.innerHTML = factoid;
     },
     error: function ajaxError(jqXHR) {
       console.error("Error: ", jqXHR.responseText);
@@ -622,8 +628,6 @@ var span = document.getElementsByClassName("close")[0];
 // When the user clicks the button, open the modal
 btn.onclick = function () {
   modal.style.display = "block";
-
-  modalTextInfo.innerHTML = "";
   lightbulbFunc();
 };
 
