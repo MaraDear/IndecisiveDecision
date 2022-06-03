@@ -573,7 +573,19 @@ var surpriseMeBtnFunc = function () {
     "not-mature",
     "modern",
   ];
-  // movieCodes = [28, 30, 31, 10, 13]; //populate with better options
+    var movieCodesPick = [
+    "35",
+    "18",
+    "9648",
+    "99",
+    "53",
+    "36",
+    "10749",
+    "12",
+    "10751",
+    "28",
+  ];
+  movieCodes = movieCodesPick[cc];
   resultsPage(categoryPick, movieCodes);
 };
 
