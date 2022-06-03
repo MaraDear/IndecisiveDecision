@@ -1,7 +1,7 @@
 /*Indecisive Decisions*/
 /***************************** */
 
-/* Some is copied from previous projects -CRH 05/24/22 */
+
 
 /* Overall */
 *,
@@ -25,13 +25,16 @@ html {
   --blur: 10px;
 }
 
-/*general selectors*/
+/*all of main sections*/
 
 body {
   margin: 0;
   min-height: 100vh;
 }
 
+body {
+  background-color: var(--bg-color2);
+}
 main {
   height: 100%;
   padding: 40px 0;
@@ -45,49 +48,6 @@ main {
   background-color: #c4d3d8;
 }
 
-#lightbulbBtn {
-  background-color: rgba(0, 0, 0, 0);
-  border: none;
-}
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding: 20px; /* Location of the box */
-  left: 40%;
-  top: 50px;
-  width: 60%; /* Full width */
-  height: fit-content; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  /* background-color: rgb(0, 0, 0); Fallback color */
-  /* background-color: rgba(0, 0, 0, 0.4); Black w/ opacity */
-}
-
-/* Modal Content */
-.modal-content {
-  background-color: rgba(0, 0, 0, 0);
-  font-size: 30px;
-  margin: auto;
-  padding: 20px;
-  border: none;
-  width: 80%;
-}
-
-/* The Close Button */
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
 /*--headline with quicklinks*/
 header {
   margin: 0 auto;
@@ -210,48 +170,57 @@ li {
   list-style: none;
 }
 
-/* Button designs  */
-.btnStyle {
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-  border: solid 3pt var(--third-color);
-  padding: 5px 10px;
+
+/*modal with random facts*/
+#lightbulbBtn {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+}
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding: 20px; /* Location of the box */
+  left: 40%;
+  top: 50px;
+  width: 60%; /* Full width */
+  height: fit-content; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  /* background-color: rgb(0, 0, 0); Fallback color */
+  /* background-color: rgba(0, 0, 0, 0.4); Black w/ opacity */
 }
 
-/*hero background image and subtitle*/
-/* do we want for start page?  */
-.heropg {
-  height: 300px;
-  width: 100vw;
-  margin-bottom: 25px;
-  background-image: url(./assets/images/heropgimage.jpg);
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  border: black 1px solid;
+/* Modal Content */
+.modal-content {
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 30px;
+  margin: auto;
+  padding: 20px;
+  border: none;
+  width: 80%;
 }
 
-/*all of main sections*/
-body {
-  background-color: var(--bg-color2);
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 
-/*within each subsections*/
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
 
-/*subsection unique attributes*/
 
-/*Results page*/
+/*advice slip page*/
 #adviceSlipArea {
   margin: 48px 80px 210px 105px;
   /* border: solid black 1px; */
 }
 
-/* //////remove or switch to min-width version, because bulma is mobile-first css??? ////// */
 
-/* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
-@media screen and (max-width: 980px) {
-}
-
-/* MEDIA QUERY FOR MOBILE PHONES AND SMALLER */
-@media screen and (max-width: 550px) {
-}
