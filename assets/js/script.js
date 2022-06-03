@@ -358,7 +358,7 @@ var resultsPage = function (categoryPick, movieCodes) {
 //-----movie API--------//
 var movieAPI = function (movieCodes) {
   var genreType = movieCodes;
-  if (c === o) {
+  if (c === 0) {
     c = 1;
   }
   var apiMovieUrl =
