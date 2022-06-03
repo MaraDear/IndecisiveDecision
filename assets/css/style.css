@@ -51,17 +51,28 @@ main {
 }
 /* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  position: absolute; /* Stay in place */
+  display: block;
+  z-index: 50; /* Sit on top */
   padding: 20px; /* Location of the box */
   left: 40%;
-  top: 50px;
+  top: 10%;
   width: 60%; /* Full width */
   height: fit-content; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  /* background-color: rgb(0, 0, 0); Fallback color */
-  /* background-color: rgba(0, 0, 0, 0.4); Black w/ opacity */
+  background-color: white;
+  /* background-color: rgba(0, 0, 0, 0.4); */
+}
+
+#modalBack {
+  display: none;
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 40;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 /* Modal Content */
